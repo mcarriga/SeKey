@@ -112,150 +112,102 @@ public class Asserts implements IAssert, Callable<Void> {
 
 	@Override
 	public AssertKeyword assertElementNotVisible(By locator, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementNotVisible(driver, logger, wait, locator, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementNotVisible(WebElement element, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementNotVisible(element, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementEnabled(By locator, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementEnabled(driver, logger, wait, locator, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementEnabled(WebElement element, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementEnabled(element, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementNotEnabled(By locator, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementNotEnabled(driver, logger, wait, locator, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementNotEnabled(WebElement element, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementNotEnabled(element, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementSelected(By locator, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementSelected(driver, logger, wait, locator, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementSelected(WebElement element, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementSelected(element, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementNotSelected(By locator, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementNotSelected(driver, logger, wait, locator, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertElementNotSelected(WebElement element, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertElementNotSelected(element, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertPageTitleEquals(String title, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertPageTitleEquals(driver, title, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertPageTitleContains(String title, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertPageTitleContains(driver, title, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertCurrentUrlEquals(String Url, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertCurrentUrlEquals(driver, Url, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertCurrentUrlContains(String Url, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertCurrentUrlContains(driver, Url, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertAlertIsPresent(long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertAlertIsPresent(logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertLocatorReturnsNumberOfElements(By locator, int expectedNumber, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertLocatorReturnsNumberOfElements(driver, locator, expectedNumber, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertLocatorReturnsLessThan(By locator, int lessNumber, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertLocatorReturnsLessThan(driver, locator, lessNumber, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertLocatorReturnsGreaterThan(By locator, int greaterNumber, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AssertKeyword assertPresenceOfNestedElements(By locator, By childLocator, int greaterNumber,
-			long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AssertKeyword assertPresenceOfNestedElements(WebElement element, By childLocator, int greaterNumber,
-			long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AssertKeyword assertPresenceOfNestedElement(By locator, By childLocator, int greaterNumber,
-			long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AssertKeyword assertPresenceOfNestedElement(WebElement element, By childLocator, int greaterNumber,
-			long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertLocatorReturnsGreaterThan(driver, locator, greaterNumber, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownSelectedTextIs(By locator, String name, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertDropDownSelectedTextIs(driver, locator, name, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownSelectedTextIs(WebElement element, String name, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertDropDownSelectedTextIs(element, name, logger, wait, timeoutSeconds);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import org.testng.Assert;
 import interfaces.ILogging;
 import interfaces.IWait;
 
-public class AssertElementVisible extends AssertKeyword {
+public class AssertElementNotEnabled extends AssertKeyword {
 
 	private final ILogging logger;
 	private final IWait wait;
@@ -16,11 +16,11 @@ public class AssertElementVisible extends AssertKeyword {
 	private final WebElement element;
 	private By locator = null;
 	
-	public AssertElementVisible(WebDriver driver, ILogging logger, IWait wait, By locator, long timeoutSeconds) {
+	public AssertElementNotEnabled(WebDriver driver, ILogging logger, IWait wait, By locator, long timeoutSeconds) {
 		this(driver.findElement(locator), logger, wait, timeoutSeconds);
 	}
 	
-	public AssertElementVisible(WebElement element, ILogging logger, IWait wait, long timeoutSeconds) {
+	public AssertElementNotEnabled(WebElement element, ILogging logger, IWait wait, long timeoutSeconds) {
 		this.element = element;
 		this.logger = logger;
 		this.wait = wait;
@@ -29,11 +29,11 @@ public class AssertElementVisible extends AssertKeyword {
 
 	@Override
 	public Void perform() {
-		wait.untilElementVisible(element, timeout).perform();
+		wait.untilElementNotEnabled(element, timeout).perform();
 		StringBuilder builder = new StringBuilder();
-		builder.append("Element is NOT Visible/Displayed");
+		builder.append("Element is Enabled but expected to not be");
 		if(locator !=null) builder.append("; By: "+locator);
-		Assert.assertTrue(element.isDisplayed(), builder.toString());
+		Assert.assertFalse(element.isEnabled(), builder.toString());
 		return null;
 	}
 
@@ -46,4 +46,5 @@ public class AssertElementVisible extends AssertKeyword {
 	public void endLog() {
 		logger.endKeyword(this);
 	}
+
 }

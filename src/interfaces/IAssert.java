@@ -41,10 +41,6 @@ public interface IAssert extends Callable<Void> {
 	AssertKeyword assertLocatorReturnsNumberOfElements(By locator, int expectedNumber, long timeoutSeconds);
 	AssertKeyword assertLocatorReturnsLessThan(By locator, int lessNumber, long timeoutSeconds);
 	AssertKeyword assertLocatorReturnsGreaterThan(By locator, int greaterNumber, long timeoutSeconds);
-	AssertKeyword assertPresenceOfNestedElements(By locator, By childLocator, int greaterNumber, long timeoutSeconds);
-	AssertKeyword assertPresenceOfNestedElements(WebElement element, By childLocator, int greaterNumber, long timeoutSeconds);
-	AssertKeyword assertPresenceOfNestedElement(By locator, By childLocator, int greaterNumber, long timeoutSeconds);
-	AssertKeyword assertPresenceOfNestedElement(WebElement element, By childLocator, int greaterNumber, long timeoutSeconds);
 	AssertKeyword assertDropDownSelectedTextIs(By locator, String name, long timeoutSeconds);
 	AssertKeyword assertDropDownSelectedTextIs(WebElement element, String name, long timeoutSeconds);
 	AssertKeyword assertDropDownSelectedValueIs(By locator, String name, long timeoutSeconds);

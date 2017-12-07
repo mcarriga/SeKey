@@ -12,6 +12,8 @@ public interface IWait {
 	WaitKeyword untilElementNotPresent(WebElement element, long maxWaitSeconds);
 	WaitKeyword untilElementVisible(By locator, long maxWaitSeconds);
 	WaitKeyword untilElementVisible(WebElement element, long maxWaitSeconds);
+	WaitKeyword untilElementNotVisible(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementNotVisible(WebElement element, long maxWaitSeconds);
 	WaitKeyword untilPageLoadStatusComplete(long maxWaitSeconds);
 	WaitKeyword untilElementClickable(By locator, long maxWaitSeconds);
 	WaitKeyword untilElementClickable(WebElement element, long maxWaitSeconds);
@@ -36,6 +38,7 @@ public interface IWait {
 	WaitKeyword untilCurrentUrlEquals(String Url, long maxWaitSeconds);
 	WaitKeyword untilCurrentUrlContains(String Url, long maxWaitSeconds);
 	WaitKeyword untilAlertIsPresent(long maxWaitSeconds);
+	WaitKeyword untilAlertIsNotPresent(long maxWaitSeconds);
 	WaitKeyword untilLocatorReturnsNumberOfElements(By locator, int expectedNumber, long maxWaitSeconds);
 	WaitKeyword untilLocatorReturnsLessThan(By locator, int lessNumber, long maxWaitSeconds);
 	WaitKeyword untilLocatorReturnsGreaterThan(By locator, int greaterNumber, long maxWaitSeconds);
@@ -57,4 +60,8 @@ public interface IWait {
 	WaitKeyword untilDropDownValueTextsInOrderOf(WebElement element, List<String> text, long maxWaitSeconds);
 	WaitKeyword untilStalenessOf(By locator, long maxWaitSeconds);
 	WaitKeyword untilStalenessOf(WebElement element, long maxWaitSeconds);
+	WaitKeyword untilElementEnabled(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementEnabled(WebElement element, long maxWaitSeconds);
+	WaitKeyword untilElementNotEnabled(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementNotEnabled(WebElement element, long maxWaitSeconds);
 }

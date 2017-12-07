@@ -275,4 +275,39 @@ public class Waits implements IWait {
 	public WaitKeyword untilStalenessOf(WebElement element, long maxWaitSeconds) {
 		return new UntilStalenessOf(driver, element, logger, maxWaitSeconds);
 	}
+
+	@Override
+	public WaitKeyword untilElementNotVisible(By locator, long maxWaitSeconds) {
+		return new UntilElementNotVisible(driver, locator, logger, maxWaitSeconds);
+	}
+
+	@Override
+	public WaitKeyword untilElementNotVisible(WebElement element, long maxWaitSeconds) {
+		return new UntilElementNotVisible(driver, element, logger, maxWaitSeconds);
+	}
+
+	@Override
+	public WaitKeyword untilElementEnabled(By locator, long maxWaitSeconds) {
+		return new UntilElementEnabled(driver, locator, logger, maxWaitSeconds);
+	}
+
+	@Override
+	public WaitKeyword untilElementEnabled(WebElement element, long maxWaitSeconds) {
+		return new UntilElementEnabled(driver, element, logger, maxWaitSeconds);
+	}
+
+	@Override
+	public WaitKeyword untilElementNotEnabled(By locator, long maxWaitSeconds) {
+		return new UntilElementNotEnabled(driver, locator, logger, maxWaitSeconds);
+	}
+
+	@Override
+	public WaitKeyword untilElementNotEnabled(WebElement element, long maxWaitSeconds) {
+		return new UntilElementNotEnabled(driver, element, logger, maxWaitSeconds);
+	}
+
+	@Override
+	public WaitKeyword untilAlertIsNotPresent(long maxWaitSeconds) {
+		return new UntilAlertIsNotPresent(driver, logger, maxWaitSeconds);
+	}
 }
