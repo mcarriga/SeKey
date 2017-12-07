@@ -1,0 +1,20 @@
+2017-12-06 15:36:57.608|INFO |
+*** ARRANGE Section *** Navigating to Google
+2017-12-06 15:36:57.612|INFO |Starting Keyword - Action.NavigateToUrl; Url: https://www.google.com/
+2017-12-06 15:36:59.646|INFO |Ending Keyword   - Action.NavigateToUrl
+2017-12-06 15:36:59.647|INFO |
+*** ACT Section *** Searching for Selenium
+2017-12-06 15:36:59.672|INFO |Starting Keyword - Action.Click; with By locator: By.xpath: //*[@name='q']
+2017-12-06 15:36:59.733|INFO |Ending Keyword   - Action.Click
+2017-12-06 15:36:59.746|INFO |Starting Keyword - Action.SetText; with By locator: By.xpath: //*[@name='q']
+2017-12-06 15:36:59.819|INFO |Ending Keyword   - Action.SetText
+2017-12-06 15:36:59.819|INFO |Starting Keyword - Wait.UntilElementExists; with By locator: By.xpath: //li[@role='presentation']
+2017-12-06 15:37:00.392|INFO |Ending Keyword   - Wait.UntilElementExists
+2017-12-06 15:37:00.426|INFO |Starting Keyword - Get.GetText; with By locator: By.xpath: //li[@role='presentation']
+2017-12-06 15:37:00.452|INFO |Ending Keyword   - Get.GetText
+2017-12-06 15:37:00.453|INFO |
+*** ASSERT Section *** Asserting results in popup search
+2017-12-06 15:37:00.462|INFO |Starting Keyword - Assert.AssertText; with By locator: By.xpath: //li[@role='presentation']; Expected Text: selenium
+2017-12-06 15:37:00.476|INFO |Ending Keyword   - Assert.AssertText
+2017-12-06 15:37:00.479|INFO |
+*** CLEANUP Section *** Quiting Driver

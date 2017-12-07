@@ -1,0 +1,60 @@
+package com.spectrum.automation.Interfaces;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.spectrum.automation.keywords.WaitKeyword;
+
+public interface IWait {
+	WaitKeyword untilElementExists(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementNotPresent(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementNotPresent(WebElement element, long maxWaitSeconds);
+	WaitKeyword untilElementVisible(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementVisible(WebElement element, long maxWaitSeconds);
+	WaitKeyword untilPageLoadStatusComplete(long maxWaitSeconds);
+	WaitKeyword untilElementClickable(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementClickable(WebElement element, long maxWaitSeconds);
+	WaitKeyword untilElementTextEquals(By locator, String expectedText, long maxWaitSeconds);
+	WaitKeyword untilElementTextEquals(WebElement element, String expectedText, long maxWaitSeconds);
+	WaitKeyword untilElementTextContains(By locator, String expectedText, long maxWaitSeconds);
+	WaitKeyword untilElementTextContains(WebElement element, String expectedText, long maxWaitSeconds);
+	WaitKeyword untilElementValueEquals(By locator, String expectedValue, long maxWaitSeconds);
+	WaitKeyword untilElementValueEquals(WebElement element, String expectedValue, long maxWaitSeconds);
+	WaitKeyword untilElementValueContains(By locator, String expectedValue, long maxWaitSeconds);
+	WaitKeyword untilElementValueContains(WebElement element, String expectedValue, long maxWaitSeconds);
+	WaitKeyword untilElementAttributeEquals(By locator, String attrName,  String expectedValue, long maxWaitSeconds);
+	WaitKeyword untilElementAttributeEquals(WebElement element, String attrName,  String expectedValue, long maxWaitSeconds);
+	WaitKeyword untilElementAttributeContains(By locator, String attrName,  String expectedValue, long maxWaitSeconds);
+	WaitKeyword untilElementAttributeContains(WebElement element, String attrName,  String expectedValue, long maxWaitSeconds);
+	WaitKeyword untilElementSelected(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementSelected(WebElement element, long maxWaitSeconds);
+	WaitKeyword untilElementNotSelected(By locator, long maxWaitSeconds);
+	WaitKeyword untilElementNotSelected(WebElement element, long maxWaitSeconds);
+	WaitKeyword untilPageTitleEquals(String title, long maxWaitSeconds);
+	WaitKeyword untilPageTitleContains(String title, long maxWaitSeconds);
+	WaitKeyword untilCurrentUrlEquals(String Url, long maxWaitSeconds);
+	WaitKeyword untilCurrentUrlContains(String Url, long maxWaitSeconds);
+	WaitKeyword untilAlertIsPresent(long maxWaitSeconds);
+	WaitKeyword untilLocatorReturnsNumberOfElements(By locator, int expectedNumber, long maxWaitSeconds);
+	WaitKeyword untilLocatorReturnsLessThan(By locator, int lessNumber, long maxWaitSeconds);
+	WaitKeyword untilLocatorReturnsGreaterThan(By locator, int greaterNumber, long maxWaitSeconds);
+	WaitKeyword untilPresenceOfNestedElements(By locator, By childLocator, int greaterNumber, long maxWaitSeconds);
+	WaitKeyword untilPresenceOfNestedElements(WebElement element, By childLocator, int greaterNumber, long maxWaitSeconds);
+	WaitKeyword untilPresenceOfNestedElement(By locator, By childLocator, int greaterNumber, long maxWaitSeconds);
+	WaitKeyword untilPresenceOfNestedElement(WebElement element, By childLocator, int greaterNumber, long maxWaitSeconds);
+	WaitKeyword untilDropDownSelectedTextIs(By locator, String name, long maxWaitSeconds);
+	WaitKeyword untilDropDownSelectedTextIs(WebElement element, String name, long maxWaitSeconds);
+	WaitKeyword untilDropDownSelectedValueIs(By locator, String name, long maxWaitSeconds);
+	WaitKeyword untilDropDownSelectedValueIs(WebElement element, String name, long maxWaitSeconds);
+	WaitKeyword untilDropDownItemCountIs(By locator, int count, long maxWaitSeconds);
+	WaitKeyword untilDropDownItemCountIs(WebElement element, int count, long maxWaitSeconds);
+	WaitKeyword untilDropDownCountainsValueText(By locator, String text, long maxWaitSeconds);
+	WaitKeyword untilDropDownCountainsValueText(WebElement element, String text, long maxWaitSeconds);
+	WaitKeyword untilDropDownCountainsValueTexts(By locator, List<String> text, long maxWaitSeconds);
+	WaitKeyword untilDropDownCountainsValueTexts(WebElement element, List<String> text, long maxWaitSeconds);
+	WaitKeyword untilDropDownValueTextsInOrderOf(By locator, List<String> text, long maxWaitSeconds);
+	WaitKeyword untilDropDownValueTextsInOrderOf(WebElement element, List<String> text, long maxWaitSeconds);
+	WaitKeyword untilStalenessOf(By locator, long maxWaitSeconds);
+	WaitKeyword untilStalenessOf(WebElement element, long maxWaitSeconds);
+}

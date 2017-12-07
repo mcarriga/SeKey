@@ -1,0 +1,60 @@
+package com.spectrum.automation.Interfaces;
+import java.util.List;
+import java.util.concurrent.Callable;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.spectrum.automation.keywords.AssertKeyword;
+
+public interface IAssert extends Callable<Void> {
+	AssertKeyword assertText(By locator, String expected);
+	AssertKeyword assertText(WebElement element, String expected);
+	AssertKeyword assertTextContains(By locator, String expected);
+	AssertKeyword assertTextContains(WebElement element, String expected);
+	AssertKeyword assertValue(By locator, String expected);
+	AssertKeyword assertValue(WebElement element, String expected);
+	AssertKeyword assertValueContains(By locator, String expected);
+	AssertKeyword assertValueContains(WebElement element, String expected);
+	AssertKeyword assertElementAttributeValue(By locator, String attrName, String expected);
+	AssertKeyword assertElementAttributeValue(WebElement element, String attrName, String expected);
+	AssertKeyword assertElementAttributeValueContains(By locator, String attrName, String expected);
+	AssertKeyword assertElementAttributeValueContains(WebElement element, String attrName, String expected);
+	AssertKeyword assertElementExists(By locator);
+	AssertKeyword assertElementVisible(By locator);
+	AssertKeyword assertElementVisible(WebElement element);
+	AssertKeyword assertElementNotVisible(By locator);
+	AssertKeyword assertElementNotVisible(WebElement element);
+	AssertKeyword assertElementEnabled(By locator);
+	AssertKeyword assertElementEnabled(WebElement element);
+	AssertKeyword assertElementNotEnabled(By locator);
+	AssertKeyword assertElementNotEnabled(WebElement element);
+	AssertKeyword assertElementSelected(By locator);
+	AssertKeyword assertElementSelected(WebElement element);
+	AssertKeyword assertElementNotSelected(By locator);
+	AssertKeyword assertElementNotSelected(WebElement element);
+	AssertKeyword assertPageTitleEquals(String title);
+	AssertKeyword assertPageTitleContains(String title);
+	AssertKeyword assertCurrentUrlEquals(String Url);
+	AssertKeyword assertCurrentUrlContains(String Url);
+	AssertKeyword assertAlertIsPresent();
+	AssertKeyword assertLocatorReturnsNumberOfElements(By locator, int expectedNumber);
+	AssertKeyword assertLocatorReturnsLessThan(By locator, int lessNumber);
+	AssertKeyword assertLocatorReturnsGreaterThan(By locator, int greaterNumber);
+	AssertKeyword assertPresenceOfNestedElements(By locator, By childLocator, int greaterNumber);
+	AssertKeyword assertPresenceOfNestedElements(WebElement element, By childLocator, int greaterNumber);
+	AssertKeyword assertPresenceOfNestedElement(By locator, By childLocator, int greaterNumber);
+	AssertKeyword assertPresenceOfNestedElement(WebElement element, By childLocator, int greaterNumber);
+	AssertKeyword assertDropDownSelectedTextIs(By locator, String name);
+	AssertKeyword assertDropDownSelectedTextIs(WebElement element, String name);
+	AssertKeyword assertDropDownSelectedValueIs(By locator, String name);
+	AssertKeyword assertDropDownSelectedValueIs(WebElement element, String name);
+	AssertKeyword assertDropDownItemCountIs(By locator, int count);
+	AssertKeyword assertDropDownItemCountIs(WebElement element, int count);
+	AssertKeyword assertDropDownCountainsValueText(By locator, String text);
+	AssertKeyword assertDropDownCountainsValueText(WebElement element, String text);
+	AssertKeyword assertDropDownCountainsValueTexts(By locator, List<String> text);
+	AssertKeyword assertDropDownCountainsValueTexts(WebElement element, List<String> text);
+	AssertKeyword assertDropDownValueTextsInOrderOf(By locator, List<String> text);
+	AssertKeyword assertDropDownValueTextsInOrderOf(WebElement element, List<String> text);
+}
