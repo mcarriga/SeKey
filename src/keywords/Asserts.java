@@ -212,61 +212,276 @@ public class Asserts implements IAssert, Callable<Void> {
 
 	@Override
 	public AssertKeyword assertDropDownSelectedValueIs(By locator, String name, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertDropDownSelectedValueIs(driver, locator, name, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownSelectedValueIs(WebElement element, String name, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertDropDownSelectedValueIs(element, name, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownItemCountIs(By locator, int count, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertDropDownItemCountIs(driver, locator, count, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownItemCountIs(WebElement element, int count, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new AssertDropDownItemCountIs(element, count, logger, wait, timeoutSeconds);
 	}
 
 	@Override
-	public AssertKeyword assertDropDownCountainsValueText(By locator, String text, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+	public AssertKeyword assertDropDownCountainsOption(By locator, String optionText, long timeoutSeconds) {
+		return new AssertDropDownCountainsOption(driver, locator, optionText, logger, wait, timeoutSeconds);
 	}
 
 	@Override
-	public AssertKeyword assertDropDownCountainsValueText(WebElement element, String text, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+	public AssertKeyword assertDropDownCountainsOption(WebElement element, String optionText, long timeoutSeconds) {
+		return new AssertDropDownCountainsOption(element, optionText, logger, wait, timeoutSeconds);
 	}
 
 	@Override
-	public AssertKeyword assertDropDownCountainsValueTexts(By locator, List<String> text, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+	public AssertKeyword assertDropDownCountainsOptions(By locator, List<String> options, long timeoutSeconds) {
+		return new AssertDropDownCountainsOptions(driver, locator, options, logger, wait, timeoutSeconds);
 	}
 
 	@Override
-	public AssertKeyword assertDropDownCountainsValueTexts(WebElement element, List<String> text, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+	public AssertKeyword assertDropDownCountainsOptions(WebElement element, List<String> options, long timeoutSeconds) {
+		return new AssertDropDownCountainsOptions(element, options, logger, wait, timeoutSeconds);
 	}
 
 	@Override
-	public AssertKeyword assertDropDownValueTextsInOrderOf(By locator, List<String> text, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+	public AssertKeyword assertDropDownOptionsInOrderOf(By locator, List<String> text, long timeoutSeconds) {
+		return new AssertDropDownOptionsInOrderOf(driver, locator, text, logger, wait, timeoutSeconds);
 	}
 
 	@Override
-	public AssertKeyword assertDropDownValueTextsInOrderOf(WebElement element, List<String> text, long timeoutSeconds) {
-		// TODO Auto-generated method stub
-		return null;
+	public AssertKeyword assertDropDownOptionsInOrderOf(WebElement element, List<String> text, long timeoutSeconds) {
+		return new AssertDropDownOptionsInOrderOf(element, text, logger, wait, timeoutSeconds);
+	}
+
+	@Override
+	public AssertKeyword assertText(By locator, String expected) {
+		return new AssertText(driver, logger, wait, locator, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertText(WebElement element, String expected) {
+		return new AssertText(element, logger, wait, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertTextContains(By locator, String expected) {
+		return new AssertTextContains(driver, logger, wait, locator, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertTextContains(WebElement element, String expected) {
+		return new AssertTextContains(element, logger, wait, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertValue(By locator, String expected) {
+		return new AssertValue(driver, logger, wait, locator, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertValue(WebElement element, String expected) {
+		return new AssertValue(element, logger, wait, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertValueContains(By locator, String expected) {
+		return new AssertValueContains(driver, logger, wait, locator, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertValueContains(WebElement element, String expected) {
+		return new AssertValueContains(element, logger, wait, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementAttributeValue(By locator, String attrName, String expected) {
+		return new AssertElementAttributeValue(driver, logger, wait, expected, locator, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementAttributeValue(WebElement element, String attrName, String expected) {
+		return new AssertElementAttributeValue(element, logger, wait, expected, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementAttributeValueContains(By locator, String attrName, String expected) {
+		return new AssertElementAttributeValueContains(driver, logger, wait, expected, locator, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementAttributeValueContains(WebElement element, String attrName, String expected) {
+		return new AssertElementAttributeValueContains(element, logger, wait, expected, expected, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementExists(By locator) {
+		return new AssertElementExists(driver, logger, wait, locator, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementVisible(By locator) {
+		return new AssertElementVisible(driver, logger, wait, locator, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementVisible(WebElement element) {
+		return new AssertElementVisible(element, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementNotVisible(By locator) {
+		return new AssertElementNotVisible(driver, logger, wait, locator, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementNotVisible(WebElement element) {
+		return new AssertElementNotVisible(element, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementEnabled(By locator) {
+		return new AssertElementEnabled(driver, logger, wait, locator, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementEnabled(WebElement element) {
+		return new AssertElementEnabled(element, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementNotEnabled(By locator) {
+		return new AssertElementNotEnabled(driver, logger, wait, locator, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementNotEnabled(WebElement element) {
+		return new AssertElementNotEnabled(element, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementSelected(By locator) {
+		return new AssertElementSelected(driver, logger, wait, locator, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementSelected(WebElement element) {
+		return new AssertElementSelected(element, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementNotSelected(By locator) {
+		return new AssertElementNotSelected(driver, logger, wait, locator, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertElementNotSelected(WebElement element) {
+		return new AssertElementNotSelected(element, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertPageTitleEquals(String title) {
+		return new AssertPageTitleEquals(driver, title, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertPageTitleContains(String title) {
+		return new AssertPageTitleContains(driver, title, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertCurrentUrlEquals(String Url) {
+		return new AssertCurrentUrlEquals(driver, Url, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertCurrentUrlContains(String Url) {
+		return new AssertCurrentUrlContains(driver, Url, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertAlertIsPresent() {
+		return new AssertAlertIsPresent(logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertLocatorReturnsNumberOfElements(By locator, int expectedNumber) {
+		return new AssertLocatorReturnsNumberOfElements(driver, locator, expectedNumber, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertLocatorReturnsLessThan(By locator, int lessNumber) {
+		return new AssertLocatorReturnsLessThan(driver, locator, lessNumber, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertLocatorReturnsGreaterThan(By locator, int greaterNumber) {
+		return new AssertLocatorReturnsGreaterThan(driver, locator, greaterNumber, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownSelectedTextIs(By locator, String name) {
+		return new AssertDropDownSelectedTextIs(driver, locator, name, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownSelectedTextIs(WebElement element, String name) {
+		return new AssertDropDownSelectedTextIs(element, name, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownSelectedValueIs(By locator, String name) {
+		return new AssertDropDownSelectedValueIs(driver, locator, name, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownSelectedValueIs(WebElement element, String name) {
+		return new AssertDropDownSelectedValueIs(element, name, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownItemCountIs(By locator, int count) {
+		return new AssertDropDownItemCountIs(driver, locator, count, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownItemCountIs(WebElement element, int count) {
+		return new AssertDropDownItemCountIs(element, count, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownCountainsOption(By locator, String text) {
+		return new AssertDropDownCountainsOption(driver, locator, text, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownCountainsOption(WebElement element, String text) {
+		return new AssertDropDownCountainsOption(element, text, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownCountainsOptions(By locator, List<String> text) {
+		return new AssertDropDownCountainsOptions(driver, locator, text, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownCountainsOptions(WebElement element, List<String> text) {
+		return new AssertDropDownCountainsOptions(element, text, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownOptionsInOrderOf(By locator, List<String> text) {
+		return new AssertDropDownOptionsInOrderOf(driver, locator, text, logger, wait, defaultWait);
+	}
+
+	@Override
+	public AssertKeyword assertDropDownOptionsInOrderOf(WebElement element, List<String> text) {
+		return new AssertDropDownOptionsInOrderOf(element, text, logger, wait, defaultWait);
 	}
 }

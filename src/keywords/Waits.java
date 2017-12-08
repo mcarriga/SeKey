@@ -237,33 +237,33 @@ public class Waits implements IWait {
 	}
 
 	@Override
-	public WaitKeyword untilDropDownCountainsValueText(By locator, String text, long maxWaitSeconds) {
+	public WaitKeyword untilDropDownCountainsOption(By locator, String text, long maxWaitSeconds) {
 		return new UntilDropDownCountainsValueText(driver, locator, text, logger, maxWaitSeconds);
 	}
 
 	@Override
-	public WaitKeyword untilDropDownCountainsValueText(WebElement element, String text, long maxWaitSeconds) {
+	public WaitKeyword untilDropDownCountainsOption(WebElement element, String text, long maxWaitSeconds) {
 		return new UntilDropDownCountainsValueText(driver, element, text, logger, maxWaitSeconds);
 	}
 
 	@Override
-	public WaitKeyword untilDropDownCountainsValueTexts(By locator, List<String> texts, long maxWaitSeconds) {
+	public WaitKeyword untilDropDownCountainsOptions(By locator, List<String> texts, long maxWaitSeconds) {
 		return new UntilDropDownCountainsValueTexts(driver, locator, texts, logger, maxWaitSeconds);
 	}
 
 	@Override
-	public WaitKeyword untilDropDownCountainsValueTexts(WebElement element, List<String> texts, long maxWaitSeconds) {
+	public WaitKeyword untilDropDownCountainsOptions(WebElement element, List<String> texts, long maxWaitSeconds) {
 		return new UntilDropDownCountainsValueTexts(driver, element, texts, logger, maxWaitSeconds);
 	}
 
 	@Override
-	public WaitKeyword untilDropDownValueTextsInOrderOf(By locator, List<String> text, long maxWaitSeconds) {
-		return new UntilDropDownValueTextsInOrderOf(driver, locator, text, logger, maxWaitSeconds);
+	public WaitKeyword untilDropDownOptionsInOrderOf(By locator, List<String> text, long maxWaitSeconds) {
+		return new UntilDropDownOptionsInOrderOf(driver, locator, text, logger, maxWaitSeconds);
 	}
 
 	@Override
-	public WaitKeyword untilDropDownValueTextsInOrderOf(WebElement element, List<String> text, long maxWaitSeconds) {
-		return new UntilDropDownValueTextsInOrderOf(driver, element, text, logger, maxWaitSeconds);
+	public WaitKeyword untilDropDownOptionsInOrderOf(WebElement element, List<String> text, long maxWaitSeconds) {
+		return new UntilDropDownOptionsInOrderOf(driver, element, text, logger, maxWaitSeconds);
 	}
 
 	@Override

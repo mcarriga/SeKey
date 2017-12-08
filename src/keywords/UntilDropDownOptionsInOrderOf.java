@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import interfaces.ILogging;
 
-public class UntilDropDownValueTextsInOrderOf extends WaitKeyword {
+public class UntilDropDownOptionsInOrderOf extends WaitKeyword {
 
 	private final WebDriver driver;
 	private final ILogging logger;
@@ -21,7 +21,7 @@ public class UntilDropDownValueTextsInOrderOf extends WaitKeyword {
 	private final List<String> items;
 	private By locator = null;
 	
-	public UntilDropDownValueTextsInOrderOf(WebDriver driver, WebElement element, List<String> items, ILogging logger, long maxWaitSeconds) {
+	public UntilDropDownOptionsInOrderOf(WebDriver driver, WebElement element, List<String> items, ILogging logger, long maxWaitSeconds) {
 		this.driver = driver;
 		this.logger = logger;
 		this.element = element;
@@ -29,7 +29,7 @@ public class UntilDropDownValueTextsInOrderOf extends WaitKeyword {
 		this.items = items;
 	}
 	
-	public UntilDropDownValueTextsInOrderOf(WebDriver driver, By locator, List<String> items, ILogging logger, long maxWaitSeconds) {
+	public UntilDropDownOptionsInOrderOf(WebDriver driver, By locator, List<String> items, ILogging logger, long maxWaitSeconds) {
 		this.driver = driver;
 		this.locator = locator;
 		this.element = driver.findElement(locator);

@@ -50,5 +50,4 @@ public class AssertDropDownSelectedTextIs extends AssertKeyword {
 	public void endLog() {
 		logger.endKeyword(this);
 	}
-
 }

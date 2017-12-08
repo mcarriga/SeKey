@@ -52,12 +52,12 @@ public interface IWait {
 	WaitKeyword untilDropDownSelectedValueIs(WebElement element, String name, long maxWaitSeconds);
 	WaitKeyword untilDropDownItemCountIs(By locator, int count, long maxWaitSeconds);
 	WaitKeyword untilDropDownItemCountIs(WebElement element, int count, long maxWaitSeconds);
-	WaitKeyword untilDropDownCountainsValueText(By locator, String text, long maxWaitSeconds);
-	WaitKeyword untilDropDownCountainsValueText(WebElement element, String text, long maxWaitSeconds);
-	WaitKeyword untilDropDownCountainsValueTexts(By locator, List<String> text, long maxWaitSeconds);
-	WaitKeyword untilDropDownCountainsValueTexts(WebElement element, List<String> text, long maxWaitSeconds);
-	WaitKeyword untilDropDownValueTextsInOrderOf(By locator, List<String> text, long maxWaitSeconds);
-	WaitKeyword untilDropDownValueTextsInOrderOf(WebElement element, List<String> text, long maxWaitSeconds);
+	WaitKeyword untilDropDownCountainsOption(By locator, String text, long maxWaitSeconds);
+	WaitKeyword untilDropDownCountainsOption(WebElement element, String text, long maxWaitSeconds);
+	WaitKeyword untilDropDownCountainsOptions(By locator, List<String> text, long maxWaitSeconds);
+	WaitKeyword untilDropDownCountainsOptions(WebElement element, List<String> text, long maxWaitSeconds);
+	WaitKeyword untilDropDownOptionsInOrderOf(By locator, List<String> text, long maxWaitSeconds);
+	WaitKeyword untilDropDownOptionsInOrderOf(WebElement element, List<String> text, long maxWaitSeconds);
 	WaitKeyword untilStalenessOf(By locator, long maxWaitSeconds);
 	WaitKeyword untilStalenessOf(WebElement element, long maxWaitSeconds);
 	WaitKeyword untilElementEnabled(By locator, long maxWaitSeconds);
