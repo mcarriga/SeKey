@@ -1,4 +1,4 @@
-package keywords;
+package framework;
 
 import java.util.List;
 
@@ -8,6 +8,40 @@ import org.openqa.selenium.WebElement;
 
 import interfaces.ILogging;
 import interfaces.IWait;
+import keywords.UntilAlertIsNotPresent;
+import keywords.UntilAlertIsPresent;
+import keywords.UntilCurrentUrlContains;
+import keywords.UntilCurrentUrlEquals;
+import keywords.UntilDropDownCountainsValueText;
+import keywords.UntilDropDownCountainsValueTexts;
+import keywords.UntilDropDownItemCountIs;
+import keywords.UntilDropDownOptionsInOrderOf;
+import keywords.UntilDropDownSelectedTextIs;
+import keywords.UntilDropDownSelectedValueIs;
+import keywords.UntilElementAttributeContains;
+import keywords.UntilElementAttributeEquals;
+import keywords.UntilElementClickable;
+import keywords.UntilElementEnabled;
+import keywords.UntilElementExists;
+import keywords.UntilElementNotEnabled;
+import keywords.UntilElementNotPresent;
+import keywords.UntilElementNotPresentBy;
+import keywords.UntilElementNotSelected;
+import keywords.UntilElementNotVisible;
+import keywords.UntilElementSelected;
+import keywords.UntilElementTextContains;
+import keywords.UntilElementTextEquals;
+import keywords.UntilElementVisible;
+import keywords.UntilLocatorReturnsGreaterThan;
+import keywords.UntilLocatorReturnsLessThan;
+import keywords.UntilLocatorReturnsNumberOfElements;
+import keywords.UntilPageLoadStatusComplete;
+import keywords.UntilPageTitleContains;
+import keywords.UntilPageTitleEquals;
+import keywords.UntilPresenceOfNestedElement;
+import keywords.UntilPresenceOfNestedElements;
+import keywords.UntilStalenessOf;
+import keywords.WaitKeyword;
 
 public class Waits implements IWait {
 	private final WebDriver driver;

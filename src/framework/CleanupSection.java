@@ -1,19 +1,21 @@
-package keywords;
+package framework;
 
 import interfaces.IAAALogEvent;
 import interfaces.ILogging;
 
-public class ArrangeSection implements IAAALogEvent {
+public class CleanupSection implements IAAALogEvent {
+
 	private final String message;
 	private final ILogging logger;
 	
-	public ArrangeSection(ILogging logger, String message){
+	public CleanupSection(ILogging logger, String message){
 		this.logger = logger;
 		this.message = message;
 	}
 
 	@Override
 	public void doLog() {
-		logger.info("\n"+"*** ARRANGE Section *** "+message);
+		logger.info("\n"+"*** CLEANUP Section *** "+message);
 	}
+
 }

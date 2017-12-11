@@ -3,6 +3,10 @@
   <groupId>com.spectrum.automation</groupId>
   <artifactId>selenium</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+  	<browser>chrome</browser>
+  	<updateTestCase>false</updateTestCase>
+  </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>

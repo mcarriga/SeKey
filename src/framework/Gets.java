@@ -1,4 +1,4 @@
-package keywords;
+package framework;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 
 import interfaces.IGet;
 import interfaces.ILogging;
+import keywords.GetKeyword;
+import keywords.GetText;
 
 public class Gets implements IGet {
 	private WebDriver driver;

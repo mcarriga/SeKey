@@ -1,6 +1,9 @@
-package keywords;
+package framework;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 public class Test {
 	
@@ -9,8 +12,12 @@ public class Test {
 	
 	@BeforeTest
 	public void beforeTest(){
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\mcarr\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.home")+"/Downloads/chromedriver");
+		ChromeOptions ops = new ChromeOptions();
+		driver.
 		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		framework = new Framework(driver, new KeywordLogger());
 	}
 	
@@ -23,6 +30,6 @@ public class Test {
 	
 	@org.testng.annotations.Test
 	public void SimpleTest() throws Exception {
-		framework.y();
+		framework.x();
 	}
 }

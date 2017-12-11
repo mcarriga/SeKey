@@ -1,10 +1,19 @@
-package keywords;
+package framework;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import interfaces.*;
+import keywords.ActionKeyword;
+import keywords.AssertKeyword;
+import keywords.GetKeyword;
+import keywords.WaitKeyword;
 
 public class Framework {
 	private final WebDriver _driver;
@@ -59,10 +68,51 @@ public class Framework {
 		return this;
 	}
 	
+	public void x() throws AWTException {
+		this
+		.withLogEvent(logger.arrangeSection("Navigating to Google"))
+		.withAction(actions.navigateTo("https://www.engprod2-spectrumbusiness.net/#/login"));
+		_driver.switchTo().alert();
+		
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		
+		robot.keyPress(KeyEvent.VK_P);
+		robot.keyRelease(KeyEvent.VK_P);
+		
+		robot.keyPress(KeyEvent.VK_2);
+		robot.keyRelease(KeyEvent.VK_2);
+		
+		robot.keyPress(KeyEvent.VK_7);
+		robot.keyRelease(KeyEvent.VK_7);
+		
+		robot.keyPress(KeyEvent.VK_7);
+		robot.keyRelease(KeyEvent.VK_7);
+		
+		robot.keyPress(KeyEvent.VK_6);
+		robot.keyRelease(KeyEvent.VK_6);
+		
+		robot.keyPress(KeyEvent.VK_6);
+		robot.keyRelease(KeyEvent.VK_6);
+		
+		robot.keyPress(KeyEvent.VK_8);
+		robot.keyRelease(KeyEvent.VK_8);
+		
+		robot.keyPress(KeyEvent.VK_9);
+		robot.keyRelease(KeyEvent.VK_9);
+		
+		robot.keyPress(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		
+		robot.keyPress(KeyEvent.VK_TAB);
+		robot.keyPress(KeyEvent.VK_ENTER);
+	}
+	
 	public void y() {
 		this
 		.withLogEvent(logger.arrangeSection("Navigating to Google"))
-		.withAction(actions.NavigateTo("https://www.google.com/"))
+		.withAction(actions.navigateTo("https://www.google.com/"))
 		.withLogEvent(logger.actSection("Searching for Selenium"))
 		.withAction(actions.click(By.xpath("//*[@name='q']")))
 		.withAction(actions.sendKeys(By.xpath("//*[@name='q']"), "selenium"))
@@ -73,7 +123,7 @@ public class Framework {
 		.withLogEvent(logger.assertSection("Asserting results in popup search"))
 		.withAssert(asserts.assertText(By.xpath("//li[@role='presentation']"), "selenium", 15));
 		
-		//System.out.println("inputText: "+inputText);
+		System.out.println("inputText: "+inputText);
 	}
 }
 
