@@ -484,4 +484,5 @@ public class Asserts implements IAssert, Callable<Void> {
 	public AssertKeyword assertDropDownOptionsInOrderOf(WebElement element, List<String> text) {
 		return new AssertDropDownOptionsInOrderOf(element, text, logger, wait, defaultWait);
 	}
+	
 }
