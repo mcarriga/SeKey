@@ -34,17 +34,20 @@ public interface IAction {
 	ActionKeyword clickAndDrag(By source, WebElement target);
 	ActionKeyword clickAndDrag(WebElement source, By target);
 	ActionKeyword clickAndDrag(WebElement source, WebElement target);
+	ActionKeyword clickAndDrag(By source, int offsetX, int offsetY);
+	ActionKeyword clickAndDrag(WebElement source, int offsetX, int offsetY);
 	ActionKeyword selectCheckbox(By locator);
 	ActionKeyword selectCheckbox(WebElement element);
 	ActionKeyword unselectCheckbox(By locator);
 	ActionKeyword unselectCheckbox(WebElement element);
-	ActionKeyword selectRadioOptionByName(By parent, String name);
-	ActionKeyword selectRadioOptionByName(WebElement parent, String name);
-	ActionKeyword selectRadioOptionByText(By parent, String text);
-	ActionKeyword selectRadioOptionByText(WebElement parent, String text);
+	ActionKeyword selectRadioOptionByIndex(By parent, int index);
+	ActionKeyword selectRadioOptionByIndex(WebElement parent, int index);
 	ActionKeyword selectRadioOptionByValue(By parent, String value);
 	ActionKeyword selectRadioOptionByValue(WebElement parent, String value);
-	ActionKeyword srollToElement(By locator);
-	ActionKeyword srollToElement(WebElement element);
-	
+	ActionKeyword scrollToElement(By locator);
+	ActionKeyword scrollToElement(WebElement element);
+	ActionKeyword switchToFrame(String idOrName);
+	ActionKeyword switchToFrame(int index);
+	ActionKeyword switchToFrame(WebElement frame);
+	ActionKeyword switchToFrame(By frame);
 }

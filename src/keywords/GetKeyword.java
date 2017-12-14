@@ -1,5 +1,6 @@
 package keywords;
 
+import framework.Keyword;
 import interfaces.IKeyword;
 
 public abstract class GetKeyword <T extends Object> extends Keyword<Object> implements IKeyword<Object> {

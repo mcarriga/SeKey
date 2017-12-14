@@ -7,51 +7,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import interfaces.IAction;
 import interfaces.IAssert;
 import interfaces.ILogging;
 import interfaces.IWait;
-import keywords.AssertAlertIsPresent;
-import keywords.AssertCurrentUrlContains;
-import keywords.AssertCurrentUrlEquals;
-import keywords.AssertDropDownCountainsOption;
-import keywords.AssertDropDownCountainsOptions;
-import keywords.AssertDropDownItemCountIs;
-import keywords.AssertDropDownOptionsInOrderOf;
-import keywords.AssertDropDownSelectedTextIs;
-import keywords.AssertDropDownSelectedValueIs;
-import keywords.AssertElementAttributeValue;
-import keywords.AssertElementAttributeValueContains;
-import keywords.AssertElementEnabled;
-import keywords.AssertElementExists;
-import keywords.AssertElementNotEnabled;
-import keywords.AssertElementNotSelected;
-import keywords.AssertElementNotVisible;
-import keywords.AssertElementSelected;
-import keywords.AssertElementVisible;
-import keywords.AssertKeyword;
-import keywords.AssertLocatorReturnsGreaterThan;
-import keywords.AssertLocatorReturnsLessThan;
-import keywords.AssertLocatorReturnsNumberOfElements;
-import keywords.AssertPageTitleContains;
-import keywords.AssertPageTitleEquals;
-import keywords.AssertText;
-import keywords.AssertTextContains;
-import keywords.AssertValue;
-import keywords.AssertValueContains;
+import keywords.*;
 
 public class Asserts implements IAssert, Callable<Void> {
 	private final WebDriver driver;
 	private final ILogging logger;
 	private final IWait wait;
-	private final IAction action;
 	private final long defaultWait = 15;
 
-	public Asserts(WebDriver driver, ILogging logger, IAction action, IWait wait) {
+	public Asserts(WebDriver driver, ILogging logger, IWait wait) {
 		this.wait = wait;
 		this.driver = driver;
 		this.logger = logger;
-		this.action = action;
 	}
 
 	@Override

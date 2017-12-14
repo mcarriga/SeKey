@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -38,7 +39,12 @@ public class UntilDropDownSelectedTextIs extends WaitKeyword {
 	public Boolean perform() {
 		WebDriverWait wait = new WebDriverWait(driver, maxTime);
 		Select select = new Select(element);
-		Boolean b = wait.until(x -> select.getFirstSelectedOption().getText().equals(expectedText));
+		Boolean b = null;
+		try {
+			b = wait.until(x -> select.getFirstSelectedOption().getText().equals(expectedText));
+		}catch(TimeoutException e) {
+			return false;
+		}
 		if(select.getFirstSelectedOption().isSelected() == false && expectedText != "") {
 			return false;
 		}

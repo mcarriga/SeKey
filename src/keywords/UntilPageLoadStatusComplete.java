@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,7 +20,11 @@ public class UntilPageLoadStatusComplete extends WaitKeyword {
 
 	@Override
 	public Boolean perform() {
+		try {
 		return new WebDriverWait(driver, timeout).until(x -> ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete"));
+		}catch(TimeoutException e) {
+			return false;
+		}
 	}
 
 	@Override

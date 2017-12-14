@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -37,10 +38,14 @@ public class UntilElementTextContains extends WaitKeyword {
 	@Override
 	public Boolean perform() {
 		WebDriverWait wait = new WebDriverWait(driver, maxTime);
-		if(locator != null) {
-			return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, expectedText));
-		} else {
-			return wait.until(ExpectedConditions.textToBePresentInElement(element, expectedText));
+		try {
+			if(locator != null) {
+				return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, expectedText));
+			} else {
+				return wait.until(ExpectedConditions.textToBePresentInElement(element, expectedText));
+			}
+		}catch(TimeoutException e) {
+			return false;
 		}
 	}
 

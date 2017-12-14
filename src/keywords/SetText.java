@@ -6,24 +6,24 @@ import org.openqa.selenium.WebElement;
 
 import interfaces.IAfterAction;
 import interfaces.ILogging;
+import interfaces.IWait;
 
 public class SetText extends ActionKeyword {
-	private final WebElement _element;
-	private final ILogging _logger;
-	private final String _text;
+	private final WebElement element;
+	private final ILogging logger;
+	private final String text;
+	private final IWait wait;
 	private By locator = null;
 	
-	public SetText(WebElement element, ILogging logger, String text) {
-		this._element = element;
-		this._logger = logger;
-		this._text = text;
+	public SetText(WebElement element, String text, ILogging logger, IWait wait) {
+		this.element = element;
+		this.logger = logger;
+		this.text = text;
+		this.wait = wait;
 	}
 	
-	public SetText(WebDriver driver, By locator, ILogging logger, String text) {
-		this.locator = locator;
-		this._element = driver.findElement(locator);
-		this._logger = logger;
-		this._text = text;
+	public SetText(WebDriver driver, By locator, String text, ILogging logger, IWait wait) {
+		this(driver.findElement(locator), text, logger, wait);
 	}
 
 	@Override
@@ -33,18 +33,19 @@ public class SetText extends ActionKeyword {
 
 	@Override
 	public Void perform() {
-		_element.sendKeys(_text);
+		wait.untilElementClickable(element, 10);
+		element.sendKeys(text);
 		return null;
 	}
 
 	@Override
 	public void startLog() {
-		_logger.beginKeyword(this, locator);
+		logger.beginKeyword(this, locator, "; Text: "+text);
 	}
 
 	@Override
 	public void endLog() {
-		_logger.endKeyword(this);
+		logger.endKeyword(this);
 	}
 
 }

@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,7 +24,11 @@ public class UntilElementNotPresentBy extends WaitKeyword {
 	@Override
 	public Boolean perform() {
 		WebDriverWait wait = new WebDriverWait(driver, _maxTime);
-		return wait.until(ExpectedConditions.invisibilityOfElementLocated(_locator));
+		try {
+			return wait.until(ExpectedConditions.invisibilityOfElementLocated(_locator));
+		}catch(TimeoutException e) {
+			return false;
+		}
 		
 	}
 

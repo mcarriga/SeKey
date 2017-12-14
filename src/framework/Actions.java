@@ -44,12 +44,12 @@ public class Actions implements IAction {
 
 	@Override
 	public ActionKeyword sendKeys(By locator, String text) {
-		return new SetText(driver, locator, logger, text);
+		return new SetText(driver, locator, text, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword sendKeys(WebElement element, String text) {
-		return new SetText(element, logger, text);
+		return new SetText(element, text, logger, wait);
 	}
 	
 	@Override
@@ -109,134 +109,131 @@ public class Actions implements IAction {
 
 	@Override
 	public ActionKeyword hover(By locator, long seconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Hover(driver, locator, seconds, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword hover(WebElement element, long seconds) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Hover(driver, element, seconds, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword hover(By locator) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Hover(driver, locator, 0, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword hover(WebElement element) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Hover(driver, element, 0, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword mouseTo(By locator) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Hover(driver, locator, 0, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword mouseTo(WebElement element) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Hover(driver, element, 0, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword clickAndDrag(By source, By target) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ClickAndDrag(driver, target, target, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword clickAndDrag(By source, WebElement target) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ClickAndDrag(driver, source, target, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword clickAndDrag(WebElement source, By target) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ClickAndDrag(driver, source, target, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword clickAndDrag(WebElement source, WebElement target) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ClickAndDrag(driver, target, target, logger, wait);
+	}
+	
+	@Override
+	public ActionKeyword clickAndDrag(By source, int offsetX, int offsetY) {
+		return new ClickAndDragOffset(driver, source, offsetY, offsetY, logger, wait);
+	}
+
+	@Override
+	public ActionKeyword clickAndDrag(WebElement source, int offsetX, int offsetY) {
+		return new ClickAndDragOffset(driver, source, offsetY, offsetY, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword selectCheckbox(By locator) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SelectCheckbox(driver, logger, wait, locator);
 	}
 
 	@Override
 	public ActionKeyword selectCheckbox(WebElement element) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SelectCheckbox(element, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword unselectCheckbox(By locator) {
-		// TODO Auto-generated method stub
-		return null;
+		return new UnselectCheckbox(driver, logger, wait, locator);
 	}
 
 	@Override
 	public ActionKeyword unselectCheckbox(WebElement element) {
-		// TODO Auto-generated method stub
-		return null;
+		return new UnselectCheckbox(element, logger, wait);
 	}
 
 	@Override
-	public ActionKeyword selectRadioOptionByName(By parent, String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public ActionKeyword selectRadioOptionByIndex(By parent, int index) {
+		return new SelectRadioOptionByIndex(driver, parent, index, logger, wait);
 	}
 
 	@Override
-	public ActionKeyword selectRadioOptionByName(WebElement parent, String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ActionKeyword selectRadioOptionByText(By parent, String text) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ActionKeyword selectRadioOptionByText(WebElement parent, String text) {
-		// TODO Auto-generated method stub
-		return null;
+	public ActionKeyword selectRadioOptionByIndex(WebElement parent, int index) {
+		return new SelectRadioOptionByIndex(parent, index, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword selectRadioOptionByValue(By parent, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SelectRadioOptionByValue(driver, parent, value, logger, wait);
 	}
 
 	@Override
 	public ActionKeyword selectRadioOptionByValue(WebElement parent, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SelectRadioOptionByValue(parent, value, logger, wait);
 	}
 
 	@Override
-	public ActionKeyword srollToElement(By locator) {
-		// TODO Auto-generated method stub
-		return null;
+	public ActionKeyword scrollToElement(By locator) {
+		return new ScrollToElement(driver, locator, logger, wait);
 	}
 
 	@Override
-	public ActionKeyword srollToElement(WebElement element) {
-		// TODO Auto-generated method stub
-		return null;
+	public ActionKeyword scrollToElement(WebElement element) {
+		return new ScrollToElement(driver, element, logger, wait);
 	}
 
+	@Override
+	public ActionKeyword switchToFrame(String idOrName) {
+		return new SwitchToFrame(driver, logger, idOrName);
+	}
+
+	@Override
+	public ActionKeyword switchToFrame(int index) {
+		return new SwitchToFrameIndex(driver, logger, index);
+	}
+
+	@Override
+	public ActionKeyword switchToFrame(WebElement frame) {
+		return new SwitchToFrameElement(driver, frame, logger);
+	}
+
+	@Override
+	public ActionKeyword switchToFrame(By frame) {
+		return new SwitchToFrameElement(driver, frame, logger);
+	}
 }

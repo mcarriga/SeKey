@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 public interface ILogging {
 	void beginKeyword(IKeyword<?> keyword);
 	void beginKeyword(IKeyword<?> keyword, By locator);
+	void beginKeyword(IKeyword<?> keyword, By... locators);
+	void beginKeyword(IKeyword<?> keyword, String additionalInfo, By... locators);
 	void beginKeyword(IKeyword<?> keyword, By locator, String additionalInfo);
 	void beginKeyword(IKeyword<?> keyword, String additionalInfo);
 	void endKeyword(IKeyword<?> keyword);

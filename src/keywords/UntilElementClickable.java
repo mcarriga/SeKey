@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,12 +35,16 @@ public class UntilElementClickable extends WaitKeyword {
 	public Boolean perform() {
 		WebDriverWait wait = new WebDriverWait(driver, _maxTime);
 		WebElement x;
-		if(locator != null) {
-			x = wait.until(ExpectedConditions.elementToBeClickable(locator));
-		}else {
-			x = wait.until(ExpectedConditions.elementToBeClickable(_element));
+		try {
+			if(locator != null) {
+				x = wait.until(ExpectedConditions.elementToBeClickable(locator));
+			}else {
+				x = wait.until(ExpectedConditions.elementToBeClickable(_element));
+			}
+			return x != null;
+		} catch(TimeoutException e) {
+			return false;
 		}
-		return x != null;
 	}
 
 	@Override

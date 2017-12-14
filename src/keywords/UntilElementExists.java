@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,11 +25,15 @@ public class UntilElementExists extends WaitKeyword {
 	@Override
 	public Boolean perform() {
 		WebDriverWait wait = new WebDriverWait(driver, _maxTime);
-		WebElement x = wait.until(ExpectedConditions.presenceOfElementLocated(_locator));
-		if(x == null) {
+		try {
+			WebElement x = wait.until(ExpectedConditions.presenceOfElementLocated(_locator));
+			if(x == null) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch(TimeoutException e) {
 			return false;
-		} else {
-			return true;
 		}
 	}
 

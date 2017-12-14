@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,7 +34,11 @@ public class UntilElementEnabled extends WaitKeyword {
 	@Override
 	public Boolean perform() {
 		WebDriverWait wait = new WebDriverWait(driver, maxTime);
-		return  wait.until(x -> element.isEnabled());
+		try {
+			return  wait.until(x -> element.isEnabled());
+		} catch(TimeoutException e) {
+			return false;
+		}
 	}
 
 	@Override

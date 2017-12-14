@@ -1,5 +1,6 @@
 package keywords;
 
+import framework.Keyword;
 import interfaces.IKeyword;
 
 public abstract class WaitKeyword extends Keyword<Object> implements IKeyword<Object>{

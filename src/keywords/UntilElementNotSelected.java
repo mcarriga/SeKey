@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,10 +35,14 @@ public class UntilElementNotSelected extends WaitKeyword {
 	@Override
 	public Boolean perform() {
 		WebDriverWait wait = new WebDriverWait(driver, maxTime);
-		if(locator != null) {
-			return wait.until(ExpectedConditions.elementSelectionStateToBe(locator, false));
-		} else {
-			return wait.until(ExpectedConditions.elementSelectionStateToBe(element, false));
+		try {
+			if(locator != null) {
+				return wait.until(ExpectedConditions.elementSelectionStateToBe(locator, false));
+			} else {
+				return wait.until(ExpectedConditions.elementSelectionStateToBe(element, false));
+			}
+		}catch(TimeoutException e) {
+			return false;
 		}
 	}
 

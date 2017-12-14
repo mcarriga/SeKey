@@ -1,5 +1,10 @@
-2017-12-11 16:32:42.210|INFO |
-*** ARRANGE Section *** Navigating to Google
-2017-12-11 16:32:42.215|INFO |Starting Keyword - Action.NavigateToUrl; Url: https://www.engprod2-spectrumbusiness.net/#/login
-2017-12-11 16:32:52.250|INFO |
+2017-12-12 14:24:33.363|INFO |Starting Keyword - Action.NavigateToUrl; Url: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_radio
+2017-12-12 14:24:36.760|INFO |Ending Keyword   - Action.NavigateToUrl
+2017-12-12 14:24:36.760|INFO |Starting Keyword - Action.SwitchToFrame; nameOrId: iframeResult
+2017-12-12 14:24:36.805|INFO |Ending Keyword   - Action.SwitchToFrame
+2017-12-12 14:24:36.823|INFO |Starting Keyword - Action.SelectRadioOptionByValue; Value: male
+2017-12-12 14:24:36.910|INFO |Ending Keyword   - Action.SelectRadioOptionByValue
+2017-12-12 14:24:36.926|INFO |Starting Keyword - Assert.AssertElementSelected
+2017-12-12 14:24:36.953|INFO |Ending Keyword   - Assert.AssertElementSelected
+2017-12-12 14:24:41.961|INFO |
 *** CLEANUP Section *** Quiting Driver

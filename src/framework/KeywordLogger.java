@@ -29,7 +29,7 @@ public class KeywordLogger implements ILogging {
 
 	@Override
 	public void beginKeyword(IKeyword<?> keyword) {
-		beginKeyword(keyword, null, null);
+		beginKeyword(keyword, null, "");
 	}
 	
 	@Override
@@ -47,6 +47,28 @@ public class KeywordLogger implements ILogging {
 		if(additionalInfo != null && additionalInfo != "") {
 			builder.append(additionalInfo);
 		}
+		info(builder.toString());
+	}
+	
+	@Override
+	public void beginKeyword(IKeyword<?> keyword, By... locators) {
+		beginKeyword(keyword, "", locators);
+	}
+	
+	@Override
+	public void beginKeyword(IKeyword<?> keyword, String additionalInfo, By... locators) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Starting Keyword - "+keyword.getKeywordType()+"."+keyword.getClass().getSimpleName());
+		for(By by : locators) {
+			if(by != null) {
+				builder.append("; locator: "+by);
+			}
+		}
+		
+		if(additionalInfo != null && additionalInfo != "") {
+			builder.append(additionalInfo);
+		}
+		
 		info(builder.toString());
 	}
 	

@@ -1,6 +1,7 @@
 package keywords;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,7 +35,11 @@ public class UntilStalenessOf extends WaitKeyword {
 	@Override
 	public Boolean perform() {
 		WebDriverWait wait = new WebDriverWait(driver, maxTime);
-		return wait.until(ExpectedConditions.stalenessOf(element));
+		try {
+			return wait.until(ExpectedConditions.stalenessOf(element));
+		}catch(TimeoutException e) {
+			return false;
+		}
 	}
 
 	@Override
