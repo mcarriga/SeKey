@@ -1,4 +1,4 @@
-package framework;
+package logging;
 
 import interfaces.IAAALogEvent;
 import interfaces.ILogging;

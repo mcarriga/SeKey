@@ -1,30 +1,36 @@
-package framework;
+package logging;
 
 import org.apache.logging.log4j.*;
-import org.apache.logging.log4j.message.MessageFactory;
 import org.openqa.selenium.By;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import interfaces.IAAALogEvent;
 import interfaces.IKeyword;
 import interfaces.ILogging;
 
 public class KeywordLogger implements ILogging {
-	private static final Logger logger = LogManager.getLogger();
+	private static Logger logger;
+	private ExtentHtmlReporter htmlReporter;
+	private ExtentReports extent;
 	
-	public KeywordLogger(String loggerName) {
-		//logger = LogManager.getLogger(loggerName);
+	// Singleton pattern initialize
+	private static final KeywordLogger instance = new KeywordLogger();
+	private KeywordLogger() {
+		logger = LogManager.getLogger();
+		htmlReporter = new ExtentHtmlReporter("extent.html");
+		extent = new ExtentReports();
+		extent.attachReporter(htmlReporter);
 	}
-	
-	public KeywordLogger(Class<?> clazz) {
-		//logger = LogManager.getLogger(clazz);
+	public static KeywordLogger getInstance() {
+		return instance;
 	}
+	//End Singleton pattern initialize
 	
-	public KeywordLogger() {
-		//logger = LogManager.getLogger("FrameworkLogger");
-	}
-	
-	public KeywordLogger(String loggerName, MessageFactory messageFactory) {
-		//logger = LogManager.getLogger(messageFactory);
+	@Override
+	public ExtentReports getExtent() {
+		return extent;
 	}
 
 	@Override

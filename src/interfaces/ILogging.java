@@ -3,6 +3,8 @@ package interfaces;
 
 import org.openqa.selenium.By;
 
+import com.aventstack.extentreports.ExtentReports;
+
 public interface ILogging {
 	void beginKeyword(IKeyword<?> keyword);
 	void beginKeyword(IKeyword<?> keyword, By locator);
@@ -19,4 +21,5 @@ public interface ILogging {
 	void error();
 	void warn();
 	void debug();
+	ExtentReports getExtent();
 }

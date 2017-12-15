@@ -1,4 +1,4 @@
-package framework;
+package logging;
 
 import interfaces.ILogging;
 

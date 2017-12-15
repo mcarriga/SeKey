@@ -1,12 +1,16 @@
 package framework;
 
 
+import org.testng.annotations.Listeners;
+
 import interfaces.IAction;
 import interfaces.IAssert;
 import interfaces.IGet;
 import interfaces.ILogging;
 import interfaces.IWait;
+import logging.KeywordLogger;
 
+@Listeners(listeners.TestListeners.class)
 public abstract class TestClass {
 	public Framework framework;
 	public IWait wait; 
@@ -21,7 +25,6 @@ public abstract class TestClass {
 		this.get = framework.get;
 		this.asserts = framework.asserter;
 		this.action = framework.action;
-		this.logger = framework.logger;
+		this.logger = KeywordLogger.getInstance();
 	}
-	
 }
