@@ -3,6 +3,7 @@ package keywords;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import framework.AssertKeyword;
 import interfaces.ILogging;
 import interfaces.IWait;
 

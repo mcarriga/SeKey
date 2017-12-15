@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import framework.AssertKeyword;
 import interfaces.ILogging;
 import interfaces.IWait;
 

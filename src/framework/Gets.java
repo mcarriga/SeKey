@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 
 import interfaces.IGet;
 import interfaces.ILogging;
-import keywords.GetKeyword;
 import keywords.GetText;
 
 public class Gets implements IGet {

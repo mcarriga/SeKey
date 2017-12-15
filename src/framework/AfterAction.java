@@ -1,4 +1,4 @@
-package keywords;
+package framework;
 
 import java.util.concurrent.Callable;
 import java.util.function.Predicate;

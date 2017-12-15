@@ -4,7 +4,7 @@ import java.net.URL;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import keywords.ActionKeyword;
+import framework.ActionKeyword;
 
 public interface IAction {
 	ActionKeyword selectByText(By locator, String name);

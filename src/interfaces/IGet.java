@@ -2,7 +2,7 @@ package interfaces;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import keywords.GetKeyword;
+import framework.GetKeyword;
 
 public interface IGet {
 	GetKeyword<String> GetElementText(By locator);

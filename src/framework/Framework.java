@@ -1,16 +1,12 @@
 package framework;
 
-import java.lang.ref.Reference;
+import java.io.IOException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 
 import interfaces.*;
-import keywords.ActionKeyword;
-import keywords.AssertKeyword;
-import keywords.GetKeyword;
-import keywords.WaitKeyword;
 
 public class Framework {
 	public final WebDriver driver;
@@ -60,9 +56,8 @@ public class Framework {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Framework withWait(WaitKeyword func, Reference<Boolean> out) {
-		out = (Reference<Boolean>) func.build();
-		return this;
+	public <T> T withWaitReturn(WaitKeyword func) {
+		return (T) func.build();
 	}
 	
 	public Framework withLogEvent(IAAALogEvent aaa) {
@@ -78,6 +73,11 @@ public class Framework {
 		              
 		          }
 		     }, 1, TimeUnit.SECONDS);
+		return this;
+	}
+	
+	public Framework withPageObject(CheckedRunnable func) throws Exception, IOException {
+		func.run();
 		return this;
 	}
 }

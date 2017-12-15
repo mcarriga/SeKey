@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import keywords.AssertKeyword;
+import framework.AssertKeyword;
 
 public interface IAssert extends Callable<Void> {
 	AssertKeyword assertText(By locator, String expected, long timeoutSeconds);

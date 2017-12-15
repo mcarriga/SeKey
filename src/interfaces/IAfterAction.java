@@ -3,8 +3,8 @@ package interfaces;
 import java.util.concurrent.Callable;
 import java.util.function.Predicate;
 
-import keywords.ActionKeyword;
-import keywords.WaitKeyword;
+import framework.ActionKeyword;
+import framework.WaitKeyword;
 
 public interface IAfterAction {
 	IAfterAction that(Predicate<Boolean> condition);

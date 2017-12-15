@@ -2,6 +2,7 @@ package keywords;
 
 import org.testng.Assert;
 
+import framework.AssertKeyword;
 import interfaces.ILogging;
 import interfaces.IWait;
 

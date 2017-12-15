@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import framework.AssertKeyword;
 import interfaces.ILogging;
 import interfaces.IWait;
 import junit.framework.Assert;

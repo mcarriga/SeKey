@@ -1,6 +1,5 @@
-package keywords;
+package framework;
 
-import framework.Keyword;
 import interfaces.IAfterAction;
 import interfaces.IKeyword;
 
