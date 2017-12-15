@@ -1,6 +1,5 @@
 package framework;
 
-import org.openqa.selenium.WebDriver;
 
 import interfaces.IAction;
 import interfaces.IAssert;
@@ -15,8 +14,14 @@ public abstract class TestClass {
 	public IAssert asserts;
 	public IAction action;
 	public ILogging logger;
-	public WebDriver driver;
 	
-	
+	public void init(Framework framework) {
+		this.framework = framework;
+		this.wait = framework.wait;
+		this.get = framework.get;
+		this.asserts = framework.asserter;
+		this.action = framework.action;
+		this.logger = framework.logger;
+	}
 	
 }
