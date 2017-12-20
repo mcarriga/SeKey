@@ -5,9 +5,9 @@ import java.util.List;
 public class ExcelTestStep {
 	private final String keyword;
 	private final List<String> objects;
-	private final List<Object> params;
+	private final List<String> params;
 	
-	public ExcelTestStep(String keyword, List<String> objects, List<Object> params) {
+	public ExcelTestStep(String keyword, List<String> objects, List<String> params) {
 		this.keyword = keyword;
 		this.objects = objects;
 		this.params = params;
@@ -21,7 +21,7 @@ public class ExcelTestStep {
 		return objects;
 	}
 	
-	public List<Object> getParams(){
+	public List<String> getParams(){
 		return params;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
@@ -45,26 +46,37 @@ public class ExcelTest {
 	}
 	
 	private void init() {
-		for(int i = startRowNum; i< endRowNum; i++) {
+		for(int i = startRowNum; i<= endRowNum; i++) {
 			Row testStep = sheet.getSheet().getRow(i);
 			String keyword = testStep.getCell(1, MissingCellPolicy.RETURN_NULL_AND_BLANK).getStringCellValue();
-			List<String> objects = Arrays.asList( testStep.getCell(2, MissingCellPolicy.RETURN_NULL_AND_BLANK).getStringCellValue().split("\\|"));
-			List<Object> params = getParams( testStep.getCell(3, MissingCellPolicy.RETURN_NULL_AND_BLANK));
+			List<String> objects = new ArrayList<String>();
+			
+			Cell cell = testStep.getCell(2, MissingCellPolicy.RETURN_NULL_AND_BLANK);
+			if(cell != null) {
+				objects = Arrays.asList(cell.getStringCellValue().split("\\|"));
+			}
+
+			List<String> params = getParams( testStep.getCell(3, MissingCellPolicy.RETURN_NULL_AND_BLANK));
 			
 			testSteps.add(new ExcelTestStep(keyword, objects, params));
 		}
 	}
 	
-	private List<Object> getParams(Cell cell) {
-		List<Object> values = new ArrayList<Object>();
+	private List<String> getParams(Cell cell) {
+		List<String> values = new ArrayList<String>();
 		FormulaEvaluator evaluator = sheet.getWorkbook().getWorkbook().getCreationHelper().createFormulaEvaluator();
-		switch(evaluator.evaluateFormulaCellEnum(cell)) {
+		CellValue cellValue = evaluator.evaluate(cell);
+		if(cellValue == null) {
+			values = Arrays.asList("");
+			return values;
+		}
+		switch(cellValue.getCellTypeEnum()) {
 		case BLANK:
-			Object[] vals = cell.getStringCellValue().split("\\|");
+			String[] vals = cell.getStringCellValue().split("\\|");
 			values = Arrays.asList(vals);
 			break;
 		case BOOLEAN:
-			values = Arrays.asList(cell.getBooleanCellValue());
+			values = Arrays.asList(cell.getStringCellValue());
 			break;
 		case ERROR:
 			values = Arrays.asList("");
@@ -72,15 +84,26 @@ public class ExcelTest {
 		case FORMULA: // should not be possible since we already evaluated the cell if needed
 			break;
 		case NUMERIC:
-			values = Arrays.asList(cell.getNumericCellValue());
+			values = Arrays.asList(String.valueOf(cell.getNumericCellValue()));
 			break;
 		case STRING:
-			Object[] valsString = cell.getStringCellValue().split("\\|");
+			String[] valsString = cell.getStringCellValue().split("\\|");
 			values = Arrays.asList(valsString);
 			break;
 		case _NONE:
-			Object[] valsNone = cell.getStringCellValue().split("\\|");
-			values = Arrays.asList(valsNone);
+			String cellText = null;
+			if(cell != null) {
+				cellText = cell.getStringCellValue();
+			}
+			String[] valsNone = null;
+			if(cellText != null) {
+				valsNone = cellText.split("\\|");
+			}
+			if(valsNone != null) {
+				values = Arrays.asList(valsNone);
+			} else {
+				values = Arrays.asList("");
+			}
 			break;
 		default:
 			values = Arrays.asList("");

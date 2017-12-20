@@ -22,15 +22,15 @@ public class ExcelWorkbook {
 		this.fileName = file.getName();
 		String extension = FilenameUtils.getExtension(file.getName());
 		FileInputStream excelFile = new FileInputStream(file);
-		if(extension.equalsIgnoreCase(".xlsx")) {
+		if(extension.equalsIgnoreCase("xlsx")) {
 			workbook = new XSSFWorkbook(excelFile);
-		} else if (extension.equalsIgnoreCase(".xls")) {
+		} else if (extension.equalsIgnoreCase("xls")) {
 			workbook = new HSSFWorkbook(excelFile);
 		} else {
 			excelFile.close();
 			throw new java.lang.UnsupportedOperationException("File type: "+extension+" is not supported");
 		}
-		excelFile.close();
+		//excelFile.close();
 	}
 
 	public Workbook getWorkbook() {

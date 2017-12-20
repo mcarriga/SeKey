@@ -69,8 +69,11 @@ public class ExcelTestFinder {
 			
 			// check to see if this row starts the beginning of a new test case and break the loop if so
 			Cell cellFirstColumn = row.getCell(0, MissingCellPolicy.RETURN_NULL_AND_BLANK);
-			String cellTxt = cellFirstColumn.getStringCellValue();
-			if(cellTxt != null || cellTxt != "" || cellTxt.trim() != "" || rows.hasNext() == false) {
+			String cellTxt = null;
+			if(cellFirstColumn != null) {
+				cellTxt = cellFirstColumn.getStringCellValue();
+			}
+			if((cellTxt != null && cellTxt != "" && cellTxt.trim() != "") || rows.hasNext() == false) {
 				lastStepsRowNum = row.getRowNum();
 				break; // exit loop as this indicates end of test steps and beginning of next test
 			}
