@@ -15,7 +15,7 @@ import framework.Framework;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
-public class UntilDropDownCountainsValueTexts extends WaitKeyword {
+public class UntilDropDownContainsOptions extends WaitKeyword {
 
 	private final WebDriver driver;
 	private final ILogging logger;
@@ -24,7 +24,7 @@ public class UntilDropDownCountainsValueTexts extends WaitKeyword {
 	private final List<String> items;
 	private By locator = null;
 	
-	public UntilDropDownCountainsValueTexts(WebDriver driver, WebElement element, List<String> items, ILogging logger, long maxWaitSeconds) {
+	public UntilDropDownContainsOptions(WebDriver driver, WebElement element, List<String> items, ILogging logger, long maxWaitSeconds) {
 		this.driver = driver;
 		this.logger = logger;
 		this.element = element;
@@ -32,7 +32,7 @@ public class UntilDropDownCountainsValueTexts extends WaitKeyword {
 		this.items = items;
 	}
 	
-	public UntilDropDownCountainsValueTexts(WebDriver driver, By locator, List<String> items, ILogging logger, long maxWaitSeconds) {
+	public UntilDropDownContainsOptions(WebDriver driver, By locator, List<String> items, ILogging logger, long maxWaitSeconds) {
 		this.driver = driver;
 		this.locator = locator;
 		this.element = driver.findElement(locator);
@@ -73,17 +73,16 @@ public class UntilDropDownCountainsValueTexts extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		long time = (long)Double.parseDouble(params.get(params.size()-1));
 		List<String> values = params;
 		values.remove(params.size()-1);
 		
 		if(isBy(defs.get(0))) {
-			return new UntilDropDownCountainsValueTexts(framework.driver, castToBy(defs.get(0)), values, framework.logger, time);
+			return new UntilDropDownContainsOptions(framework.driver, castToBy(defs.get(0)), values, framework.logger, time);
 		} else {
-			return new UntilDropDownCountainsValueTexts(framework.driver, castToElem(defs.get(0)), values, framework.logger, time);
+			return new UntilDropDownContainsOptions(framework.driver, castToElem(defs.get(0)), values, framework.logger, time);
 		}
 	}
 }

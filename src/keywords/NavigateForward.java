@@ -42,8 +42,7 @@ public class NavigateForward extends ActionKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		return new NavigateForward(framework.driver, framework.logger);
 	}

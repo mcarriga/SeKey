@@ -44,8 +44,7 @@ public class SwitchToFrame extends ActionKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		return new SwitchToFrame(framework.driver, framework.logger, params.get(0));
 	}

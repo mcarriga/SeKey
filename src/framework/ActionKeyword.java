@@ -1,12 +1,10 @@
 package framework;
 
-import java.util.List;
-
-import data.ObjectDef;
 import interfaces.IAfterAction;
 import interfaces.IKeyword;
 
 public abstract class ActionKeyword extends Keyword<Object> implements IKeyword<Object> {
+	
 	public String getKeywordType() {
 		return "Action";
 	}
@@ -15,5 +13,4 @@ public abstract class ActionKeyword extends Keyword<Object> implements IKeyword<
 	}
 	public abstract Object perform();
 	
-	public abstract ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects, List<String> params);
 }

@@ -54,8 +54,7 @@ public class SetText extends ActionKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			return new SetText(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, framework.wait);

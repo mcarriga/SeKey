@@ -42,8 +42,7 @@ public class GetText extends GetKeyword<String>{
 		_logger.endKeyword(this);
 	}
 
-	@Override
-	public GetKeyword<?> instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static GetKeyword<?> instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			return new GetText(framework.driver, castToBy(defs.get(0)), framework.logger);

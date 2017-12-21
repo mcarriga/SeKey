@@ -53,8 +53,7 @@ public class AssertElementAttributeValue extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			if(params.size() > 2) {

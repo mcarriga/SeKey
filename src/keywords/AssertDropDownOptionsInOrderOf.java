@@ -74,8 +74,7 @@ public class AssertDropDownOptionsInOrderOf extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			return new AssertDropDownOptionsInOrderOf(framework.driver, castToBy(defs.get(0)), params, framework.logger, framework.wait, framework.asserter.getDefaultWait());

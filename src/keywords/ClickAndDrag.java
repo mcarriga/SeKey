@@ -70,8 +70,7 @@ public class ClickAndDrag extends ActionKeyword {
 		return new AfterAction((ActionKeyword)build(), 2);
 	}
 
-	@Override
-	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if (isBy(defs.get(0)) && isBy(defs.get(1))) { // By, By
 			return new ClickAndDrag(framework.driver, castToBy(defs.get(0)), castToBy(defs.get(1)), framework.logger, framework.wait);

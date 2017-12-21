@@ -61,8 +61,7 @@ public class UntilDropDownSelectedValueIs extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			return new UntilDropDownSelectedValueIs(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));

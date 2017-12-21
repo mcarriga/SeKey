@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import framework.Framework;
 import interfaces.*;
+import keywords.*;
 
 public class KeywordRunner {
 	private final Framework framework;
@@ -28,35 +29,128 @@ public class KeywordRunner {
 		
 	}
 	
+	public void doWait(String methodName, List<ObjectDef> defs, List<String> params) {
+		switch(methodName.toLowerCase()) {
+		case "untilelementexists":
+			UntilElementExists.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementnotpresent":
+			UntilElementNotPresent.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementvisible":
+			UntilElementVisible.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilpageloadstatuscomplete":
+			UntilPageLoadStatusComplete.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementclickable":
+			UntilElementClickable.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementtextequals":
+			UntilElementTextEquals.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementtextcontains":
+			UntilElementTextContains.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementvalueequals":
+			params.add(0, "value");
+			UntilElementAttributeEquals.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementvaluecontains":
+			params.add(0, "value");
+			UntilElementAttributeContains.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementattributeequals":
+			UntilElementAttributeEquals.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementattributecontains":
+			UntilElementAttributeContains.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementselected":
+			UntilElementSelected.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementnotselected":
+			UntilElementNotSelected.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilpagetitleequals":
+			UntilPageTitleEquals.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilpagetitlecontains":
+			UntilPageTitleContains.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilcurrenturlequals":
+			UntilCurrentUrlEquals.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilcurrenturlcontains":
+			UntilCurrentUrlContains.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilalertispresent":
+			UntilAlertIsPresent.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untillocatorreturnsnumberofelements":
+			UntilLocatorReturnsNumberOfElements.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untillocatorreturnslessthan":
+			UntilLocatorReturnsLessThan.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untillocatorreturnsgreaterthan":
+			UntilLocatorReturnsGreaterThan.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilpresenceofnestedelement":
+			UntilPresenceOfNestedElement.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilpresenceofnestedelements":
+			UntilPresenceOfNestedElements.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untildropdownselectedtextis":
+			UntilDropDownSelectedTextIs.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untildropdownselectedvalueis":
+			UntilDropDownSelectedValueIs.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untildropdownitemcountis":
+			UntilDropDownItemCountIs.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untildropdowncontainsoption":
+			UntilDropDownContainsOption.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untildropdowncontainsoptions":
+			UntilDropDownContainsOptions.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untildropdownoptionsinorderof":
+			UntilDropDownOptionsInOrderOf.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilstalenessof":
+			UntilStalenessOf.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementnotvisible":
+			UntilElementNotVisible.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementenabled":
+			UntilElementEnabled.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilelementnotenabled":
+			UntilElementNotEnabled.instantiateExternal(framework, defs, params).build();
+			break;
+		case "untilalertisnotpresent":
+			UntilAlertIsNotPresent.instantiateExternal(framework, defs, params).build();
+			break;
+		}
+	}
+	
 	public void doAction(String methodName, List<ObjectDef> defs, List<String> params) {
 		switch(methodName.toLowerCase()) {
 		case "selectbytext":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.selectByText(castToBy(defs.get(0)), params.get(0)));
-			} else {
-				framework.withAction(action.selectByText(castToElem(defs.get(0)), params.get(0)));
-			}
+			SelectByText.instantiateExternal(framework, defs, params).build();
 			break;
 		case "selectbyindex":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.selectByIndex(castToBy(defs.get(0)), Integer.parseInt(params.get(0))));
-			} else {
-				framework.withAction(action.selectByIndex(castToElem(defs.get(0)), Integer.parseInt(params.get(0))));
-			}
+			SelectByIndex.instantiateExternal(framework, defs, params).build();
 			break;
 		case "click":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.click(castToBy(defs.get(0))));
-			} else {
-				framework.withAction(action.click(castToElem(defs.get(0))));
-			}
+			Click.instantiateExternal(framework, defs, params).build();
 			break;
 		case "sendkeys":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.sendKeys(castToBy(defs.get(0)), params.get(0)));
-			} else {
-				framework.withAction(action.sendKeys(castToElem(defs.get(0)), params.get(0)));
-			}
+			SetText.instantiateExternal(framework, defs, params).build();
 			break;
 		case "navigateto":
 			framework.withAction(action.navigateTo(params.get(0)));
@@ -71,25 +165,14 @@ public class KeywordRunner {
 			framework.withAction(action.navigateRefresh());
 			break;
 		case "doubleclick":
-			if(defs.get(0).getClazz().equals(By.class)) {
-				framework.withAction(action.doubleClick(castToBy(defs.get(0))));
-			} else {
-				framework.withAction(action.doubleClick(castToElem(defs.get(0))));
-			}
+			DoubleClick.instantiateExternal(framework, defs, params).build();
 			break;
 		case "hover":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.hover(castToBy(defs.get(0)), (long)Double.parseDouble(params.get(0))));
-			} else {
-				framework.withAction(action.hover(castToElem(defs.get(0)), (long)Double.parseDouble(params.get(0))));
-			}
+			Hover.instantiateExternal(framework, defs, params).build();
 			break;
 		case "mouseto":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.mouseTo((By)defs.get(0).getObject()));
-			} else {
-				framework.withAction(action.mouseTo(castToElem(defs.get(0))));
-			}
+			params.add(0, "0");
+			Hover.instantiateExternal(framework, defs, params).build();
 			break;
 		case "clickanddrag":
 			if(defs.size() == 1 && isBy(defs.get(0))) { // By, int, int
@@ -107,282 +190,119 @@ public class KeywordRunner {
 			}
 			break;
 		case "selectcheckbox":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.selectCheckbox(castToBy(defs.get(0))));
-			} else {
-				framework.withAction(action.selectCheckbox(castToElem(defs.get(0))));
-			};
+			SelectCheckbox.instantiateExternal(framework, defs, params).build();
+			break;
 		case "unselectcheckbox":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.unselectCheckbox(castToBy(defs.get(0))));
-			} else {
-				framework.withAction(action.unselectCheckbox(castToElem(defs.get(0))));
-			};
+			UnselectCheckbox.instantiateExternal(framework, defs, params).build();
 			break;
 		case "selectradiooptionbyindex":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.selectRadioOptionByIndex(castToBy(defs.get(0)), Integer.parseInt(params.get(0))));
-			} else {
-				framework.withAction(action.selectRadioOptionByIndex(castToElem(defs.get(0)), Integer.parseInt(params.get(0))));
-			};
+			SelectRadioOptionByIndex.instantiateExternal(framework, defs, params).build();
 			break;
 		case "selectradiooptionbyvalue":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.selectRadioOptionByValue(castToBy(defs.get(0)), params.get(0)));
-			} else {
-				framework.withAction(action.selectRadioOptionByValue(castToElem(defs.get(0)), params.get(0)));
-			};
+			SelectRadioOptionByValue.instantiateExternal(framework, defs, params).build();
 			break;
 		case "scrolltoelement":
-			if(isBy(defs.get(0))) {
-				framework.withAction(action.scrollToElement(castToBy(defs.get(0))));
-			} else {
-				framework.withAction(action.scrollToElement(castToElem(defs.get(0))));
-			};
+			ScrollToElement.instantiateExternal(framework, defs, params).build();
 			break;
 		case "switchtoframe":
-			if(defs.size() > 0 && isBy(defs.get(0))) {
-				framework.withAction(action.switchToFrame(castToBy(defs.get(0))));
-			} else if (defs.size() > 0 && isElem(defs.get(0))) {
-				framework.withAction(action.switchToFrame(castToElem(defs.get(0))));
-			} else if (isInteger(params.get(0))) {
-				framework.withAction(action.switchToFrame(Integer.parseInt(params.get(0))));
-			} else {
-				framework.withAction(action.switchToFrame(params.get(0)));
+			if (params.size()>0 && isInteger(params.get(0))) {
+				SwitchToFrameIndex.instantiateExternal(framework, defs, params).build();
+				break;
 			}
+			if (params.size()>0) {
+				SwitchToFrame.instantiateExternal(framework, defs, params).build();
+				break;
+			}
+			SwitchToFrameElement.instantiateExternal(framework, defs, params).build();
+			break;
 		}
 	}
 	
 	public void doAssert(String methodName, List<ObjectDef> defs, List<String> params) {
 		switch(methodName.toLowerCase()) {
 		case "asserttext":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 1) {
-					framework.withAssert(asserts.assertText(castToBy(defs.get(0)), params.get(0), (long)Integer.parseInt(params.get(1))));
-				} else {
-					framework.withAssert(asserts.assertText(castToBy(defs.get(0)), params.get(0)));
-				}
-			} else {
-				if(params.size() > 1) {
-					framework.withAssert(asserts.assertText(castToElem(defs.get(0)), params.get(0), (long)Integer.parseInt(params.get(1))));
-				} else {
-					framework.withAssert(asserts.assertText(castToElem(defs.get(0)), params.get(0)));
-				}
-			}
+			AssertText.instantiateExternal(framework, defs, params).build();
 			break;
 		case "asserttextcontains":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 1) {
-					framework.withAssert(asserts.assertTextContains(castToBy(defs.get(0)), params.get(0), (long)Integer.parseInt(params.get(1))));
-				} else {
-					framework.withAssert(asserts.assertTextContains(castToBy(defs.get(0)), params.get(0)));
-				}
-			} else {
-				if(params.size() > 1) {
-					framework.withAssert(asserts.assertTextContains(castToElem(defs.get(0)), params.get(0), (long)Integer.parseInt(params.get(1))));
-				} else {
-					framework.withAssert(asserts.assertTextContains(castToElem(defs.get(0)), params.get(0)));
-				}
-			}
+			AssertTextContains.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertvalue":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 1) {
-					framework.withAssert(asserts.assertValue(castToBy(defs.get(0)), params.get(0), (long)Integer.parseInt(params.get(1))));
-				} else {
-					framework.withAssert(asserts.assertValue(castToBy(defs.get(0)), params.get(0)));
-				}
-			} else {
-				if(params.size() > 1) {
-					framework.withAssert(asserts.assertValue(castToElem(defs.get(0)), params.get(0), (long)Integer.parseInt(params.get(1))));
-				} else {
-					framework.withAssert(asserts.assertValue(castToElem(defs.get(0)), params.get(0)));
-				}
-			}
+			AssertValue.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertvaluecontains":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 1) {
-					framework.withAssert(asserts.assertValueContains(castToBy(defs.get(0)), params.get(0), (long)Integer.parseInt(params.get(1))));
-				} else {
-					framework.withAssert(asserts.assertValueContains(castToBy(defs.get(0)), params.get(0)));
-				}
-			} else {
-				if(params.size() > 1) {
-					framework.withAssert(asserts.assertValueContains(castToElem(defs.get(0)), params.get(0), (long)Integer.parseInt(params.get(1))));
-				} else {
-					framework.withAssert(asserts.assertValueContains(castToElem(defs.get(0)), params.get(0)));
-				}
-			}
+			AssertValueContains.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementattributevalue":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 2) {
-					framework.withAssert(asserts.assertElementAttributeValue(castToBy(defs.get(0)), params.get(0), params.get(1), (long)Integer.parseInt(params.get(2))));
-				} else {
-					framework.withAssert(asserts.assertElementAttributeValue(castToBy(defs.get(0)), params.get(0), params.get(1) ));
-				}
-			} else {
-				if(params.size() > 2) {
-					framework.withAssert(asserts.assertElementAttributeValue(castToElem(defs.get(0)), params.get(0), params.get(1), (long)Integer.parseInt(params.get(2))));
-				} else {
-					framework.withAssert(asserts.assertElementAttributeValue(castToElem(defs.get(0)), params.get(0), params.get(1)));
-				}
-			}
+			AssertElementAttributeValue.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementattributevaluecontains":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 2) {
-					framework.withAssert(asserts.assertElementAttributeValueContains(castToBy(defs.get(0)), params.get(0), params.get(1), (long)Integer.parseInt(params.get(2))));
-				} else {
-					framework.withAssert(asserts.assertElementAttributeValueContains(castToBy(defs.get(0)), params.get(0), params.get(1) ));
-				}
-			} else {
-				if(params.size() > 2) {
-					framework.withAssert(asserts.assertElementAttributeValueContains(castToElem(defs.get(0)), params.get(0), params.get(1), (long)Integer.parseInt(params.get(2))));
-				} else {
-					framework.withAssert(asserts.assertElementAttributeValueContains(castToElem(defs.get(0)), params.get(0), params.get(1)));
-				}
-			}
+			AssertElementAttributeValueContains.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementexists":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementExists(castToBy(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementExists(castToBy(defs.get(0))));
-				}
-			}
+			AssertElementExists.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementvisible":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementVisible(castToBy(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementVisible(castToBy(defs.get(0))));
-				}
-			} else {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementVisible(castToElem(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementVisible(castToElem(defs.get(0))));
-				}
-			}
+			AssertElementVisible.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementnotvisible":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementNotVisible(castToBy(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementNotVisible(castToBy(defs.get(0))));
-				}
-			} else {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementNotVisible(castToElem(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementNotVisible(castToElem(defs.get(0))));
-				}
-			}
+			AssertElementNotVisible.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementenabled":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementEnabled(castToBy(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementEnabled(castToBy(defs.get(0))));
-				}
-			} else {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementEnabled(castToElem(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementEnabled(castToElem(defs.get(0))));
-				}
-			}
+			AssertElementEnabled.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementnotenabled":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementNotEnabled(castToBy(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementNotEnabled(castToBy(defs.get(0))));
-				}
-			} else {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementNotEnabled(castToElem(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementNotEnabled(castToElem(defs.get(0))));
-				}
-			}
+			AssertElementNotEnabled.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementselected":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementSelected(castToBy(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementSelected(castToBy(defs.get(0))));
-				}
-			} else {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementSelected(castToElem(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementSelected(castToElem(defs.get(0))));
-				}
-			}
+			AssertElementSelected.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertelementnotselected":
-			if(isBy(defs.get(0))) {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementNotSelected(castToBy(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementNotSelected(castToBy(defs.get(0))));
-				}
-			} else {
-				if(params.size() > 0) {
-					framework.withAssert(asserts.assertElementNotSelected(castToElem(defs.get(0)), (long)Integer.parseInt(params.get(0))));
-				} else {
-					framework.withAssert(asserts.assertElementNotSelected(castToElem(defs.get(0))));
-				}
-			}
+			AssertElementNotSelected.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertpagetitleequals":
-			if(params.size() > 1) {
-				framework.withAssert(asserts.assertPageTitleEquals(params.get(0), (long)Integer.parseInt(params.get(2))));
-			} else {
-				framework.withAssert(asserts.assertPageTitleEquals(params.get(0)));
-			}
+			AssertPageTitleEquals.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertpagetitlecontains":
-			if(params.size() > 1) {
-				framework.withAssert(asserts.assertPageTitleContains(params.get(0), (long)Integer.parseInt(params.get(2))));
-			} else {
-				framework.withAssert(asserts.assertPageTitleContains(params.get(0)));
-			}
+			AssertPageTitleContains.instantiateExternal(framework, defs, params).build();
 			break;
 		case "asserturlequals":
+			AssertCurrentUrlEquals.instantiateExternal(framework, defs, params).build();
 			break;
 		case "asserturlcontains":
+			AssertCurrentUrlContains.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertalertispresent":
+			AssertAlertIsPresent.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertlocatorreturnsnumberofelements":
+			AssertLocatorReturnsNumberOfElements.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertlocatorreturnslessthan":
+			AssertLocatorReturnsLessThan.instantiateExternal(framework, defs, params).build();
 			break;
-		case "assertlocatorreturnsgreaterthat":
+		case "assertlocatorreturnsgreaterthan":
+			AssertLocatorReturnsGreaterThan.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertdropdownselectedtextis":
+			AssertDropDownSelectedTextIs.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertdropdownselectedvalueis":
+			AssertDropDownSelectedValueIs.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertdropdownitemcountis":
+			AssertDropDownItemCountIs.instantiateExternal(framework, defs, params).build();
 			break;
-		case "assertdropdowncountainsoption":
+		case "assertdropdowncontainsoption":
+			AssertDropDownContainsOption.instantiateExternal(framework, defs, params).build();
 			break;
-		case "assertdropdowncountainsoptions":
+		case "assertdropdowncontainsoptions":
+			AssertDropDownContainsOptions.instantiateExternal(framework, defs, params).build();
 			break;
 		case "assertdropdownoptionsinorderof":
+			AssertDropDownOptionsInOrderOf.instantiateExternal(framework, defs, params).build();
 			break;
 		}
+		
 	}
 	
 	public static boolean isInteger(String s) {

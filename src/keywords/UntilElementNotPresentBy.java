@@ -47,8 +47,7 @@ public class UntilElementNotPresentBy extends WaitKeyword {
 		_logger.endKeyword(this);
 	}
 
-	@Override
-	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		return new UntilElementNotPresentBy(framework.driver, castToBy(defs.get(0)), framework.logger, (long)Double.parseDouble(params.get(0)));
 	}

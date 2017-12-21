@@ -1,7 +1,5 @@
 package framework;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -18,7 +16,7 @@ public abstract class Keyword <T extends Object> implements IKeyword<Object>{
 		endLog();
 		return x;
 	}
-	public abstract Keyword<?> instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects, List<String> params);
+	//public static  Keyword<?> instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> params);
 	
 	public static boolean isInteger(String s) {
 	      boolean isValidInteger = false;

@@ -1,12 +1,14 @@
 package framework;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import interfaces.IGet;
 import interfaces.ILogging;
-import keywords.GetText;
+import keywords.*;
 
 public class Gets implements IGet {
 	private WebDriver driver;
@@ -18,25 +20,108 @@ public class Gets implements IGet {
 	}
 
 	@Override
-	public GetKeyword<String> GetElementText(By locator) {
+	public GetKeyword<String> getElementText(By locator) {
 		return new GetText(driver, locator, logger);
 	}
 
 	@Override
-	public GetKeyword<String> GetElementText(WebElement element) {
+	public GetKeyword<String> getElementText(WebElement element) {
 		return new GetText(element, logger);
 	}
 
 	@Override
-	public GetKeyword<String> GetElementValue(By locator) {
+	public GetKeyword<String> getElementValue(By locator) {
+		return new GetElementAttribute(driver, locator, "value", logger);
+	}
+
+	@Override
+	public GetKeyword<String> getElementValue(WebElement element) {
+		return new GetElementAttribute(element, "value", logger);
+	}
+
+	@Override
+	public GetKeyword<String> getElementAttribute(By locator, String attrName) {
+		return new GetElementAttribute(driver, locator, attrName, logger);
+	}
+
+	@Override
+	public GetKeyword<String> getElementAttribute(WebElement element, String attrName) {
+		return new GetElementAttribute(element, attrName, logger);
+	}
+
+	@Override
+	public GetKeyword<Integer> getElementCount(By locator) {
+		return new GetElementCount(driver, locator, logger);
+	}
+
+	@Override
+	public GetKeyword<Boolean> isVisible(By locator) {
+		return new IsVisible(driver, locator, logger);
+	}
+
+	@Override
+	public GetKeyword<Boolean> isVisible(WebElement element) {
+		return new IsVisible(element, logger);
+	}
+
+	@Override
+	public GetKeyword<Boolean> isEnabled(By locator) {
+		return new IsEnabled(driver, locator, logger);
+	}
+
+	@Override
+	public GetKeyword<Boolean> isEnabled(WebElement element) {
+		return new IsEnabled(element, logger);
+	}
+
+	@Override
+	public GetKeyword<Boolean> isSelected(By locator) {
+		return new IsSelected(driver, locator, logger);
+	}
+
+	@Override
+	public GetKeyword<Boolean> isSelected(WebElement element) {
+		return new IsSelected(element, logger);
+	}
+
+	@Override
+	public GetKeyword<List<String>> getDropDownOptions(By locator) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public GetKeyword<String> GetElementValue(WebElement element) {
+	public GetKeyword<List<String>> getDropDownOptions(WebElement element) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public GetKeyword<String> getDropDownSelectedOption(By locator) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GetKeyword<String> getDropDownSelectedOption(WebElement element) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GetKeyword<Integer> getDropDownOptionsCount(By locator) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GetKeyword<String> getPageTitle() {
+		return new GetPageTitle(driver, logger);
+	}
+
+	@Override
+	public GetKeyword<String> getCurrentUrl() {
+		return new GetCurrentUrl(driver, logger);
 	}
 
 }

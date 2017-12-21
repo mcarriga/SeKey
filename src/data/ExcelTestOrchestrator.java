@@ -66,7 +66,7 @@ public class ExcelTestOrchestrator {
 						for(String obj : objects) {
 							String[] vals = obj.split("\\.");
 							
-							ObjectDef def = ObjectFinder.x(framework, "PageObject."+vals[0], vals[1]);
+							ObjectDef def = ObjectFinder.x(framework, pageObjectPackage.getSimpleName()+"."+vals[0], vals[1]);
 							defs.add(def);
 						}
 						
@@ -82,23 +82,24 @@ public class ExcelTestOrchestrator {
 	
 	private void c(String objects, List<String> params) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		String[] vals = objects.split("\\.");
-		String cls = "PageObject."+vals[0];
+		String cls = pageObjectPackage.getSimpleName()+"."+vals[0];
 		String method = vals[1];
 		ObjectFinder.getMethod(framework, cls, method, params);
 	}
 
 	
-	private void b(String keywordName, List<ObjectDef> defs, List<String> params) {
-		
+	private void b(String keywordName, List<ObjectDef> defs, List<String> params) throws InstantiationException, IllegalAccessException {
+		String methodName = getMethodName(actionsX, keywordName);
 		if(containsIgnoreCase(actions, keywordName)) {
-			String methodName = getMethodName(actionsX, keywordName);
 			keywordRunner.doAction(methodName, defs, params);
 			
 		} else if(containsIgnoreCase(asserts, keywordName)) {
+			keywordRunner.doAssert(methodName, defs, params);
 			
 		} else if(containsIgnoreCase(gets, keywordName)) {
 			
 		} else if(containsIgnoreCase(waits, keywordName)) {
+			keywordRunner.doWait(methodName, defs, params);
 			
 		} else if(containsIgnoreCase(gestures, keywordName)) {
 			

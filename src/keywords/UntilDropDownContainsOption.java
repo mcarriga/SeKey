@@ -14,7 +14,7 @@ import framework.Framework;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
-public class UntilDropDownCountainsValueText extends WaitKeyword {
+public class UntilDropDownContainsOption extends WaitKeyword {
 
 	private final WebDriver driver;
 	private final ILogging logger;
@@ -23,7 +23,7 @@ public class UntilDropDownCountainsValueText extends WaitKeyword {
 	private final String itemText;
 	private By locator = null;
 	
-	public UntilDropDownCountainsValueText(WebDriver driver, WebElement element, String itemText, ILogging logger, long maxWaitSeconds) {
+	public UntilDropDownContainsOption(WebDriver driver, WebElement element, String itemText, ILogging logger, long maxWaitSeconds) {
 		this.driver = driver;
 		this.logger = logger;
 		this.element = element;
@@ -31,7 +31,7 @@ public class UntilDropDownCountainsValueText extends WaitKeyword {
 		this.itemText = itemText;
 	}
 	
-	public UntilDropDownCountainsValueText(WebDriver driver, By locator, String itemText, ILogging logger, long maxWaitSeconds) {
+	public UntilDropDownContainsOption(WebDriver driver, By locator, String itemText, ILogging logger, long maxWaitSeconds) {
 		this.driver = driver;
 		this.locator = locator;
 		this.element = driver.findElement(locator);
@@ -61,13 +61,12 @@ public class UntilDropDownCountainsValueText extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new UntilDropDownCountainsValueText(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));
+			return new UntilDropDownContainsOption(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));
 		} else {
-			return new UntilDropDownCountainsValueText(framework.driver, castToElem(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));
+			return new UntilDropDownContainsOption(framework.driver, castToElem(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));
 		}
 	}
 }

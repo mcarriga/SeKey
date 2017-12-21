@@ -73,8 +73,7 @@ public class UntilDropDownOptionsInOrderOf extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		long time = (long)Double.parseDouble(params.get(params.size()-1));
 		List<String> values = params;

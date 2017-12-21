@@ -44,8 +44,7 @@ public class SwitchToFrameIndex extends ActionKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		return new SwitchToFrameIndex(framework.driver, framework.logger, (int)Double.parseDouble(params.get(0)));
 	}

@@ -61,8 +61,7 @@ public class SelectByText extends ActionKeyword {
 		return new AfterAction((ActionKeyword)build(), 2);
 	}
 
-	@Override
-	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			return new SelectByText(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, framework.wait);

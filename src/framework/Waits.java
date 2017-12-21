@@ -12,8 +12,8 @@ import keywords.UntilAlertIsNotPresent;
 import keywords.UntilAlertIsPresent;
 import keywords.UntilCurrentUrlContains;
 import keywords.UntilCurrentUrlEquals;
-import keywords.UntilDropDownCountainsValueText;
-import keywords.UntilDropDownCountainsValueTexts;
+import keywords.UntilDropDownContainsOption;
+import keywords.UntilDropDownContainsOptions;
 import keywords.UntilDropDownItemCountIs;
 import keywords.UntilDropDownOptionsInOrderOf;
 import keywords.UntilDropDownSelectedTextIs;
@@ -271,22 +271,22 @@ public class Waits implements IWait {
 
 	@Override
 	public WaitKeyword untilDropDownCountainsOption(By locator, String text, long maxWaitSeconds) {
-		return new UntilDropDownCountainsValueText(driver, locator, text, logger, maxWaitSeconds);
+		return new UntilDropDownContainsOption(driver, locator, text, logger, maxWaitSeconds);
 	}
 
 	@Override
 	public WaitKeyword untilDropDownCountainsOption(WebElement element, String text, long maxWaitSeconds) {
-		return new UntilDropDownCountainsValueText(driver, element, text, logger, maxWaitSeconds);
+		return new UntilDropDownContainsOption(driver, element, text, logger, maxWaitSeconds);
 	}
 
 	@Override
 	public WaitKeyword untilDropDownCountainsOptions(By locator, List<String> texts, long maxWaitSeconds) {
-		return new UntilDropDownCountainsValueTexts(driver, locator, texts, logger, maxWaitSeconds);
+		return new UntilDropDownContainsOptions(driver, locator, texts, logger, maxWaitSeconds);
 	}
 
 	@Override
 	public WaitKeyword untilDropDownCountainsOptions(WebElement element, List<String> texts, long maxWaitSeconds) {
-		return new UntilDropDownCountainsValueTexts(driver, element, texts, logger, maxWaitSeconds);
+		return new UntilDropDownContainsOptions(driver, element, texts, logger, maxWaitSeconds);
 	}
 
 	@Override

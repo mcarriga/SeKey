@@ -63,8 +63,7 @@ public class ClickAndDragOffset extends ActionKeyword {
 		return new AfterAction((ActionKeyword)build(), 2);
 	}
 
-	@Override
-	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) { // By, int, int
 			return new ClickAndDragOffset(framework.driver, castToBy(defs.get(0)), Integer.parseInt(params.get(0)), Integer.parseInt(params.get(1)), framework.logger, framework.wait);

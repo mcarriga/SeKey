@@ -49,8 +49,7 @@ public class AssertLocatorReturnsGreaterThan extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(params.size() > 1) {
 			return new AssertLocatorReturnsGreaterThan(framework.driver, castToBy(defs.get(0)), (int)Double.parseDouble(params.get(0)), framework.logger, framework.wait,  (long)Double.parseDouble(params.get(1)));

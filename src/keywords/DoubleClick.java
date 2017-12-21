@@ -61,8 +61,7 @@ public class DoubleClick extends ActionKeyword {
 		return new AfterAction((ActionKeyword)build(), 2);
 	}
 
-	@Override
-	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			return new DoubleClick(framework.driver, framework.logger, framework.wait, castToBy(defs.get(0)));

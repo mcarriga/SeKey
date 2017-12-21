@@ -42,8 +42,7 @@ public class AssertElementExists extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(params.size() > 0) {
 			return new AssertElementExists(framework.driver, framework.logger, framework.wait, castToBy(defs.get(0)),  (long)Double.parseDouble(params.get(0)));

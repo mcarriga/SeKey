@@ -38,8 +38,7 @@ public class AssertAlertIsPresent extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects, List<String> params) {
+	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> params) {
 		if(params.size() > 0) {
 			return new AssertAlertIsPresent(framework.logger, framework.wait,  (long)Double.parseDouble(params.get(0)));
 		}

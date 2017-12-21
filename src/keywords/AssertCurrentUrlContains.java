@@ -44,8 +44,7 @@ public class AssertCurrentUrlContains extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	@Override
-	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
 			List<String> params) {
 		if(params.size() > 1) {
 			return new AssertCurrentUrlContains(framework.driver, params.get(0), framework.logger, framework.wait,  (long)Double.parseDouble(params.get(1)));
