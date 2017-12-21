@@ -1,11 +1,15 @@
 package keywords;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
+import framework.Framework;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 import interfaces.IWait;
@@ -52,6 +56,16 @@ public class UnselectCheckbox extends ActionKeyword {
 	@Override
 	public IAfterAction guarantee() {
 		return new AfterAction((ActionKeyword)build(), 2);
+	}
+
+	@Override
+	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			return new UnselectCheckbox(framework.driver, framework.logger, framework.wait, castToBy(defs.get(0)));
+		} else {
+			return new UnselectCheckbox(castToElem(defs.get(0)), framework.logger, framework.wait);
+		}
 	}
 
 }

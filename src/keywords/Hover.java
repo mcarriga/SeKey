@@ -1,12 +1,16 @@
 package keywords;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
+import framework.Framework;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 import interfaces.IWait;
@@ -58,6 +62,16 @@ public class Hover extends ActionKeyword {
 	@Override
 	public IAfterAction guarantee() {
 		return new AfterAction((ActionKeyword)build(), 2);
+	}
+
+	@Override
+	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			return new Hover(framework.driver, castToBy(defs.get(0)), (long)Double.parseDouble(params.get(0)), framework.logger, framework.wait);
+		} else {
+			return new Hover(framework.driver, castToElem(defs.get(0)), (long)Double.parseDouble(params.get(0)), framework.logger, framework.wait);
+		}
 	}
 
 }

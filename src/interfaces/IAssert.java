@@ -98,4 +98,5 @@ public interface IAssert extends Callable<Void> {
 	AssertKeyword assertDropDownCountainsOptions(WebElement element, List<String> text);
 	AssertKeyword assertDropDownOptionsInOrderOf(By locator, List<String> text);
 	AssertKeyword assertDropDownOptionsInOrderOf(WebElement element, List<String> text);
+	long getDefaultWait();
 }

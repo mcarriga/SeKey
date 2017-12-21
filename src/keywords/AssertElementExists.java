@@ -1,10 +1,14 @@
 package keywords;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import data.ObjectDef;
 import framework.AssertKeyword;
+import framework.Framework;
 import interfaces.ILogging;
 import interfaces.IWait;
 
@@ -36,5 +40,15 @@ public class AssertElementExists extends AssertKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(params.size() > 0) {
+			return new AssertElementExists(framework.driver, framework.logger, framework.wait, castToBy(defs.get(0)),  (long)Double.parseDouble(params.get(0)));
+		} else {
+			return new AssertElementExists(framework.driver, framework.logger, framework.wait, castToBy(defs.get(0)), framework.asserter.getDefaultWait());
+		}
 	}
 }

@@ -1,9 +1,13 @@
 package keywords;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 
+import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
+import framework.Framework;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 
@@ -36,5 +40,11 @@ public class NavigateForward extends ActionKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		return new NavigateForward(framework.driver, framework.logger);
 	}
 }

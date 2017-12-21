@@ -1,11 +1,15 @@
 package keywords;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import data.ObjectDef;
 import framework.AssertKeyword;
+import framework.Framework;
 import interfaces.ILogging;
 import interfaces.IWait;
 
@@ -47,5 +51,23 @@ public class AssertElementAttributeValueContains extends AssertKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			if(params.size() > 2) {
+				return new AssertElementAttributeValueContains(framework.driver, framework.logger, framework.wait, params.get(0), castToBy(defs.get(0)), params.get(1),  (long)Double.parseDouble(params.get(2)));
+			} else {
+				return new AssertElementAttributeValueContains(framework.driver, framework.logger, framework.wait, params.get(0), castToBy(defs.get(0)), params.get(1), framework.asserter.getDefaultWait());
+			}
+		} else {
+			if(params.size() > 2) {
+				return new AssertElementAttributeValueContains(castToElem(defs.get(0)), framework.logger, framework.wait, params.get(0), params.get(1),  (long)Double.parseDouble(params.get(2)));
+			} else {
+				return new AssertElementAttributeValueContains(castToElem(defs.get(0)), framework.logger, framework.wait, params.get(0), params.get(1), framework.asserter.getDefaultWait());
+			}
+		}
 	}
 }

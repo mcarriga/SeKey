@@ -1,11 +1,15 @@
 package keywords;
 
+import java.util.List;
+
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import data.ObjectDef;
+import framework.Framework;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -40,6 +44,12 @@ public class UntilElementNotPresent extends WaitKeyword {
 	@Override
 	public void endLog() {
 		_logger.endKeyword(this);
+	}
+
+	@Override
+	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		return new UntilElementNotPresent(framework.driver, castToElem(defs.get(0)), framework.logger, (long)Double.parseDouble(params.get(0)));
 	}
 
 }

@@ -1,5 +1,7 @@
 package keywords;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import data.ObjectDef;
+import framework.Framework;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -60,6 +64,16 @@ public class UntilDropDownSelectedTextIs extends WaitKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			return new UntilDropDownSelectedTextIs(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));
+		} else {
+			return new UntilDropDownSelectedTextIs(framework.driver, castToElem(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));
+		}
 	}
 
 }

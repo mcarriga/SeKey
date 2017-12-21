@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import data.ObjectDef;
+import framework.Framework;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -52,5 +54,11 @@ public class UntilLocatorReturnsGreaterThan extends WaitKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		return new UntilLocatorReturnsGreaterThan(framework.driver, castToBy(defs.get(0)), (int)Double.parseDouble(params.get(0)), framework.logger, (long)Double.parseDouble(params.get(1)));
 	}
 }

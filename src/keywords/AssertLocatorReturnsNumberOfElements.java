@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import data.ObjectDef;
 import framework.AssertKeyword;
+import framework.Framework;
 import interfaces.ILogging;
 import interfaces.IWait;
 
@@ -45,6 +47,16 @@ public class AssertLocatorReturnsNumberOfElements extends AssertKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(params.size() > 1) {
+			return new AssertLocatorReturnsNumberOfElements(framework.driver, castToBy(defs.get(0)), (int)Double.parseDouble(params.get(0)), framework.logger, framework.wait,  (long)Double.parseDouble(params.get(1)));
+		} else {
+			return new AssertLocatorReturnsNumberOfElements(framework.driver, castToBy(defs.get(0)), (int)Double.parseDouble(params.get(0)), framework.logger, framework.wait, framework.asserter.getDefaultWait());
+		}
 	}
 
 }

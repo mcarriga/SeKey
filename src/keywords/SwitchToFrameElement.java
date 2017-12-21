@@ -1,11 +1,15 @@
 package keywords;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
+import framework.Framework;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 
@@ -46,6 +50,16 @@ public class SwitchToFrameElement extends ActionKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			return new SwitchToFrameElement(framework.driver, castToBy(defs.get(0)), framework.logger);
+		} else {
+			return new SwitchToFrameElement(framework.driver, castToElem(defs.get(0)), framework.logger);
+		}
 	}
 
 }

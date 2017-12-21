@@ -1,8 +1,12 @@
 package keywords;
 
+import java.util.List;
+
 import org.testng.Assert;
 
+import data.ObjectDef;
 import framework.AssertKeyword;
+import framework.Framework;
 import interfaces.ILogging;
 import interfaces.IWait;
 
@@ -32,6 +36,14 @@ public class AssertAlertIsPresent extends AssertKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects, List<String> params) {
+		if(params.size() > 0) {
+			return new AssertAlertIsPresent(framework.logger, framework.wait,  (long)Double.parseDouble(params.get(0)));
+		}
+		return new AssertAlertIsPresent(framework.logger, framework.wait, framework.asserter.getDefaultWait());
 	}
 
 }

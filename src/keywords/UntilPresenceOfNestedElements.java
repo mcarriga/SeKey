@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import data.ObjectDef;
+import framework.Framework;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -62,5 +64,15 @@ public class UntilPresenceOfNestedElements extends WaitKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			return new UntilPresenceOfNestedElements(framework.driver, castToBy(defs.get(0)), castToBy(defs.get(1)), framework.logger, (long)Double.parseDouble(params.get(1)));
+		} else {
+			return new UntilPresenceOfNestedElements(framework.driver, castToElem(defs.get(0)), castToBy(defs.get(1)), framework.logger, (long)Double.parseDouble(params.get(1)));
+		}
 	}
 }

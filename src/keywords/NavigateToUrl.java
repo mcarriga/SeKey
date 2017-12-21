@@ -1,11 +1,14 @@
 package keywords;
 
 import java.net.URL;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 
+import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
+import framework.Framework;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 
@@ -45,6 +48,12 @@ public class NavigateToUrl extends ActionKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		return new NavigateToUrl(framework.driver, framework.logger, params.get(0));
 	}
 
 }

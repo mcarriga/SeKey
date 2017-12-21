@@ -403,7 +403,7 @@ public class KeywordRunner {
 	      return isValidInteger;
 	   }
 	
-	private static boolean isElem(ObjectDef def) {
+	public static boolean isElem(ObjectDef def) {
 		if(def.getClazz().equals(WebElement.class)) {
 			return true;
 		} else {
@@ -411,7 +411,7 @@ public class KeywordRunner {
 		}
 	}
 	
-	private static boolean isBy(ObjectDef def) {
+	public static boolean isBy(ObjectDef def) {
 		if(def.getClazz().equals(By.class)) {
 			return true;
 		} else {
@@ -419,15 +419,15 @@ public class KeywordRunner {
 		}
 	}
 	
-	private static WebElement castToElem(ObjectDef def) {
+	public static WebElement castToElem(ObjectDef def) {
 		return (WebElement)def.getObject();
 	}
 	
-	private static By castToBy(ObjectDef def) {
+	public static By castToBy(ObjectDef def) {
 		return (By)def.getObject();
 	}
 	
-	private static Object cast(Class<?> clazz, Object object) {
+	public static Object cast(Class<?> clazz, Object object) {
 		return clazz.cast(object);
 	}
 }

@@ -10,12 +10,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import data.ObjectDef;
 import framework.AssertKeyword;
+import framework.Framework;
 import interfaces.ILogging;
 import interfaces.IWait;
 import junit.framework.Assert;
 
-public class AssertDropDownCountainsOptions extends AssertKeyword {
+public class AssertDropDownContainsOptions extends AssertKeyword {
 
 	private final ILogging logger;
 	private final long maxTime;
@@ -25,7 +27,7 @@ public class AssertDropDownCountainsOptions extends AssertKeyword {
 	private By locator = null;
 	private List<String> allElemStrings = new ArrayList<String>();
 	
-	public AssertDropDownCountainsOptions(WebElement element, List<String> expectedOptions, ILogging logger, IWait wait, long maxWaitSeconds) {
+	public AssertDropDownContainsOptions(WebElement element, List<String> expectedOptions, ILogging logger, IWait wait, long maxWaitSeconds) {
 		this.logger = logger;
 		this.element = element;
 		this.maxTime = maxWaitSeconds;
@@ -33,7 +35,7 @@ public class AssertDropDownCountainsOptions extends AssertKeyword {
 		this.wait = wait;
 	}
 	
-	public AssertDropDownCountainsOptions(WebDriver driver, By locator, List<String> expectedOptions, ILogging logger, IWait wait, long maxWaitSeconds) {
+	public AssertDropDownContainsOptions(WebDriver driver, By locator, List<String> expectedOptions, ILogging logger, IWait wait, long maxWaitSeconds) {
 		this(driver.findElement(locator), expectedOptions, logger, wait, maxWaitSeconds);
 	}
 
@@ -70,5 +72,15 @@ public class AssertDropDownCountainsOptions extends AssertKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			return new AssertDropDownContainsOptions(framework.driver, castToBy(defs.get(0)), params, framework.logger, framework.wait, framework.asserter.getDefaultWait());
+		} else {
+			return new AssertDropDownContainsOptions(castToElem(defs.get(0)), params, framework.logger, framework.wait, framework.asserter.getDefaultWait());
+		}
 	}
 }

@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import data.ObjectDef;
+import framework.Framework;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -69,5 +71,19 @@ public class UntilDropDownCountainsValueTexts extends WaitKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		long time = (long)Double.parseDouble(params.get(params.size()-1));
+		List<String> values = params;
+		values.remove(params.size()-1);
+		
+		if(isBy(defs.get(0))) {
+			return new UntilDropDownCountainsValueTexts(framework.driver, castToBy(defs.get(0)), values, framework.logger, time);
+		} else {
+			return new UntilDropDownCountainsValueTexts(framework.driver, castToElem(defs.get(0)), values, framework.logger, time);
+		}
 	}
 }

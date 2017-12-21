@@ -7,12 +7,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import data.ObjectDef;
 import framework.AssertKeyword;
+import framework.Framework;
 import interfaces.ILogging;
 import interfaces.IWait;
 import junit.framework.Assert;
 
-public class AssertDropDownCountainsOption extends AssertKeyword {
+public class AssertDropDownContainsOption extends AssertKeyword {
 
 	private final ILogging logger;
 	private final long maxTime;
@@ -21,7 +23,7 @@ public class AssertDropDownCountainsOption extends AssertKeyword {
 	private final IWait wait;
 	private By locator = null;
 	
-	public AssertDropDownCountainsOption(WebElement element, String expectedOptionText, ILogging logger, IWait wait, long maxWaitSeconds) {
+	public AssertDropDownContainsOption(WebElement element, String expectedOptionText, ILogging logger, IWait wait, long maxWaitSeconds) {
 		this.logger = logger;
 		this.element = element;
 		this.maxTime = maxWaitSeconds;
@@ -29,7 +31,7 @@ public class AssertDropDownCountainsOption extends AssertKeyword {
 		this.wait = wait;
 	}
 	
-	public AssertDropDownCountainsOption(WebDriver driver, By locator, String expectedOptionText, ILogging logger, IWait wait, long maxWaitSeconds) {
+	public AssertDropDownContainsOption(WebDriver driver, By locator, String expectedOptionText, ILogging logger, IWait wait, long maxWaitSeconds) {
 		this(driver.findElement(locator), expectedOptionText, logger, wait, maxWaitSeconds);
 	}
 
@@ -57,6 +59,24 @@ public class AssertDropDownCountainsOption extends AssertKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			if(params.size() > 1) {
+				return new AssertDropDownContainsOption(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, framework.wait,  (long)Double.parseDouble(params.get(1)));
+			} else {
+				return new AssertDropDownContainsOption(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, framework.wait, framework.asserter.getDefaultWait());
+			}
+		} else {
+			if(params.size() > 1) {
+				return new AssertDropDownContainsOption(castToElem(defs.get(0)), params.get(0), framework.logger, framework.wait,  (long)Double.parseDouble(params.get(1)));
+			} else {
+				return new AssertDropDownContainsOption(castToElem(defs.get(0)), params.get(0), framework.logger, framework.wait, framework.asserter.getDefaultWait());
+			}
+		}
 	}
 
 }

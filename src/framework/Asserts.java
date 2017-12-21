@@ -23,6 +23,11 @@ public class Asserts implements IAssert, Callable<Void> {
 		this.driver = driver;
 		this.logger = logger;
 	}
+	
+	@Override
+	public long getDefaultWait() {
+		return defaultWait;
+	}
 
 	@Override
 	public Void call() throws Exception {
@@ -230,22 +235,22 @@ public class Asserts implements IAssert, Callable<Void> {
 
 	@Override
 	public AssertKeyword assertDropDownCountainsOption(By locator, String optionText, long timeoutSeconds) {
-		return new AssertDropDownCountainsOption(driver, locator, optionText, logger, wait, timeoutSeconds);
+		return new AssertDropDownContainsOption(driver, locator, optionText, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownCountainsOption(WebElement element, String optionText, long timeoutSeconds) {
-		return new AssertDropDownCountainsOption(element, optionText, logger, wait, timeoutSeconds);
+		return new AssertDropDownContainsOption(element, optionText, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownCountainsOptions(By locator, List<String> options, long timeoutSeconds) {
-		return new AssertDropDownCountainsOptions(driver, locator, options, logger, wait, timeoutSeconds);
+		return new AssertDropDownContainsOptions(driver, locator, options, logger, wait, timeoutSeconds);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownCountainsOptions(WebElement element, List<String> options, long timeoutSeconds) {
-		return new AssertDropDownCountainsOptions(element, options, logger, wait, timeoutSeconds);
+		return new AssertDropDownContainsOptions(element, options, logger, wait, timeoutSeconds);
 	}
 
 	@Override
@@ -455,22 +460,22 @@ public class Asserts implements IAssert, Callable<Void> {
 
 	@Override
 	public AssertKeyword assertDropDownCountainsOption(By locator, String text) {
-		return new AssertDropDownCountainsOption(driver, locator, text, logger, wait, defaultWait);
+		return new AssertDropDownContainsOption(driver, locator, text, logger, wait, defaultWait);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownCountainsOption(WebElement element, String text) {
-		return new AssertDropDownCountainsOption(element, text, logger, wait, defaultWait);
+		return new AssertDropDownContainsOption(element, text, logger, wait, defaultWait);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownCountainsOptions(By locator, List<String> text) {
-		return new AssertDropDownCountainsOptions(driver, locator, text, logger, wait, defaultWait);
+		return new AssertDropDownContainsOptions(driver, locator, text, logger, wait, defaultWait);
 	}
 
 	@Override
 	public AssertKeyword assertDropDownCountainsOptions(WebElement element, List<String> text) {
-		return new AssertDropDownCountainsOptions(element, text, logger, wait, defaultWait);
+		return new AssertDropDownContainsOptions(element, text, logger, wait, defaultWait);
 	}
 
 	@Override

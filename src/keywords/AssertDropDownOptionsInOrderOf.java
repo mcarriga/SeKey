@@ -10,7 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import data.ObjectDef;
 import framework.AssertKeyword;
+import framework.Framework;
 import interfaces.ILogging;
 import interfaces.IWait;
 import junit.framework.Assert;
@@ -70,6 +72,16 @@ public class AssertDropDownOptionsInOrderOf extends AssertKeyword {
 	@Override
 	public void endLog() {
 		logger.endKeyword(this);
+	}
+
+	@Override
+	public AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> objects,
+			List<String> params) {
+		if(isBy(defs.get(0))) {
+			return new AssertDropDownOptionsInOrderOf(framework.driver, castToBy(defs.get(0)), params, framework.logger, framework.wait, framework.asserter.getDefaultWait());
+		} else {
+			return new AssertDropDownOptionsInOrderOf(castToElem(defs.get(0)), params, framework.logger, framework.wait, framework.asserter.getDefaultWait());
+		}
 	}
 
 }
