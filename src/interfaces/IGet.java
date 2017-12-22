@@ -25,6 +25,7 @@ public interface IGet {
 	GetKeyword<String> getDropDownSelectedOption(By locator);
 	GetKeyword<String> getDropDownSelectedOption(WebElement element);
 	GetKeyword<Integer> getDropDownOptionsCount(By locator);
+	GetKeyword<Integer> getDropDownOptionsCount(WebElement element);
 	GetKeyword<String> getPageTitle();
 	GetKeyword<String> getCurrentUrl();
 }

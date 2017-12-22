@@ -10,16 +10,19 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
-public class ExcelTest {
+public class ExcelTestCase {
 	private final ExcelWorksheet sheet;
 	private final int startRowNum;
 	private final int endRowNum;
 	private final String TestCaseName;
 	private final String TestCaseId;
 	private final String suiteName;
+	private final int keywordIndex = 2;
+	private final int objectsIndex = 3;
+	private final int paramsIndex = 4;
 	private List<ExcelTestStep> testSteps = new ArrayList<ExcelTestStep>();
 	
-	public ExcelTest(ExcelWorksheet sheet, int startRowNum, int endRowNum, String suiteName, String TestCaseName, String TestCaseId) {
+	public ExcelTestCase(ExcelWorksheet sheet, int startRowNum, int endRowNum, String suiteName, String TestCaseName, String TestCaseId) {
 		this.sheet = sheet;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
@@ -48,15 +51,15 @@ public class ExcelTest {
 	private void init() {
 		for(int i = startRowNum; i<= endRowNum; i++) {
 			Row testStep = sheet.getSheet().getRow(i);
-			String keyword = testStep.getCell(1, MissingCellPolicy.RETURN_NULL_AND_BLANK).getStringCellValue();
+			String keyword = testStep.getCell(keywordIndex, MissingCellPolicy.RETURN_NULL_AND_BLANK).getStringCellValue();
 			List<String> objects = new ArrayList<String>();
 			
-			Cell cell = testStep.getCell(2, MissingCellPolicy.RETURN_NULL_AND_BLANK);
+			Cell cell = testStep.getCell(objectsIndex, MissingCellPolicy.RETURN_NULL_AND_BLANK);
 			if(cell != null) {
 				objects = Arrays.asList(cell.getStringCellValue().split("\\|"));
 			}
 
-			List<String> params = getParams( testStep.getCell(3, MissingCellPolicy.RETURN_NULL_AND_BLANK));
+			List<String> params = getParams( testStep.getCell(paramsIndex, MissingCellPolicy.RETURN_NULL_AND_BLANK));
 			
 			testSteps.add(new ExcelTestStep(keyword, objects, params));
 		}

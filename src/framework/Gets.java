@@ -86,32 +86,32 @@ public class Gets implements IGet {
 
 	@Override
 	public GetKeyword<List<String>> getDropDownOptions(By locator) {
-		// TODO Auto-generated method stub
-		return null;
+		return new GetDropDownOptions(driver, logger, locator);
 	}
 
 	@Override
 	public GetKeyword<List<String>> getDropDownOptions(WebElement element) {
-		// TODO Auto-generated method stub
-		return null;
+		return new GetDropDownOptions(element, logger);
 	}
 
 	@Override
 	public GetKeyword<String> getDropDownSelectedOption(By locator) {
-		// TODO Auto-generated method stub
-		return null;
+		return new GetDropDownSelectedOption(driver, logger, locator);
 	}
 
 	@Override
 	public GetKeyword<String> getDropDownSelectedOption(WebElement element) {
-		// TODO Auto-generated method stub
-		return null;
+		return new GetDropDownSelectedOption(element, logger);
 	}
 
 	@Override
 	public GetKeyword<Integer> getDropDownOptionsCount(By locator) {
-		// TODO Auto-generated method stub
-		return null;
+		return new GetDropDownOptionsCount(driver, logger, locator);
+	}
+	
+	@Override
+	public GetKeyword<Integer> getDropDownOptionsCount(WebElement element) {
+		return new GetDropDownOptionsCount(element, logger);
 	}
 
 	@Override

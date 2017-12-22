@@ -1,5 +1,9 @@
 package logging;
 
+import java.util.List;
+
+import data.ObjectDef;
+import framework.Framework;
 import interfaces.IAAALogEvent;
 import interfaces.ILogging;
 
@@ -16,5 +20,9 @@ public class AssertSection implements IAAALogEvent {
 	@Override
 	public void doLog() {
 		logger.info("\n"+"*** ASSERT Section *** "+message);
+	}
+	
+	public static IAAALogEvent instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> params) {
+		return new AssertSection(framework.logger, params.get(0));
 	}
 }

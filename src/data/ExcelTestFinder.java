@@ -3,27 +3,29 @@ package data;
 import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellValue;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
 public class ExcelTestFinder {
 	private final ExcelWorksheet sheet;
 	private final String testName;
-	private ExcelTest test = null;
+	private ExcelTestCase test = null;
 	
 	public ExcelTestFinder(ExcelWorksheet sheet, String testName) {
 		this.sheet = sheet;
 		this.testName = testName;
 	}
 	
-	public ExcelTest getTest() {
+	public ExcelTestCase getTest() {
 		if(test == null) {
 			test = find();
 		}
 		return test;
 	}
 	
-	private ExcelTest find() {
+	private ExcelTestCase find() {
 		Iterator<Row> rows = sheet.getSheet().iterator();
 		boolean found = false;
 		int rowStartNum = 0;
@@ -53,8 +55,9 @@ public class ExcelTestFinder {
 		}
 	}
 	
-	private ExcelTest createExcelTest(int rowStartForTest) {
-		String testDesc = sheet.getSheet().getRow(rowStartForTest).getCell(0, MissingCellPolicy.RETURN_NULL_AND_BLANK).getStringCellValue();
+	private ExcelTestCase createExcelTest(int rowStartForTest) {
+		String testDesc = sheet.getSheet().getRow(rowStartForTest).getCell(0, MissingCellPolicy.RETURN_BLANK_AS_NULL).getStringCellValue();
+		String testId = getCellValue(sheet.getSheet().getRow(rowStartForTest).getCell(1, MissingCellPolicy.RETURN_BLANK_AS_NULL));
 		int startStepsRowNum = rowStartForTest +1;
 		int lastStepsRowNum = 0;
 		
@@ -81,8 +84,47 @@ public class ExcelTestFinder {
 
 		
 		// CreateTest
-		ExcelTest eTest = new ExcelTest(sheet, startStepsRowNum,lastStepsRowNum, sheet.getSheet().getSheetName(), testDesc, "");
+		ExcelTestCase eTest = new ExcelTestCase(sheet, startStepsRowNum,lastStepsRowNum, sheet.getSheet().getSheetName(), testDesc, testId);
 		return eTest;
+	}
+	
+	private String getCellValue(Cell cell) {
+		FormulaEvaluator evaluator = sheet.getWorkbook().getWorkbook().getCreationHelper().createFormulaEvaluator();
+		CellValue cellValue = evaluator.evaluate(cell);
+		
+		if(cellValue == null) {
+			return "";
+		}
+		switch(cellValue.getCellTypeEnum()) {
+		case BLANK:
+			return "";
+
+		case BOOLEAN:
+			return String.valueOf(cell.getBooleanCellValue());
+
+		case ERROR:
+			return "";
+
+		case FORMULA: // should not be possible since we already evaluated the cell if needed
+
+		case NUMERIC:
+			return String.valueOf(cell.getNumericCellValue());
+
+		case STRING:
+			return cell.getStringCellValue();
+
+		case _NONE:
+			try {
+				return cell.getStringCellValue();
+			} catch (Exception e) {
+				return "";
+			}
+
+		default:
+			return cell.getStringCellValue();
+
+		}
+		
 	}
 
 }

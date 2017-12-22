@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import framework.Framework;
 import interfaces.*;
 import keywords.*;
+import logging.*;
 
 public class KeywordRunner {
 	private final Framework framework;
@@ -25,8 +26,64 @@ public class KeywordRunner {
 		this.get = framework.get;
 	}
 	
+	public void doAAALog(String methodName, List<ObjectDef> defs, List<String> params){
+		switch(methodName.toLowerCase()) {
+		case "arrangesection":
+			ArrangeSection.instantiateExternal(framework, defs, params).doLog();
+			break;
+		case "actsection":
+			ActSection.instantiateExternal(framework, defs, params).doLog();
+			break;
+		case "assertsection":
+			AssertSection.instantiateExternal(framework, defs, params).doLog();
+			break;
+		case "cleanupsection":
+			CleanupSection.instantiateExternal(framework, defs, params).doLog();
+			break;
+		}
+	}
+	
 	public void doPageObject(Method method, List<Object> methodParams) {
 		
+	}
+	
+	public void doGet(String methodName, List<ObjectDef> defs, List<String> params) {
+		switch(methodName.toLowerCase()) {
+		case "getelementtext":
+			GetText.instantiateExternal(framework, defs, params).build();
+			break;
+		case "getelementvalue":
+			params.add(0, "value");
+			GetElementAttribute.instantiateExternal(framework, defs, params).build();
+			break;
+		case "getelementattribute":
+			GetElementAttribute.instantiateExternal(framework, defs, params).build();
+			break;
+		case "isvisible":
+			IsVisible.instantiateExternal(framework, defs, params).build();
+			break;
+		case "isenabled":
+			IsEnabled.instantiateExternal(framework, defs, params).build();
+			break;
+		case "isselected":
+			IsSelected.instantiateExternal(framework, defs, params).build();
+			break;
+		case "getdropdownoptions":
+			GetDropDownOptions.instantiateExternal(framework, defs, params).build();
+			break;
+		case "getdropdownselectedoption":
+			GetDropDownSelectedOption.instantiateExternal(framework, defs, params).build();
+			break;
+		case "getdropdownoptionscount":
+			GetDropDownOptionsCount.instantiateExternal(framework, defs, params).build();
+			break;
+		case "getpagetitle":
+			GetPageTitle.instantiateExternal(framework, defs, params).build();
+			break;
+		case "getcurrenturl":
+			GetCurrentUrl.instantiateExternal(framework, defs, params).build();
+			break;
+		}
 	}
 	
 	public void doWait(String methodName, List<ObjectDef> defs, List<String> params) {
