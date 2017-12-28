@@ -10,7 +10,8 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
-public class ExcelTestCase {
+public class ExcelTestCase 
+{
 	private final ExcelWorksheet sheet;
 	private final int startRowNum;
 	private final int endRowNum;
@@ -22,7 +23,8 @@ public class ExcelTestCase {
 	private final int paramsIndex = 4;
 	private List<ExcelTestStep> testSteps = new ArrayList<ExcelTestStep>();
 	
-	public ExcelTestCase(ExcelWorksheet sheet, int startRowNum, int endRowNum, String suiteName, String TestCaseName, String TestCaseId) {
+	public ExcelTestCase(ExcelWorksheet sheet, int startRowNum, int endRowNum, String suiteName, String TestCaseName, String TestCaseId) 
+	{
 		this.sheet = sheet;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
@@ -32,23 +34,28 @@ public class ExcelTestCase {
 		init();
 	}
 	
-	public String getTestName() {
+	public String getTestName() 
+	{
 		return TestCaseName;
 	}
 	
-	public String getTestId() {
+	public String getTestId() 
+	{
 		return TestCaseId;
 	}
 	
-	public String getSuiteName() {
+	public String getSuiteName() 
+	{
 		return suiteName;
 	}
 	
-	public List<ExcelTestStep> getTestSteps(){
+	public List<ExcelTestStep> getTestSteps()
+	{
 		return testSteps;
 	}
 	
-	private void init() {
+	private void init() 
+	{
 		for(int i = startRowNum; i<= endRowNum; i++) {
 			Row testStep = sheet.getSheet().getRow(i);
 			String keyword = testStep.getCell(keywordIndex, MissingCellPolicy.RETURN_NULL_AND_BLANK).getStringCellValue();
@@ -65,12 +72,12 @@ public class ExcelTestCase {
 		}
 	}
 	
-	private List<String> getParams(Cell cell) {
+	private List<String> getParams(Cell cell) 
+	{
 		List<String> values = new ArrayList<String>();
 		FormulaEvaluator evaluator = sheet.getWorkbook().getWorkbook().getCreationHelper().createFormulaEvaluator();
 		CellValue cellValue = evaluator.evaluate(cell);
 		if(cellValue == null) {
-			values = Arrays.asList("");
 			return values;
 		}
 		switch(cellValue.getCellTypeEnum()) {
@@ -90,7 +97,7 @@ public class ExcelTestCase {
 			values = Arrays.asList(String.valueOf(cell.getNumericCellValue()));
 			break;
 		case STRING:
-			String[] valsString = cell.getStringCellValue().split("\\|");
+			String[] valsString = cell.getStringCellValue().replaceAll("\\\\n", "\n").replaceAll("\\\\r", "\r").split("\\|");
 			values = Arrays.asList(valsString);
 			break;
 		case _NONE:

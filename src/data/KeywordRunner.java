@@ -1,6 +1,7 @@
 package data;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -11,14 +12,17 @@ import interfaces.*;
 import keywords.*;
 import logging.*;
 
-public class KeywordRunner {
+public class KeywordRunner 
+{
 	private final Framework framework;
 	private final IAction action;
 	private final IAssert asserts;
 	private final IWait wait;
 	private final IGet get;
+	public final HashMap<String, Object> getterObjects = new HashMap<String, Object>();
 	
-	public KeywordRunner(Framework framework) {
+	public KeywordRunner(Framework framework) 
+	{
 		this.framework = framework;
 		this.action = framework.action;
 		this.asserts = framework.asserter;
@@ -26,7 +30,8 @@ public class KeywordRunner {
 		this.get = framework.get;
 	}
 	
-	public void doAAALog(String methodName, List<ObjectDef> defs, List<String> params){
+	public void doAAALog(String methodName, List<ObjectDef> defs, List<String> params) 
+	{
 		switch(methodName.toLowerCase()) {
 		case "arrangesection":
 			ArrangeSection.instantiateExternal(framework, defs, params).doLog();
@@ -43,50 +48,70 @@ public class KeywordRunner {
 		}
 	}
 	
-	public void doPageObject(Method method, List<Object> methodParams) {
+	public void doPageObject(Method method, List<Object> methodParams) 
+	{
 		
 	}
 	
-	public void doGet(String methodName, List<ObjectDef> defs, List<String> params) {
+	public void doGet(String methodName, List<ObjectDef> defs, List<String> params) 
+	{
+		Object value = null;
+		String name = null;
+		if(params.size() > 0) { // set the name of the parameter - this will be overridden in a few cases
+			name = params.get(0);
+		}
 		switch(methodName.toLowerCase()) {
 		case "getelementtext":
-			GetText.instantiateExternal(framework, defs, params).build();
+			value = GetText.instantiateExternal(framework, defs, params).build();
 			break;
 		case "getelementvalue":
-			params.add(0, "value");
-			GetElementAttribute.instantiateExternal(framework, defs, params).build();
+			if(params.size() > 1) { // if a return object is needed it should always be in the 0 index of Params- i.e. myVariableName|nameOfAttributeToGetValueOf
+				params.add(1, "value");
+			} else {
+				params.add(0, "value");
+			}
+			
+			value = GetElementAttribute.instantiateExternal(framework, defs, params).build();
 			break;
 		case "getelementattribute":
-			GetElementAttribute.instantiateExternal(framework, defs, params).build();
+			if(params.size() > 1) { // if a return object is needed it should always be in the 0 index of Params- i.e. myVariableName|nameOfAttributeToGetValueOf
+				params.remove(0); // remove the param name like myVariableName so only the name of the Attribute is passed
+			}
+			value = GetElementAttribute.instantiateExternal(framework, defs, params).build();
 			break;
 		case "isvisible":
-			IsVisible.instantiateExternal(framework, defs, params).build();
+			value = IsVisible.instantiateExternal(framework, defs, params).build();
 			break;
 		case "isenabled":
-			IsEnabled.instantiateExternal(framework, defs, params).build();
+			value = IsEnabled.instantiateExternal(framework, defs, params).build();
 			break;
 		case "isselected":
-			IsSelected.instantiateExternal(framework, defs, params).build();
+			value = IsSelected.instantiateExternal(framework, defs, params).build();
 			break;
 		case "getdropdownoptions":
-			GetDropDownOptions.instantiateExternal(framework, defs, params).build();
+			value = GetDropDownOptions.instantiateExternal(framework, defs, params).build();
 			break;
 		case "getdropdownselectedoption":
-			GetDropDownSelectedOption.instantiateExternal(framework, defs, params).build();
+			value = GetDropDownSelectedOption.instantiateExternal(framework, defs, params).build();
 			break;
 		case "getdropdownoptionscount":
-			GetDropDownOptionsCount.instantiateExternal(framework, defs, params).build();
+			value = GetDropDownOptionsCount.instantiateExternal(framework, defs, params).build();
 			break;
 		case "getpagetitle":
-			GetPageTitle.instantiateExternal(framework, defs, params).build();
+			value = GetPageTitle.instantiateExternal(framework, defs, params).build();
 			break;
 		case "getcurrenturl":
-			GetCurrentUrl.instantiateExternal(framework, defs, params).build();
+			value = GetCurrentUrl.instantiateExternal(framework, defs, params).build();
 			break;
+		}
+		
+		if(name != null) {
+			getterObjects.put(name, value);
 		}
 	}
 	
-	public void doWait(String methodName, List<ObjectDef> defs, List<String> params) {
+	public void doWait(String methodName, List<ObjectDef> defs, List<String> params) 
+	{
 		switch(methodName.toLowerCase()) {
 		case "untilelementexists":
 			UntilElementExists.instantiateExternal(framework, defs, params).build();
@@ -195,7 +220,8 @@ public class KeywordRunner {
 		}
 	}
 	
-	public void doAction(String methodName, List<ObjectDef> defs, List<String> params) {
+	public void doAction(String methodName, List<ObjectDef> defs, List<String> params) 
+	{
 		switch(methodName.toLowerCase()) {
 		case "selectbytext":
 			SelectByText.instantiateExternal(framework, defs, params).build();
@@ -275,7 +301,8 @@ public class KeywordRunner {
 		}
 	}
 	
-	public void doAssert(String methodName, List<ObjectDef> defs, List<String> params) {
+	public void doAssert(String methodName, List<ObjectDef> defs, List<String> params) 
+	{
 		switch(methodName.toLowerCase()) {
 		case "asserttext":
 			AssertText.instantiateExternal(framework, defs, params).build();
@@ -362,7 +389,8 @@ public class KeywordRunner {
 		
 	}
 	
-	public static boolean isInteger(String s) {
+	public static boolean isInteger(String s) 
+	{
 	      boolean isValidInteger = false;
 	      try
 	      {
@@ -380,7 +408,8 @@ public class KeywordRunner {
 	      return isValidInteger;
 	   }
 	
-	public static boolean isElem(ObjectDef def) {
+	public static boolean isElem(ObjectDef def) 
+	{
 		if(def.getClazz().equals(WebElement.class)) {
 			return true;
 		} else {
@@ -388,7 +417,8 @@ public class KeywordRunner {
 		}
 	}
 	
-	public static boolean isBy(ObjectDef def) {
+	public static boolean isBy(ObjectDef def) 
+	{
 		if(def.getClazz().equals(By.class)) {
 			return true;
 		} else {
@@ -396,15 +426,18 @@ public class KeywordRunner {
 		}
 	}
 	
-	public static WebElement castToElem(ObjectDef def) {
+	public static WebElement castToElem(ObjectDef def) 
+	{
 		return (WebElement)def.getObject();
 	}
 	
-	public static By castToBy(ObjectDef def) {
+	public static By castToBy(ObjectDef def) 
+	{
 		return (By)def.getObject();
 	}
 	
-	public static Object cast(Class<?> clazz, Object object) {
+	public static Object cast(Class<?> clazz, Object object) 
+	{
 		return clazz.cast(object);
 	}
 }

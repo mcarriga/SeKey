@@ -8,24 +8,30 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
-public class ExcelTestFinder {
+public class ExcelTestFinder 
+{
 	private final ExcelWorksheet sheet;
 	private final String testName;
 	private ExcelTestCase test = null;
+	private String suiteName;
 	
-	public ExcelTestFinder(ExcelWorksheet sheet, String testName) {
+	public ExcelTestFinder(ExcelWorksheet sheet, String testName) 
+	{
 		this.sheet = sheet;
 		this.testName = testName;
 	}
 	
-	public ExcelTestCase getTest() {
+	public ExcelTestCase getTest(String suiteName) 
+	{
+		this.suiteName = suiteName;
 		if(test == null) {
 			test = find();
 		}
 		return test;
 	}
 	
-	private ExcelTestCase find() {
+	private ExcelTestCase find() 
+	{
 		Iterator<Row> rows = sheet.getSheet().iterator();
 		boolean found = false;
 		int rowStartNum = 0;
@@ -55,7 +61,8 @@ public class ExcelTestFinder {
 		}
 	}
 	
-	private ExcelTestCase createExcelTest(int rowStartForTest) {
+	private ExcelTestCase createExcelTest(int rowStartForTest) 
+	{
 		String testDesc = sheet.getSheet().getRow(rowStartForTest).getCell(0, MissingCellPolicy.RETURN_BLANK_AS_NULL).getStringCellValue();
 		String testId = getCellValue(sheet.getSheet().getRow(rowStartForTest).getCell(1, MissingCellPolicy.RETURN_BLANK_AS_NULL));
 		int startStepsRowNum = rowStartForTest +1;
@@ -84,11 +91,12 @@ public class ExcelTestFinder {
 
 		
 		// CreateTest
-		ExcelTestCase eTest = new ExcelTestCase(sheet, startStepsRowNum,lastStepsRowNum, sheet.getSheet().getSheetName(), testDesc, testId);
+		ExcelTestCase eTest = new ExcelTestCase(sheet, startStepsRowNum,lastStepsRowNum, suiteName, testDesc, testId);
 		return eTest;
 	}
 	
-	private String getCellValue(Cell cell) {
+	private String getCellValue(Cell cell)
+	{
 		FormulaEvaluator evaluator = sheet.getWorkbook().getWorkbook().getCreationHelper().createFormulaEvaluator();
 		CellValue cellValue = evaluator.evaluate(cell);
 		

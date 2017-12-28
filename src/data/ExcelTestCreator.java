@@ -9,20 +9,24 @@ import java.util.List;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
-public class ExcelTestCreator {
+public class ExcelTestCreator 
+{
 	private final Iterable<String> sheetsToRun;
 	private final ExcelWorkbook workbook;
 	
-	public ExcelTestCreator(ExcelWorkbook workbook, Iterable<String> sheetsToRun) {
+	public ExcelTestCreator(ExcelWorkbook workbook, Iterable<String> sheetsToRun) 
+	{
 		this.sheetsToRun = sheetsToRun;
 		this.workbook = workbook;
 	}
 	
-	public ExcelTestCreator(ExcelWorkbook workbook, String[] sheetsToRun) {
+	public ExcelTestCreator(ExcelWorkbook workbook, String[] sheetsToRun)
+	{
 		this(workbook, Arrays.asList(sheetsToRun));
 	}
 	
-	public HashMap<ExcelWorksheet, List<ExcelTestCase>> init() {
+	public HashMap<ExcelWorksheet, List<ExcelTestCase>> init()
+	{
 		
 		HashMap<ExcelWorksheet, List<ExcelTestCase>> Suite = new HashMap<ExcelWorksheet, List<ExcelTestCase>>();
 		
@@ -41,7 +45,8 @@ public class ExcelTestCreator {
 		return Suite;
 	}
 	
-	private List<ExcelTestCase> getAllValidTestsInRunnerSheet(ExcelWorksheet sheet) {
+	private List<ExcelTestCase> getAllValidTestsInRunnerSheet(ExcelWorksheet sheet) 
+	{
 		
 		List<ExcelTestCase> testsInRunnerSheet = new ArrayList<ExcelTestCase>();
 		
@@ -60,7 +65,7 @@ public class ExcelTestCreator {
 			if(doRun.equalsIgnoreCase("yes")) {
 				ExcelWorksheet workSheet = new ExcelWorksheet(workbook, sheetName);
 				ExcelTestFinder finder = new ExcelTestFinder(workSheet, testName);
-				ExcelTestCase test = finder.getTest();
+				ExcelTestCase test = finder.getTest(sheet.getSheet().getSheetName());
 				testsInRunnerSheet.add(test);
 			}
 		}

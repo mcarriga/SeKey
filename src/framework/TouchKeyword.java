@@ -6,5 +6,6 @@ public abstract class TouchKeyword extends Keyword<Object> implements IKeyword<O
 	public String getKeywordType() {
 		return "Touch";
 	}
+	public abstract Object perform();
 
 }

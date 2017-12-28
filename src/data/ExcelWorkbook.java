@@ -10,15 +10,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class ExcelWorkbook {
+public class ExcelWorkbook 
+{
 	private final String fileName;
 	private final Workbook workbook;
 	
-	public ExcelWorkbook(String workBookFileName) throws FileNotFoundException, IOException {
+	public ExcelWorkbook(String workBookFileName) throws FileNotFoundException, IOException 
+	{
 		this(new File(workBookFileName));
 	}
 	
-	public ExcelWorkbook(File file) throws FileNotFoundException, IOException{
+	public ExcelWorkbook(File file) throws FileNotFoundException, IOException 
+	{
 		this.fileName = file.getName();
 		String extension = FilenameUtils.getExtension(file.getName());
 		FileInputStream excelFile = new FileInputStream(file);
@@ -33,11 +36,13 @@ public class ExcelWorkbook {
 		//excelFile.close();
 	}
 
-	public Workbook getWorkbook() {
+	public Workbook getWorkbook() 
+	{
 		return workbook;
 	}
 	
-	public String getWorkbookName() {
+	public String getWorkbookName() 
+	{
 		return fileName;
 	}
 }

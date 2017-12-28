@@ -13,8 +13,10 @@ import org.openqa.selenium.support.FindBy;
 
 import framework.Framework;
 
-public class ObjectFinder {
-	public static ObjectDef x(Framework framework, String ClassName, String fieldName) throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, NoSuchMethodException, InstantiationException, InvocationTargetException {
+public class ObjectFinder 
+{
+	public static ObjectDef x(Framework framework, String ClassName, String fieldName) throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, NoSuchMethodException, InstantiationException, InvocationTargetException 
+	{
 		 
 		Class<?> cls = Class.forName(ClassName);
 		Constructor<?> constructor = cls.getConstructor(Framework.class);
@@ -39,7 +41,8 @@ public class ObjectFinder {
 		//Object value = field.get(fieldType.insta);
 	}
 	
-	public static void getMethod(Framework framework, String ClassName, String methodName, List<String> methodParams) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public static void getMethod(Framework framework, String ClassName, String methodName, List<String> methodParams) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException 
+	{
 		Class<?> cls = Class.forName(ClassName);
 		Constructor<?> constructor = cls.getConstructor(Framework.class);
 		Object instance = constructor.newInstance(framework);
@@ -47,14 +50,15 @@ public class ObjectFinder {
 		Method method = instance.getClass().getMethod(methodName);
 		Parameter[] params = method.getParameters();
 		
-		if(methodParams.get(0) != "") {
+		if(methodParams.size() >0 && methodParams.get(0) != "") {
 			method.invoke(instance, methodParams.toArray());
 		} else {
 			method.invoke(instance);
 		}
 	}
 	
-	private static By getByLocator(FindBy find) {
+	private static By getByLocator(FindBy find) 
+	{
 		String using = find.using();
 		switch(find.how()) {
 		case CLASS_NAME:
