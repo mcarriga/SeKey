@@ -7,10 +7,37 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import assertKeywords.AssertAlertIsPresent;
+import assertKeywords.AssertCurrentUrlContains;
+import assertKeywords.AssertCurrentUrlEquals;
+import assertKeywords.AssertDropDownContainsOption;
+import assertKeywords.AssertDropDownContainsOptions;
+import assertKeywords.AssertDropDownItemCountIs;
+import assertKeywords.AssertDropDownOptionsInOrderOf;
+import assertKeywords.AssertDropDownSelectedTextIs;
+import assertKeywords.AssertDropDownSelectedValueIs;
+import assertKeywords.AssertElementAttributeValue;
+import assertKeywords.AssertElementAttributeValueContains;
+import assertKeywords.AssertElementEnabled;
+import assertKeywords.AssertElementExists;
+import assertKeywords.AssertElementNotEnabled;
+import assertKeywords.AssertElementNotSelected;
+import assertKeywords.AssertElementNotVisible;
+import assertKeywords.AssertElementSelected;
+import assertKeywords.AssertElementVisible;
+import assertKeywords.AssertLocatorReturnsGreaterThan;
+import assertKeywords.AssertLocatorReturnsLessThan;
+import assertKeywords.AssertLocatorReturnsNumberOfElements;
+import assertKeywords.AssertPageTitleContains;
+import assertKeywords.AssertPageTitleEquals;
+import assertKeywords.AssertText;
+import assertKeywords.AssertTextContains;
+import assertKeywords.AssertValue;
+import assertKeywords.AssertValueContains;
+import getKeywords.*;
 import interfaces.IAssert;
 import interfaces.ILogging;
 import interfaces.IWait;
-import keywords.*;
 
 public class Asserts implements IAssert, Callable<Void> {
 	private final WebDriver driver;

@@ -6,10 +6,31 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import actionKeywords.Click;
+import actionKeywords.ClickAndDrag;
+import actionKeywords.ClickAndDragOffset;
+import actionKeywords.DoubleClick;
+import actionKeywords.ExecuteJavaScript;
+import actionKeywords.Hover;
+import actionKeywords.NavigateBack;
+import actionKeywords.NavigateForward;
+import actionKeywords.NavigateRefresh;
+import actionKeywords.NavigateToUrl;
+import actionKeywords.ScrollToElement;
+import actionKeywords.SelectByIndex;
+import actionKeywords.SelectByText;
+import actionKeywords.SelectCheckbox;
+import actionKeywords.SelectRadioOptionByIndex;
+import actionKeywords.SelectRadioOptionByValue;
+import actionKeywords.SetText;
+import actionKeywords.SwitchToFrame;
+import actionKeywords.SwitchToFrameElement;
+import actionKeywords.SwitchToFrameIndex;
+import actionKeywords.UnselectCheckbox;
+import getKeywords.*;
 import interfaces.IAction;
 import interfaces.ILogging;
 import interfaces.IWait;
-import keywords.*;
 
 public class Actions implements IAction {
 	private final WebDriver driver;

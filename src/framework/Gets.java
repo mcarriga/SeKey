@@ -6,9 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import getKeywords.*;
 import interfaces.IGet;
 import interfaces.ILogging;
-import keywords.*;
 
 public class Gets implements IGet {
 	private WebDriver driver;
