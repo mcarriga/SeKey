@@ -1,5 +1,6 @@
 package listeners;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 
 import org.testng.ITestContext;
@@ -8,6 +9,8 @@ import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentTest;
 
+import annotations.AlmProperties;
+import annotations.TestCaseId;
 import interfaces.ILogging;
 import logging.KeywordLogger;
 
@@ -36,7 +39,6 @@ public class TestListeners implements ITestListener {
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		//Reporter.log("Ending Test: "+ result.getName(), true);
 		extentTests.get(result.getName()).pass(result.getName()+" passed");
 		logger.info("Ending Test: "+ result.getName());
 		printTestResults(result);
@@ -111,5 +113,24 @@ public class TestListeners implements ITestListener {
 	 
 			logger.info("Test Status: " + status);
 	 
+		}
+
+		private void updateALM(ITestResult result) {
+			Method method = result.getMethod().getConstructorOrMethod().getMethod();
+			Class<?> clazz = result.getTestClass().getRealClass();
+			if(clazz.isAnnotationPresent(AlmProperties.class)) {
+				AlmProperties almProperties = clazz.getAnnotation(AlmProperties.class);
+				String domain = almProperties.Domain();
+				String Project = almProperties.Project();
+				String url = almProperties.Url();
+				int port = almProperties.Port();
+				String userName = almProperties.userName();
+				String userPass = almProperties.userPass();
+			}
+			
+			if(method.isAnnotationPresent(TestCaseId.class)) {
+				TestCaseId id = method.getAnnotation(TestCaseId.class);
+				String testId = id.value();
+			}
 		}
 }

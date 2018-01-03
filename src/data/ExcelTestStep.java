@@ -2,7 +2,9 @@ package data;
 
 import java.util.List;
 
-public class ExcelTestStep 
+import interfaces.ITestStep;
+
+public class ExcelTestStep implements ITestStep
 {
 	private final String keyword;
 	private final List<String> objects;
@@ -15,16 +17,19 @@ public class ExcelTestStep
 		this.params = params;
 	}
 	
+	@Override
 	public String getKeyword() 
 	{
 		return keyword;
 	}
 	
+	@Override
 	public List<String> getObjects()
 	{
 		return objects;
 	}
 	
+	@Override
 	public List<String> getParams()
 	{
 		return params;

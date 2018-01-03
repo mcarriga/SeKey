@@ -10,7 +10,10 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
-public class ExcelTestCase 
+import interfaces.ITestCase;
+import interfaces.ITestStep;
+
+public class ExcelTestCase implements ITestCase
 {
 	private final ExcelWorksheet sheet;
 	private final int startRowNum;
@@ -21,7 +24,7 @@ public class ExcelTestCase
 	private final int keywordIndex = 2;
 	private final int objectsIndex = 3;
 	private final int paramsIndex = 4;
-	private List<ExcelTestStep> testSteps = new ArrayList<ExcelTestStep>();
+	private List<ITestStep> testSteps = new ArrayList<ITestStep>();
 	
 	public ExcelTestCase(ExcelWorksheet sheet, int startRowNum, int endRowNum, String suiteName, String TestCaseName, String TestCaseId) 
 	{
@@ -34,22 +37,26 @@ public class ExcelTestCase
 		init();
 	}
 	
+	@Override
 	public String getTestName() 
 	{
 		return TestCaseName;
 	}
 	
+	@Override
 	public String getTestId() 
 	{
 		return TestCaseId;
 	}
 	
+	@Override
 	public String getSuiteName() 
 	{
 		return suiteName;
 	}
 	
-	public List<ExcelTestStep> getTestSteps()
+	@Override
+	public List<ITestStep> getTestSteps()
 	{
 		return testSteps;
 	}

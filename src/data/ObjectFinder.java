@@ -4,7 +4,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -48,7 +47,7 @@ public class ObjectFinder
 		Object instance = constructor.newInstance(framework);
 		
 		Method method = instance.getClass().getMethod(methodName);
-		Parameter[] params = method.getParameters();
+		//Parameter[] params = method.getParameters();
 		
 		if(methodParams.size() >0 && methodParams.get(0) != "") {
 			method.invoke(instance, methodParams.toArray());

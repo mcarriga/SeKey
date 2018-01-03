@@ -1,29 +1,19 @@
 package framework;
 
-import java.io.IOException;
-import java.util.Properties;
 import java.util.Set;
 
 public class MvnProperties
 {
-	public final String browser;
-	public final String gridUrl;
-	public final boolean doUpdateTestCase;
-	public final Set<String> allPropertyKeys;
-	
-	public MvnProperties() {
-		java.util.Properties properties = new Properties();
-		try
-		{
-			properties.load(this.getClass().getResourceAsStream("my.properties"));
-		} catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		browser = properties.getProperty("browser", "chrome").toLowerCase();
-		gridUrl = properties.getProperty("gridUrl", "");
-		doUpdateTestCase = Boolean.parseBoolean(properties.getProperty("updateTestCase", "false"));
-		allPropertyKeys = properties.stringPropertyNames();
-	}
+	public final static String browser = System.getProperty("browser", "chrome").toLowerCase();
+	public final static String browserArgs  = System.getProperty("browserArgs", "chrome");
+	public final static String gridUrl = System.getProperty("gridUrl", "");
+	public final static String almHost = System.getProperty("almHost", null);
+	public final static String almPort = System.getProperty("almPort", null);
+	public final static String almUsername = System.getProperty("almUsername", null);
+	public final static String almPassword = System.getProperty("almPassword", null);
+	public final static String almDomain = System.getProperty("almDomain", null);
+	public final static String almProject = System.getProperty("almProject", null);
+	public final static boolean doUpdateTestCase = Boolean.parseBoolean(System.getProperty("updateTestCase", "false").toLowerCase());
+	public final static boolean runLocal = Boolean.parseBoolean(System.getProperty("runLocal", "true").toLowerCase());
+	public final static Set<Object> allPropertyKeys = System.getProperties().keySet();
 }

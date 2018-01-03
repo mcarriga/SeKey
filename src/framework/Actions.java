@@ -27,7 +27,6 @@ import actionKeywords.SwitchToFrame;
 import actionKeywords.SwitchToFrameElement;
 import actionKeywords.SwitchToFrameIndex;
 import actionKeywords.UnselectCheckbox;
-import getKeywords.*;
 import interfaces.IAction;
 import interfaces.ILogging;
 import interfaces.IWait;

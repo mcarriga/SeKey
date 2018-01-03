@@ -28,6 +28,16 @@
         </executions>
         <configuration />
       </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.20.1</version>
+        <configuration>
+          <systemPropertyVariables>
+            <propertyName>propertyValue</propertyName>
+            <buildDirectory>${project.build.directory}</buildDirectory>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -38,10 +48,17 @@
       <type>pom</type>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.3.2</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
   <properties>
-    <browser>chrome</browser>
     <updateTestCase>false</updateTestCase>
+    <browser>chrome</browser>
+    <gridUrl>https://fakeUrl:4444/SeleniumGrid</gridUrl>
   </properties>
 </project>
 
