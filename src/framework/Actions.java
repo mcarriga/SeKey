@@ -23,6 +23,7 @@ import actionKeywords.SelectCheckbox;
 import actionKeywords.SelectRadioOptionByIndex;
 import actionKeywords.SelectRadioOptionByValue;
 import actionKeywords.SetText;
+import actionKeywords.SwitchToDefaultContent;
 import actionKeywords.SwitchToFrame;
 import actionKeywords.SwitchToFrameElement;
 import actionKeywords.SwitchToFrameIndex;
@@ -255,5 +256,12 @@ public class Actions implements IAction {
 	@Override
 	public ActionKeyword switchToFrame(By frame) {
 		return new SwitchToFrameElement(driver, frame, logger);
+	}
+
+	
+	@Override
+	public ActionKeyword switchToDefaultContent()
+	{
+		return new SwitchToDefaultContent(driver, logger);
 	}
 }

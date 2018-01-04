@@ -14,25 +14,106 @@ import data.ObjectFinder;
 import framework.Framework;
 import framework.Keyword;
 
+/**
+ *  Primary interface model for executing ITestCase implementations
+ *  This Interface will run Framework Keywords, Custom created Keywords, and Page Object methods
+ * @author Mathew Carrigan
+ *
+ */
 public interface ITestRunner
 {
+	/**
+	 * Runs the provided ITestCase by executing the ITestSteps within the ITestCase
+	 * @param testCase the ITestCase to run
+	 * @throws Exception If any ITestSteps in the ITestCase throw an error
+	 */
 	void runTest(ITestCase testCase) throws Exception;
+	
+	/**
+	 * Gets the Package of the client project that contains all of the Page Objects in it. This is used for reflection purposes to be able to get objects and methods from a Page Object
+	 * @return the Package/Class that contains the classes of Page Objects.
+	 */
 	Class<?> getPageObjectPackage();
+	
+	/**
+	 * Returns the current active Framework instance
+	 * @see framework.Framework
+	 * @return Framework instance
+	 */
 	Framework getFramework();
+	
+	/**
+	 * Returns active KeywordRunner instance
+	 * @see data.KeywordRunner
+	 * @return data.KeywordRunner
+	 */
 	KeywordRunner getKeywordRunner();
+	
+	/**
+	 * List of all the methods in the interfaces.IAction interface
+	 */
 	List<Method> actionsX = Arrays.asList(IAction.class.getDeclaredMethods());
+	
+	/**
+	 * List of all the methods in the interfaces.IAssert interface
+	 */
 	List<Method> assertsX = Arrays.asList(IAssert.class.getDeclaredMethods());
+	
+	/**
+	 * List of all the methods in the interfaces.IGet interface
+	 */
 	List<Method> getsX = Arrays.asList(IGet.class.getDeclaredMethods());
+	
+	/**
+	 * List of all the methods in the interfaces.Wait interface
+	 */
 	List<Method> waitsX = Arrays.asList(IWait.class.getDeclaredMethods());
+	
+	/**
+	 * List of all the methods in the interfaces.ITouchAction interface
+	 */
 	List<Method> touchX = Arrays.asList(ITouchAction.class.getDeclaredMethods());
+	
+	/**
+	 * List of all the methods in the interfaces.IAAALogEvent interface
+	 */
 	List<Method> aaaX = Arrays.asList(IAAALogEvent.class.getDeclaredMethods());
+	
+	/**
+	 * List of all the method names as String in the interfaces.IAction interface
+	 */
 	List<String> actions = actionsX.stream().map(x -> x.getName()).collect(Collectors.toList());
+	
+	/**
+	 * List of all the method names as String in the interfaces.IAssert interface
+	 */
 	List<String> asserts = assertsX.stream().map(x -> x.getName()).collect(Collectors.toList());
+	
+	/**
+	 * List of all the method names as String in the interfaces.IGet interface
+	 */
 	List<String> gets = getsX.stream().map(x -> x.getName()).collect(Collectors.toList());
+	
+	/**
+	 * List of all the method names as String in the interfaces.IWait interface
+	 */
 	List<String> waits = waitsX.stream().map(x -> x.getName()).collect(Collectors.toList());
+	
+	/**
+	 * List of all the method names as String in the interfaces.ITouchActions interface
+	 */
 	List<String> gestures = touchX.stream().map(x -> x.getName()).collect(Collectors.toList());
+	
+	/**
+	 * List of all the method names as String in the interfaces.IAAALogEvent interface
+	 */
 	List<String> tripleALogs = aaaX.stream().map(x -> x.getName()).collect(Collectors.toList());
 	
+	/**
+	 * Runs a Page Object method. Currently ONLY parameterless page object methods are supported by Excel test runner
+	 * @param objects String of the Keyword name provided in the Keyword column of an Excel Test Case. This string will be split by a '.' as it should be in the syntax of class.method format
+	 * @param params List of params from the params column of an Excel Test Case.
+	 */
 	default void runCustomMethod(String objects, List<String> params) 
 	{
 		String[] vals = objects.split("\\.");
@@ -46,6 +127,12 @@ public interface ITestRunner
 		}
 	}
 	
+	/**
+	 * Runs a Custom created Keyword that is NOT part of the Framework's provided keywords
+	 * @param keywordName Name of the Keyword in the following Syntax: package.Class
+	 * @param defs List of ObjectDef objects- ObjectDefs are created by supplying a String name of the object in format of Class.Field and the Field should be either a By locator or a WebElement
+	 * @param params List of Params to supply to the keyword
+	 */
 	default void runCustomKeyword(String keywordName, List<ObjectDef> defs, List<String> params) 
 	{
 		Class<?> cls = null;
@@ -72,6 +159,14 @@ public interface ITestRunner
 		keyword.build();
 	}
 	
+	/**
+	 * Runs a Framework provided Keyword
+	 * @param keywordName Name of the Keyword to run
+	 * @param defs List of ObjectDef objects- ObjectDefs are created by supplying a String name of the object in format of Class.Field and the Field should be either a By locator or a WebElement
+	 * @param params List of Params to supply to the keyword
+	 * @throws InstantiationException If the provided Keyword name is not found
+	 * @throws IllegalAccessException If the keyword does not properly implement the instantiateExternal method.
+	 */
 	default void runKeyword(String keywordName, List<ObjectDef> defs, List<String> params) throws InstantiationException, IllegalAccessException
 	{
 		int index = 0;
@@ -111,6 +206,12 @@ public interface ITestRunner
 		}
 	}
 	
+	/**
+	 * Helper method to figure out if a particular list of Keywords contains the provided Keyword name ignoring capitalization
+	 * @param l List of Keywords to look through
+	 * @param s String keyword to match against
+	 * @return true if found, false otherwise
+	 */
 	default boolean containsIgnoreCase(List <String> l, String s) 
 	{
 		 Iterator<String> it = l.iterator();
@@ -121,6 +222,12 @@ public interface ITestRunner
 		 return false;
 	}
 	
+	/**
+	 * Helper method to get the name from the provided list of methods given a name to look for
+	 * @param l List of method to look through
+	 * @param s Name of method to find
+	 * @return String of the found method name
+	 */
 	default String getMethodName(List <Method> l, String s) 
 	{
 		Iterator<Method> it = l.iterator();
@@ -134,6 +241,13 @@ public interface ITestRunner
 		throw new java.lang.UnsupportedOperationException("Method with name '"+s+"' not found in available keywords");
 	}
 	
+	/**
+	 * Helper method that converts a List of Strings of PageObject fields and finds their actual Objects using reflection and converts them into ObjectDef instances
+	 * The ObjectDef instance stores the actual Object and the Type of  that object in order be able to determine if it is a By locator or a WebElement
+	 * @param step ITestStep which contains a list of Objects as Strings
+	 * @return List of ObjectDefs representing the actual objects
+	 * @throws Exception if issues finding the object on the provided class or if there is an issue with access modifiers like private
+	 */
 	default List<ObjectDef> getObjectDefs(ITestStep step) throws Exception 
 	{
 		List<String> objects = step.getObjects();
