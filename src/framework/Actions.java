@@ -12,6 +12,7 @@ import actionKeywords.ClickAndDragOffset;
 import actionKeywords.DoubleClick;
 import actionKeywords.ExecuteJavaScript;
 import actionKeywords.Hover;
+import actionKeywords.JsClick;
 import actionKeywords.NavigateBack;
 import actionKeywords.NavigateForward;
 import actionKeywords.NavigateRefresh;
@@ -263,5 +264,19 @@ public class Actions implements IAction {
 	public ActionKeyword switchToDefaultContent()
 	{
 		return new SwitchToDefaultContent(driver, logger);
+	}
+
+	
+	@Override
+	public ActionKeyword jsClick(By locator)
+	{
+		return new JsClick(driver, logger, wait, locator);
+	}
+
+	
+	@Override
+	public ActionKeyword jsClick(WebElement element)
+	{
+		return new JsClick(driver, element, logger, wait);
 	}
 }

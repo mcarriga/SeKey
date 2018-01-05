@@ -341,7 +341,10 @@ public interface IAction {
 	
 	/**
 	 * Switches Selenium's DOM focus to the main parent DOM also known as the default DOM
-	 * @return
+	 * @return an ActionKeyword instance
 	 */
 	ActionKeyword switchToDefaultContent();
+	
+	ActionKeyword jsClick(By locator);
+	ActionKeyword jsClick(WebElement element);
 }

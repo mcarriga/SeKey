@@ -16,7 +16,7 @@ public class Asserts implements IAssert, Callable<Void> {
 	private final WebDriver driver;
 	private final ILogging logger;
 	private final IWait wait;
-	private final long defaultWait = 15;
+	private long defaultWait = 15;
 
 	public Asserts(WebDriver driver, ILogging logger, IWait wait) {
 		this.wait = wait;
@@ -486,6 +486,13 @@ public class Asserts implements IAssert, Callable<Void> {
 	@Override
 	public AssertKeyword assertDropDownOptionsInOrderOf(WebElement element, List<String> text) {
 		return new AssertDropDownOptionsInOrderOf(element, text, logger, wait, defaultWait);
+	}
+
+	@Override
+	public void setDefaultWait(long seconds)
+	{
+		defaultWait = seconds;
+		
 	}
 	
 }

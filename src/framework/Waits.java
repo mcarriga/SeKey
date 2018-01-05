@@ -228,14 +228,12 @@ public class Waits implements IWait {
 	}
 
 	@Override
-	public WaitKeyword untilPresenceOfNestedElement(By locator, By childLocator, int greaterNumber,
-			long maxWaitSeconds) {
+	public WaitKeyword untilPresenceOfNestedElement(By locator, By childLocator, long maxWaitSeconds) {
 		return new UntilPresenceOfNestedElement(driver, locator, childLocator, logger, maxWaitSeconds);
 	}
 
 	@Override
-	public WaitKeyword untilPresenceOfNestedElement(WebElement element, By childLocator, int greaterNumber,
-			long maxWaitSeconds) {
+	public WaitKeyword untilPresenceOfNestedElement(WebElement element, By childLocator, long maxWaitSeconds) {
 		return new UntilPresenceOfNestedElement(driver, element, childLocator, logger, maxWaitSeconds);
 	}
 
