@@ -39,7 +39,7 @@ public interface IAfterAction {
 	
 	/**
 	 * Returns the action that was performed in order to evaluate if the expected condition was met. This action gets repeated until either the condition is met or the timeout occurs
-	 * @return
+	 * @return ActionKeyword's action event to execute
 	 */
 	ActionKeyword getAction();
 }

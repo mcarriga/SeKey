@@ -33,7 +33,7 @@ public interface IAction {
 	/**
 	 * Select and input dropdown/combox option by the Index(nth) of the options. Index starts at 0 so first option would be 0th index.  The By locator MUST be an input element
 	 * @param locator By locator for the input
-	 * @param name Text of the input option to select
+	 * @param index 0-based Index of DropDown options to select
 	 * @return an ActionKeyword instance
 	 */
 	ActionKeyword selectByIndex(By locator, int index);
@@ -41,7 +41,7 @@ public interface IAction {
 	/**
 	 * Select and input dropdown/combox option by the Index(nth) of the options. Index starts at 0 so first option would be 0th index.  The WebElement MUST be an input element
 	 * @param element WebElement for the input
-	 * @param name Text of the input option to select
+	 * @param index 0-based Index of DropDown options to select
 	 * @return an ActionKeyword instance
 	 */
 	ActionKeyword selectByIndex(WebElement element, int index);
@@ -63,7 +63,7 @@ public interface IAction {
 	/**
 	 * Sends the provided String to an element. Used for text and password input boxes
 	 * Can supply an actual String like 'send these keys' or use Selenium's Keys class for other keyboard keys like Enter, Return, Tab, etc...
-	 * @see Keys
+	 * @see org.openqa.selenium.Keys
 	 * @param locator By locator of the element to send Keys/Text to
 	 * @param text Text or Selenium Keys @see Keys
 	 * @return an ActionKeyword instance
@@ -73,9 +73,9 @@ public interface IAction {
 	/**
 	 * Sends the provided String to an element. Used for text and password input boxes
 	 * Can supply an actual String like 'send these keys' or use Selenium's Keys class for other keyboard keys like Enter, Return, Tab, etc...
-	 * @see Keys
+	 * @see org.openqa.selenium.Keys
 	 * @param element WebElement to send Keys/Text to
-	 * @param text Text or Selenium Keys @see Keys
+	 * @param text Text or Selenium Keys @see org.openqa.selenium.Keys
 	 * @return an ActionKeyword instance
 	 */
 	ActionKeyword sendKeys(WebElement element, String text);
@@ -123,7 +123,7 @@ public interface IAction {
 	
 	/**
 	 * Refreshes the current Browser Tab's URL as if clicking the browser's Refresh button
-	 * @return
+	 * @return ActionKeyword
 	 */
 	ActionKeyword navigateRefresh();
 	
@@ -258,7 +258,7 @@ public interface IAction {
 	
 	/**
 	 * Makes a checkbox un-selected. This will first check is the checkbox is already selected and only perform a click if it currently selected
-	 * @param locator Checkbox WebElement to make un-selected. Element MUST be a checkbox input element
+	 * @param element Checkbox WebElement to make un-selected. Element MUST be a checkbox input element
 	 * @return an ActionKeyword instance
 	 */
 	ActionKeyword unselectCheckbox(WebElement element);

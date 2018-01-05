@@ -297,7 +297,7 @@ public interface IWait {
 	/**
 	 * Waits until given By locator returns greater than the given number of WebElements
 	 * @param locator By locator for the WebElement
-	 * @param expectedNumber Integer number of WebElements to be greater than
+	 * @param lessNumber Integer number of WebElements to be greater than
 	 * @param maxWaitSeconds max wait time in seconds for condition to be met
 	 * @return WaitKeyword
 	 */
@@ -306,7 +306,7 @@ public interface IWait {
 	/**
 	 * Waits until given By locator returns less than the given number of WebElements
 	 * @param locator By locator for the WebElement
-	 * @param expectedNumber Integer number of WebElements to be less than
+	 * @param greaterNumber Integer number of WebElements to be less than
 	 * @param maxWaitSeconds max wait time in seconds for condition to be met
 	 * @return WaitKeyword
 	 */

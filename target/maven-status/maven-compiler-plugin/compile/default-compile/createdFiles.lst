@@ -37,7 +37,6 @@ data/ExcelTestCreator.class
 waitKeywords/UntilDropDownSelectedTextIs.class
 data/ExcelTestRunner.class
 waitKeywords/UntilDropDownItemCountIs.class
-framework/TestCaseId.class
 interfaces/CheckedRunnable.class
 actionKeywords/SelectByText.class
 actionKeywords/SelectRadioOptionByIndex.class

@@ -20,7 +20,6 @@ public interface IKeyword<T extends Object> {
 	 * Typically, all Keywords should take in an ILogging instance in the constructor of the concrete class.
 	 * startLog() should always use the ILogging implementation and utilize ILogging's provided beginKeyword() methods with various overloads
 	 * @see ILogging
-	 * @see ILogging.beginKeyword()
 	 */
 	void startLog();
 	
@@ -28,15 +27,15 @@ public interface IKeyword<T extends Object> {
 	 * Log message to be performed upon completion of the perform() method.
 	 * Typically, all Keywords should take in an ILogging instance in the constructor of the concrete class.
 	 * endLog() should always use the ILogging implementation and utilize ILogging's provided endKeyword() method
-	 * @see ILogging and @see ILogging.beginKeyword()
+	 * @see ILogging and @see #ILogging.beginKeyword()
 	 */
 	void endLog();
 	
 	/**
 	 * Calls the startLog(), perform(), and endLog() methods in that order
-	 * @see startLog()
-	 * @see perform()
-	 * @see endLog()
+	 * @see #startLog()
+	 * @see #perform()
+	 * @see #endLog()
 	 * @return the Generic T Object returned by perform() method
 	 */
 	T build();

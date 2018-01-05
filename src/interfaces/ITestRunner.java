@@ -131,7 +131,7 @@ public interface ITestRunner
 	 * Runs a Custom created Keyword that is NOT part of the Framework's provided keywords
 	 * @param keywordName Name of the Keyword in the following Syntax: package.Class
 	 * @param defs List of ObjectDef objects- ObjectDefs are created by supplying a String name of the object in format of Class.Field and the Field should be either a By locator or a WebElement
-	 * @param params List of Params to supply to the keyword
+	 * @param params List of params to supply to the keyword
 	 */
 	default void runCustomKeyword(String keywordName, List<ObjectDef> defs, List<String> params) 
 	{

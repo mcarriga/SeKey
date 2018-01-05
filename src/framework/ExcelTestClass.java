@@ -43,7 +43,7 @@ public class ExcelTestClass implements org.testng.ITest
 	/**
 	 * Initialized the fields in this class
 	 * @param framework Framework instance to use
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException if Grid Hub URL is not valid
 	 */
 	public void init(Framework framework) throws MalformedURLException 
 	{
@@ -59,7 +59,7 @@ public class ExcelTestClass implements org.testng.ITest
 	 * Before method to run before all tests
 	 * @param context ITestContext passed in by TestNG
 	 * @param method Method passed in by TestNG
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException if Grid Hub URL is not valid
 	 */
 	@BeforeMethod
 	public void getAnnotation(ITestContext context, Method method) throws MalformedURLException {

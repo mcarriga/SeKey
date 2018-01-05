@@ -14,7 +14,7 @@ public interface ITestStep
 	 * Get's the Keyword to execute for this step.
 	 * If Keyword = PageObject, the framework will look for the PageObject method specified in the Objects column using package.class.method syntax and attempt to execute the method providing no parameters
 	 * If Keyword contains a '.' the framework will assume to execute a custom created keyword with the syntax of package.KeywordClass and look for a method on the keyword called 'instantiateExternal' and supply the given Excel column params to it
-	 * @see ITestRunner.runCustomKeyword(String, List, List) 
+	 * @see interfaces.ITestRunner#runCustomKeyword(String, List, List)
 	 * @return String of the Keyword name to execute
 	 */
 	String getKeyword();

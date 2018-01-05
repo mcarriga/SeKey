@@ -676,7 +676,7 @@ public interface IAssert extends Callable<Void> {
 	/**
 	 * Asserts that a DropDown's selected option text matches expected text
 	 * @param locator By locator for WebElement to Assert Against
-	 * @param name
+	 * @param name expected text of DropDown's selected option
 	 * @return AssertKeyword
 	 */
 	AssertKeyword assertDropDownSelectedTextIs(By locator, String name);

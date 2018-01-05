@@ -10,7 +10,7 @@ public interface CheckedRunnable {
 	
 	/**
 	 * perform the Runnable run command
-	 * @throws Exception
+	 * @throws Exception Can throw any type of Exception as this runs any generic Runnable
 	 */
 	void run() throws Exception;
 }

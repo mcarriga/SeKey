@@ -97,6 +97,7 @@ public class Framework {
 	/**
 	 * Performs a Get Keyword and returns the Keyword's Type
 	 * @param func Get Keyword to run
+	 * @param <T> This is the type parameter
 	 * @return the Type the provided Get Keyword returns - Breaks method chaining
 	 */
 	@SuppressWarnings("unchecked")
@@ -107,7 +108,8 @@ public class Framework {
 	/**
 	 * Performs and Wait Keyword and returns the Keyword's Type
 	 * @param func Wait Keyword to run
-	 * @param out 
+	 * @param out Type of WaitKeyword return - should be Boolean
+	 * @param <T> This is the type parameter
 	 * @return the Type the provided Wait Keyword returns - Breaks method chaining
 	 */
 	@SuppressWarnings("unchecked")
@@ -118,6 +120,7 @@ public class Framework {
 	/**
 	 * Performs and Wait Keyword and returns the Keyword's Type
 	 * @param func Wait Keyword to run
+	 * @param <T> This is the type parameter
 	 * @return the Type the provided Wait Keyword returns - Breaks method chaining
 	 */
 	@SuppressWarnings("unchecked")
@@ -153,13 +156,12 @@ public class Framework {
 	
 	/**
 	 * Performs a Page Object repeatable method.
-	 * Use syntax: .withPageObject(() -> PageObjectClass.Method(method params...))
-	 * @param func Page Object to run - Use () -> lambda syntax
+	 * Use syntax: .withPageObject(() -&gt; PageObjectClass.Method(method params...))
+	 * @param func Page Object to run - Use ' () -&gt; ' lambda syntax
 	 * @return an instance of 'this' class for method chaining purposes
-	 * @throws Exception
-	 * @throws IOException
+	 * @throws Exception Can throw any type of exception as this is just executing a generic Runnable statement
 	 */
-	public Framework withPageObject(CheckedRunnable func) throws Exception, IOException {
+	public Framework withPageObject(CheckedRunnable func) throws Exception {
 		func.run();
 		return this;
 	}

@@ -36,7 +36,7 @@ public class DriverService
 	/**
 	 * Reads the Maven SureFire SystemProperties to get which WebDriver to create and creates it
 	 * @return WebDriver of type specified in Maven SureFire SystemProperties
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException if Grid Hub Url is not valid
 	 */
 	public WebDriver getBrowser() throws MalformedURLException {
 		String name = MvnProperties.browser.trim().toLowerCase();
@@ -55,7 +55,7 @@ public class DriverService
 	 * Creates a new ChromeDriver with default ChromeOptions
 	 * Looks at the Maven SureFire plugin System Properties to determine whether to run local or not and whether to add any custom DriverOptions Arguments
 	 * @return ChromeDriver WebDriver
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException if Grid Hub URL is not valid
 	 */
 	public WebDriver createChromeDriver() throws MalformedURLException{
 		ChromeOptions options = new ChromeOptions();
@@ -76,7 +76,7 @@ public class DriverService
 	 * Looks at the Maven SureFire plugin System Properties to determine whether to run local or not and whether to add any custom DriverOptions Arguments
 	 * @param options ChromeOptions to include with the ChromeDriver
 	 * @return ChromeDriver WebDriver
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException if Grid Hub URL is not valid 
 	 */
 	public WebDriver createChromeDriver(ChromeOptions options) throws MalformedURLException {
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
@@ -93,7 +93,7 @@ public class DriverService
 	 * Creates a new FirefoxDriver with default FirefoxOptions
 	 * Looks at the Maven SureFire plugin System Properties to determine whether to run local or not and whether to add any custom DriverOptions Arguments
 	 * @return FirefoxDriver WebDriver
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException if Grid Hub URL is not valid
 	 */
 	public WebDriver createFirefoxDriver() throws MalformedURLException {
 		FirefoxProfile profile = new FirefoxProfile();
@@ -128,7 +128,7 @@ public class DriverService
 	 * Looks at the Maven SureFire plugin System Properties to determine whether to run local or not and whether to add any custom DriverOptions Arguments
 	 * @param profile FirefoxProfile to create FirefoxDriver with
 	 * @return FirefoxDriver WebDriver
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException if Grid Hub URL is not valid
 	 */
 	public WebDriver createFirefoxDriver(FirefoxProfile profile) throws MalformedURLException {
 		FirefoxOptions options = new FirefoxOptions();
@@ -152,7 +152,7 @@ public class DriverService
 	 * Looks at the Maven SureFire plugin System Properties to determine whether to run local or not and whether to add any custom DriverOptions Arguments
 	 * @param options FirefoxOptions to create FirefoxDriver with
 	 * @return FirefoxDriver WebDriver
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException if Grid Hub URL is not valid
 	 */
 	public WebDriver createFirefoxDriver(FirefoxOptions options) throws MalformedURLException {
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();

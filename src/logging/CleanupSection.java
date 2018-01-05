@@ -18,7 +18,7 @@ public class CleanupSection implements IAAALogEvent {
 	private final ILogging logger;
 	
 	/**
-	 * Comnstructor
+	 * Constructor
 	 * @param logger ILogging
 	 * @param message Describes what the CleanupSection is doing
 	 */
@@ -37,10 +37,10 @@ public class CleanupSection implements IAAALogEvent {
 	
 	/**
 	 * Helper method for being able to create an instance of this class from Excel Runner
-	 * @param framework
-	 * @param defs
-	 * @param params
-	 * @return
+	 * @param framework Framework instance
+	 * @param defs ObjectDefs
+	 * @param params List of Params from param column in excel spreadsheet
+	 * @return new CleanupSection from external instantiation vai Excel Runner
 	 */
 	public static IAAALogEvent instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> params) {
 		return new CleanupSection(framework.logger, params.get(0));

@@ -103,7 +103,7 @@ public interface IGet {
 	
 	/**
 	 * Determines whether an element is Selected or not
-	 * @param locator By locator for the element to check
+	 * @param element WebElement to check
 	 * @return a GetKeyword
 	 */
 	GetKeyword<Boolean> isSelected(WebElement element);
