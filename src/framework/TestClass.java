@@ -10,6 +10,12 @@ import interfaces.ILogging;
 import interfaces.IWait;
 import logging.KeywordLogger;
 
+/**
+ * Base Test Class for all Framework tests in the Coded(non-Excel) format
+ * Uses Listener: listeners.TestListeners
+ * @author Mathew Carrigan
+ *
+ */
 @Listeners(listeners.TestListeners.class)
 public abstract class TestClass {
 	public static Framework framework;
@@ -19,6 +25,10 @@ public abstract class TestClass {
 	public IAction action;
 	public ILogging logger;
 	
+	/**
+	 * Initialized fields for this class
+	 * @param framework Framework implementation to use
+	 */
 	public void init(Framework framework) {
 		TestClass.framework = framework;
 		this.wait = framework.wait;

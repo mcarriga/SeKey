@@ -9,6 +9,11 @@ import interfaces.IGet;
 import interfaces.ILogging;
 import interfaces.IWait;
 
+/**
+ * Base Class for all Page Object classes to be used for the Framework and Project under test
+ * @author Mathew Carrigan
+ *
+ */
 public abstract class PageObject {
 	public final Framework framework;
 	public final IWait wait; 
@@ -17,6 +22,11 @@ public abstract class PageObject {
 	public final IAction action;
 	public final ILogging logger;
 	public final WebDriver driver;
+	
+	/**
+	 * Initialized an instance of this class- Required and only constructor parameter is Framework
+	 * @param framework Framework
+	 */
 	public PageObject(Framework framework) {
 		this.framework = framework;
 		this.wait = framework.wait;

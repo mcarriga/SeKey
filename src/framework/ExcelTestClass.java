@@ -19,6 +19,12 @@ import interfaces.ITestRunner;
 import interfaces.IWait;
 import logging.KeywordLogger;
 
+/**
+ * Base Class for all TestNG test classes that use the Excel Workbook Runner format
+ * Uses Listener: listeners.TestListeners
+ * @author Mathew Carrigan
+ *
+ */
 @Listeners(listeners.TestListeners.class)
 public class ExcelTestClass implements org.testng.ITest
 {
@@ -34,6 +40,11 @@ public class ExcelTestClass implements org.testng.ITest
 	public MvnProperties mavenProperties;
 	public drivers.DriverService driverService;
 	
+	/**
+	 * Initialized the fields in this class
+	 * @param framework Framework instance to use
+	 * @throws MalformedURLException
+	 */
 	public void init(Framework framework) throws MalformedURLException 
 	{
 		TestClass.framework = framework;
@@ -44,6 +55,12 @@ public class ExcelTestClass implements org.testng.ITest
 		this.logger = KeywordLogger.getInstance();
 	}
 
+	/**
+	 * Before method to run before all tests
+	 * @param context ITestContext passed in by TestNG
+	 * @param method Method passed in by TestNG
+	 * @throws MalformedURLException
+	 */
 	@BeforeMethod
 	public void getAnnotation(ITestContext context, Method method) throws MalformedURLException {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.home")+"/Downloads/chromedriver");
@@ -59,6 +76,9 @@ public class ExcelTestClass implements org.testng.ITest
 		context.getCurrentXmlTest().getSuite().setName(testCase.getSuiteName());
 	}
 
+	/**
+	 * Sets the test name to the name provided by the Excel Spreadsheet
+	 */
 	@Override
 	public String getTestName()
 	{

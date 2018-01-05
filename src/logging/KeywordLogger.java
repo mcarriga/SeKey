@@ -10,6 +10,11 @@ import interfaces.IAAALogEvent;
 import interfaces.IKeyword;
 import interfaces.ILogging;
 
+/**
+ * Concrete implementation of ILogging
+ * @author Mathew Carrigan
+ *
+ */
 public class KeywordLogger implements ILogging {
 	private static Logger logger;
 	private ExtentHtmlReporter htmlReporter;
