@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import framework.GetKeyword;
 
 /**
- * Interface for Framework provided Get Keywords.
+ * Interface for KeywordProvider provided Get Keywords.
  * Get Keywords are any Keyword intended to return some Browser or Element information. The Get Keywords should primarily be used to make code logic decisions paths and NOT to assert against. Assert Keywords should be used for that instead.
  * @author Mathew Carrigan
  *

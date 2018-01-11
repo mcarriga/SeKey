@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.spectrum.automation</groupId>
-  <artifactId>selenium</artifactId>
+  <groupId>com.spectrum.sst.automation</groupId>
+  <artifactId>portal-framework</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <properties>
   	<browser>chrome</browser>
@@ -15,6 +15,17 @@
   	<almUsername></almUsername>
   	<almPassword></almPassword>
   </properties>
+  <repositories>
+  	<repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+     </repository>
+     <repository>
+     	<id>charter-se</id>
+     	<name>Charter SE Testing Team</name>
+     	<url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/se-testing/</url>
+     </repository>
+  </repositories>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -128,6 +139,11 @@
   		<groupId>io.appium</groupId>
   		<artifactId>java-client</artifactId>
   		<version>6.0.0-BETA2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.github.okean</groupId>
+  		<artifactId>alm-rest-api</artifactId>
+  		<version>master</version>
   	</dependency>
   </dependencies>
 </project>

@@ -3,7 +3,7 @@ package framework;
 import org.openqa.selenium.WebDriver;
 
 /**
- * Framework class for defining Types of supported WebDrivers
+ * KeywordProvider class for defining Types of supported WebDrivers
  * @author Mathew Carrigan
  *
  */

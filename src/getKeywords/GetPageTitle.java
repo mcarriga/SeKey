@@ -5,7 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.GetKeyword;
 import interfaces.ILogging;
 
@@ -33,9 +33,9 @@ public class GetPageTitle extends GetKeyword<String> {
 		_logger.endKeyword(this);
 	}
 
-	public static GetKeyword<?> instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static GetKeyword<?> instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
-		return new GetPageTitle(framework.driver, framework.logger);
+		return new GetPageTitle(keywordProvider.driver, keywordProvider.loggers);
 
 	}
 }

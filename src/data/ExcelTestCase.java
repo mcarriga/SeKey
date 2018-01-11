@@ -12,7 +12,10 @@ import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
 import interfaces.ITestCase;
 import interfaces.ITestStep;
-
+/**
+ * Implements the ITestCase Interface to produce Test Cases to be ran via the ITestRunner interface
+ * This class reads from an ExcelWorsheet with given start and end row numbers and reads the information from those applicable rows to create an ITestCase containing ITestSteps
+ */
 public class ExcelTestCase implements ITestCase
 {
 	private final ExcelWorksheet sheet;

@@ -12,6 +12,7 @@ import com.aventstack.extentreports.ExtentTest;
 import annotations.AlmProperties;
 import annotations.TestCaseId;
 import interfaces.ILogging;
+import logging.AlmAdapter;
 import logging.KeywordLogger;
 
 public class TestListeners implements ITestListener {
@@ -42,7 +43,7 @@ public class TestListeners implements ITestListener {
 		extentTests.get(result.getName()).pass(result.getName()+" passed");
 		logger.info("Ending Test: "+ result.getName());
 		printTestResults(result);
-		
+		updateALM(result);
 	}
 
 	@Override
@@ -51,14 +52,14 @@ public class TestListeners implements ITestListener {
 		extentTests.get(result.getName()).fail(result.getThrowable());
 		logger.info("Ending Test: "+ result.getName());
 		printTestResults(result);
-		
+		updateALM(result);
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		extentTests.get(result.getName()).skip(result.getName()+" skipped");
 		printTestResults(result);
-		
+		updateALM(result);
 	}
 
 	@Override
@@ -71,66 +72,94 @@ public class TestListeners implements ITestListener {
 	 
 		// This will provide the information on the test
 	 
-		private void printTestResults(ITestResult result) {
-	 
-			//Reporter.log("Test Method resides in " + result.getTestClass().getName(), true);
-	 
-			if (result.getParameters().length != 0) {
-	 
-				String params = null;
-	 
-				for (Object parameter : result.getParameters()) {
-	 
-					params += parameter.toString() + ",";
-	 
-				}
-	 
-				logger.info("Test Method had the following parameters : " + params);
-	 
+	private void printTestResults(ITestResult result) {
+ 
+		//Reporter.log("Test Method resides in " + result.getTestClass().getName(), true);
+ 
+		if (result.getParameters().length != 0) {
+ 
+			String params = null;
+ 
+			for (Object parameter : result.getParameters()) {
+ 
+				params += parameter.toString() + ",";
+ 
 			}
-	 
-			String status = null;
-	 
-			switch (result.getStatus()) {
-	 
-			case ITestResult.SUCCESS:
-	 
-				status = "Pass";
-	 
-				break;
-	 
-			case ITestResult.FAILURE:
-	 
-				status = "Failed";
-	 
-				break;
-	 
-			case ITestResult.SKIP:
-	 
-				status = "Skipped";
-	 
-			}
-	 
-			logger.info("Test Status: " + status);
-	 
+ 
+			logger.info("Test Method had the following parameters : " + params);
+ 
 		}
+ 
+		String status = null;
+ 
+		switch (result.getStatus()) {
+ 
+		case ITestResult.SUCCESS:
+ 
+			status = "Pass";
+ 
+			break;
+ 
+		case ITestResult.FAILURE:
+ 
+			status = "Failed";
+ 
+			break;
+ 
+		case ITestResult.SKIP:
+ 
+			status = "Skipped";
+ 
+		}
+ 
+		logger.info("Test Status: " + status);
+ 
+	}
 
-		private void updateALM(ITestResult result) {
-			Method method = result.getMethod().getConstructorOrMethod().getMethod();
-			Class<?> clazz = result.getTestClass().getRealClass();
-			if(clazz.isAnnotationPresent(AlmProperties.class)) {
-				AlmProperties almProperties = clazz.getAnnotation(AlmProperties.class);
-				String domain = almProperties.Domain();
-				String Project = almProperties.Project();
-				String url = almProperties.Url();
-				int port = almProperties.Port();
-				String userName = almProperties.userName();
-				String userPass = almProperties.userPass();
-			}
-			
-			if(method.isAnnotationPresent(TestCaseId.class)) {
-				TestCaseId id = method.getAnnotation(TestCaseId.class);
-				String testId = id.value();
-			}
+	private void updateALM(ITestResult result) {
+		Method method = result.getMethod().getConstructorOrMethod().getMethod();
+		Class<?> clazz = result.getTestClass().getRealClass();
+		
+		boolean hasAlmProps = false;
+		boolean hasAlmTestId = false;
+		
+		String domain = null;
+		String project = null;
+		String url = null;
+		int port = 0;
+		String userName = null;
+		String userPass = null;
+		String testId = null;
+		
+		if(clazz.isAnnotationPresent(AlmProperties.class)) {
+			AlmProperties almProperties = clazz.getAnnotation(AlmProperties.class);
+			domain = almProperties.Domain();
+			project = almProperties.Project();
+			url = almProperties.Url();
+			port = almProperties.Port();
+			userName = almProperties.userName();
+			userPass = almProperties.userPass();
+			hasAlmProps = true;
 		}
+		
+		if(method.isAnnotationPresent(TestCaseId.class)) {
+			TestCaseId id = method.getAnnotation(TestCaseId.class);
+			testId = id.value();
+			hasAlmTestId = true;
+		}
+		
+		if(hasAlmProps && hasAlmTestId) {
+			try
+			{
+				AlmAdapter adapter = new AlmAdapter(url, port, userName, userPass, domain, project);
+				adapter.updateTestInALM(testId, result);
+			} catch (Exception e)
+			{
+				logger.warn("Unable to create instance of AlmAdapter");
+				e.printStackTrace();
+			}
+		} else {
+			logger.warn("Please make sure Test Class has AlmProperties annotation and Test method has TestCaseId annotation or ExcelTest case has TestCaseId column filled out");
+		}
+	}
 }

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.GetKeyword;
 import interfaces.ILogging;
 
@@ -43,12 +43,12 @@ public class GetDropDownOptionsCount extends GetKeyword<Integer> {
 	}
 
 	//@Override
-	public static GetKeyword<Integer> instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static GetKeyword<Integer> instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new GetDropDownOptionsCount(framework.driver, framework.logger, castToBy(defs.get(0)));
+			return new GetDropDownOptionsCount(keywordProvider.driver, keywordProvider.loggers, castToBy(defs.get(0)));
 		} else {
-			return new GetDropDownOptionsCount(castToElem(defs.get(0)), framework.logger);
+			return new GetDropDownOptionsCount(castToElem(defs.get(0)), keywordProvider.loggers);
 		}
 	}
 

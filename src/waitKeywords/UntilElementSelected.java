@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -61,12 +61,12 @@ public class UntilElementSelected extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new UntilElementSelected(framework.driver, castToBy(defs.get(0)), framework.logger,  (long)Double.parseDouble(params.get(0)));
+			return new UntilElementSelected(keywordProvider.driver, castToBy(defs.get(0)), keywordProvider.loggers,  (long)Double.parseDouble(params.get(0)));
 		} else {
-			return new UntilElementSelected(framework.driver, castToElem(defs.get(0)), framework.logger,  (long)Double.parseDouble(params.get(0)));
+			return new UntilElementSelected(keywordProvider.driver, castToElem(defs.get(0)), keywordProvider.loggers,  (long)Double.parseDouble(params.get(0)));
 		}
 	}
 }

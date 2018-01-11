@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 import interfaces.IWait;
@@ -56,12 +56,12 @@ public class Click extends ActionKeyword {
 	}
 
 	//@Override
-	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static ActionKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new Click(framework.driver, framework.logger, framework.wait, castToBy(defs.get(0)));
+			return new Click(keywordProvider.driver, keywordProvider.loggers, keywordProvider.waits, castToBy(defs.get(0)));
 		} else {
-			return new Click(castToElem(defs.get(0)), framework.logger, framework.wait);
+			return new Click(castToElem(defs.get(0)), keywordProvider.loggers, keywordProvider.waits);
 		}
 	}
 

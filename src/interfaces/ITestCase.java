@@ -3,7 +3,7 @@ package interfaces;
 import java.util.List;
 
 /**
- * Model used by the framework to allow for various types of Non-coded test design like Excel spreadsheets and JSON files
+ * Model used by the keywordProvider to allow for various types of Non-coded test design like Excel spreadsheets and JSON files
  * This Interface models a Test Case and includes methods for getting information about a Test Case
  * @author Mathew Carrigan
  *

@@ -6,7 +6,7 @@ import org.testng.Assert;
 
 import data.ObjectDef;
 import framework.AssertKeyword;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.ILogging;
 import interfaces.IWait;
 
@@ -38,11 +38,11 @@ public class AssertAlertIsPresent extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> params) {
+	public static AssertKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs, List<String> params) {
 		if(params.size() > 0) {
-			return new AssertAlertIsPresent(framework.logger, framework.wait,  (long)Double.parseDouble(params.get(0)));
+			return new AssertAlertIsPresent(keywordProvider.loggers, keywordProvider.waits,  (long)Double.parseDouble(params.get(0)));
 		}
-		return new AssertAlertIsPresent(framework.logger, framework.wait, framework.asserter.getDefaultWait());
+		return new AssertAlertIsPresent(keywordProvider.loggers, keywordProvider.waits, keywordProvider.asserts.getDefaultWait());
 	}
 
 }

@@ -9,6 +9,14 @@ import java.util.List;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
+/**
+ * Helper class for the Excel Runner version of the KeywordProvider
+ * This class reads a Runner/s WorkSheet/s in a given WorkBook to find all test defined in the WorkSheet to be executed.
+ * @see ExcelWorkbook
+ * @see ExcelWorksheet
+ * @see ExcelTestCase
+ * @author Mathew Carrigan
+ */
 public class ExcelTestCreator 
 {
 	private final Iterable<String> sheetsToRun;
@@ -25,6 +33,13 @@ public class ExcelTestCreator
 		this(workbook, Arrays.asList(sheetsToRun));
 	}
 	
+	/**
+	 * Finds all test cases to run based on provided List of WorkSheets to run.
+	 * This method will loop though all of the WorkSheets to run and find which test cases are marked to run in each given WorkSheet
+	 * @return A Map of ExcelWorksheets and for each ExcelWorksheet a list of ExcelTestCases marked to run. This will allow the KeywordProvider to run each test case in each WorkSheet that the user desires to run.
+	 * @see ExcelWorksheet
+	 * @see ExcelTestCase
+	 */
 	public HashMap<ExcelWorksheet, List<ExcelTestCase>> init()
 	{
 		
@@ -45,6 +60,13 @@ public class ExcelTestCreator
 		return Suite;
 	}
 	
+	/**
+	 * Given a specific ExcelWorksheet this method will return all TestCases in that WorkSheet that are marked to run
+	 * @param sheet ExcelWorksheet to look for tests to run
+	 * @see ExcelWorksheet
+	 * @return List of all ExcelTestCases to Run in given WorkSheet
+	 * @see ExcelTestCase
+	 */
 	private List<ExcelTestCase> getAllValidTestsInRunnerSheet(ExcelWorksheet sheet) 
 	{
 		

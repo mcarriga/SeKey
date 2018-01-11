@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="framework.Framework" project="SeKey" file="/SeKey/src/framework/Framework.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="framework.KeywordProviderovider" project="SeKey" 
+    file="/SeKey/src/framework/KeywordProvider.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="294" y="269"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

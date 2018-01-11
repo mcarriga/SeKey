@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 import interfaces.IWait;
@@ -61,12 +61,12 @@ public class SelectByText extends ActionKeyword {
 		return new AfterAction((ActionKeyword)build(), 2);
 	}
 
-	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static ActionKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new SelectByText(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, framework.wait);
+			return new SelectByText(keywordProvider.driver, castToBy(defs.get(0)), params.get(0), keywordProvider.loggers, keywordProvider.waits);
 		} else {
-			return new SelectByText(castToElem(defs.get(0)), params.get(0), framework.logger, framework.wait);
+			return new SelectByText(castToElem(defs.get(0)), params.get(0), keywordProvider.loggers, keywordProvider.waits);
 		}
 	}
 

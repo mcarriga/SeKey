@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 import interfaces.IWait;
@@ -56,12 +56,12 @@ public class ScrollToElement extends ActionKeyword {
 		return new AfterAction((ActionKeyword)build(), 2);
 	}
 
-	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static ActionKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new ScrollToElement(framework.driver, castToBy(defs.get(0)), framework.logger, framework.wait);
+			return new ScrollToElement(keywordProvider.driver, castToBy(defs.get(0)), keywordProvider.loggers, keywordProvider.waits);
 		} else {
-			return new ScrollToElement(framework.driver, castToElem(defs.get(0)), framework.logger, framework.wait);
+			return new ScrollToElement(keywordProvider.driver, castToElem(defs.get(0)), keywordProvider.loggers, keywordProvider.waits);
 		}
 	}
 

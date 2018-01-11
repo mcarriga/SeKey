@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.GetKeyword;
 import interfaces.ILogging;
 
@@ -36,9 +36,9 @@ public class GetElementCount extends GetKeyword<Integer> {
 		logger.endKeyword(this);
 	}
 
-	public static GetKeyword<?> instantiateExternal(Framework framework, List<ObjectDef> defs,List<String> params) {
+	public static GetKeyword<?> instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,List<String> params) {
 		
-		return new GetElementCount(framework.driver, castToBy(defs.get(0)), framework.logger);
+		return new GetElementCount(keywordProvider.driver, castToBy(defs.get(0)), keywordProvider.loggers);
 	}
 
 }

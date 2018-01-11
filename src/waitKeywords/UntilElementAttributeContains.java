@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -67,12 +67,12 @@ public class UntilElementAttributeContains extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new UntilElementAttributeContains(framework.driver, castToBy(defs.get(0)), params.get(0), params.get(1), framework.logger, (long)Double.parseDouble(params.get(2)));
+			return new UntilElementAttributeContains(keywordProvider.driver, castToBy(defs.get(0)), params.get(0), params.get(1), keywordProvider.loggers, (long)Double.parseDouble(params.get(2)));
 		} else {
-			return new UntilElementAttributeContains(framework.driver, castToElem(defs.get(0)), params.get(0), params.get(1), framework.logger, (long)Double.parseDouble(params.get(2)));
+			return new UntilElementAttributeContains(keywordProvider.driver, castToElem(defs.get(0)), params.get(0), params.get(1), keywordProvider.loggers, (long)Double.parseDouble(params.get(2)));
 		}
 	}
 

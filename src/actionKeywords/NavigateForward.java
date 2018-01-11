@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 
@@ -42,8 +42,8 @@ public class NavigateForward extends ActionKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static ActionKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
-		return new NavigateForward(framework.driver, framework.logger);
+		return new NavigateForward(keywordProvider.driver, keywordProvider.loggers);
 	}
 }

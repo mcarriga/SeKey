@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -62,12 +62,12 @@ public class UntilElementAttributeEquals extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new UntilElementAttributeEquals(framework.driver, castToBy(defs.get(0)), params.get(0), params.get(1), framework.logger, (long)Double.parseDouble(params.get(2)));
+			return new UntilElementAttributeEquals(keywordProvider.driver, castToBy(defs.get(0)), params.get(0), params.get(1), keywordProvider.loggers, (long)Double.parseDouble(params.get(2)));
 		} else {
-			return new UntilElementAttributeEquals(framework.driver, castToElem(defs.get(0)), params.get(0), params.get(1), framework.logger, (long)Double.parseDouble(params.get(2)));
+			return new UntilElementAttributeEquals(keywordProvider.driver, castToElem(defs.get(0)), params.get(0), params.get(1), keywordProvider.loggers, (long)Double.parseDouble(params.get(2)));
 		}
 	}
 

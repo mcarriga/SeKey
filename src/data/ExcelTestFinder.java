@@ -8,6 +8,16 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 
+/**
+ * Helper class for finding and creating ExcelTestCases based on a provided Workbook and list of Runner Worksheets
+ * This class will help find the correct Test Case and it's applicable test step rows(ITestStep/ExcelTestStep) given a Test Case name and Worksheet to find that Test Case in
+ * @see ExcelTestCase
+ * @see ExcelWorkbook
+ * @see ExcelWorksheet
+ * @see ExcelTestStep
+ * @author Mathew Carrigan
+ *
+ */
 public class ExcelTestFinder 
 {
 	private final ExcelWorksheet sheet;
@@ -21,6 +31,13 @@ public class ExcelTestFinder
 		this.testName = testName;
 	}
 	
+	/**
+	 * Creates a Test Case and assigns the given suiteName.
+	 * The test case is created based on parameters given to this class's constructor which takes an ExcelWorksheet and a test name to find in the ExcelWorksheet
+	 * @param suiteName name of the test to find in the given ExcelWorksheet
+	 * @return a new ExcelTestCase instance for the given test case name
+	 * @see ExcelWorksheet
+	 */
 	public ExcelTestCase getTest(String suiteName) 
 	{
 		this.suiteName = suiteName;

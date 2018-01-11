@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.GetKeyword;
 import interfaces.ILogging;
 
@@ -43,12 +43,12 @@ public class GetDropDownSelectedOption extends GetKeyword<String> {
 	}
 
 	//@Override
-	public static GetKeyword<String> instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static GetKeyword<String> instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new GetDropDownSelectedOption(framework.driver, framework.logger, castToBy(defs.get(0)));
+			return new GetDropDownSelectedOption(keywordProvider.driver, keywordProvider.loggers, castToBy(defs.get(0)));
 		} else {
-			return new GetDropDownSelectedOption(castToElem(defs.get(0)), framework.logger);
+			return new GetDropDownSelectedOption(castToElem(defs.get(0)), keywordProvider.loggers);
 		}
 	}
 }

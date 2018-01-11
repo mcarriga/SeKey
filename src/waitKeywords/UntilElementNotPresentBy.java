@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -47,9 +47,9 @@ public class UntilElementNotPresentBy extends WaitKeyword {
 		_logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
-		return new UntilElementNotPresentBy(framework.driver, castToBy(defs.get(0)), framework.logger, (long)Double.parseDouble(params.get(0)));
+		return new UntilElementNotPresentBy(keywordProvider.driver, castToBy(defs.get(0)), keywordProvider.loggers, (long)Double.parseDouble(params.get(0)));
 	}
 
 }

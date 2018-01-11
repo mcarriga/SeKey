@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 import data.KeywordRunner;
 import data.ObjectDef;
 import data.ObjectFinder;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.Keyword;
 
 /**
  *  Primary interface model for executing ITestCase implementations
- *  This Interface will run Framework Keywords, Custom created Keywords, and Page Object methods
+ *  This Interface will run KeywordProvider Keywords, Custom created Keywords, and Page Object methods
  * @author Mathew Carrigan
  *
  */
@@ -36,11 +36,11 @@ public interface ITestRunner
 	Class<?> getPageObjectPackage();
 	
 	/**
-	 * Returns the current active Framework instance
-	 * @see framework.Framework
-	 * @return Framework instance
+	 * Returns the current active KeywordProvider instance
+	 * @see KeywordProvider
+	 * @return KeywordProvider instance
 	 */
-	Framework getFramework();
+	KeywordProvider getFramework();
 	
 	/**
 	 * Returns active KeywordRunner instance
@@ -128,7 +128,7 @@ public interface ITestRunner
 	}
 	
 	/**
-	 * Runs a Custom created Keyword that is NOT part of the Framework's provided keywords
+	 * Runs a Custom created Keyword that is NOT part of the KeywordProvider's provided keywords
 	 * @param keywordName Name of the Keyword in the following Syntax: package.Class
 	 * @param defs List of ObjectDef objects- ObjectDefs are created by supplying a String name of the object in format of Class.Field and the Field should be either a By locator or a WebElement
 	 * @param params List of params to supply to the keyword
@@ -146,9 +146,9 @@ public interface ITestRunner
 		}
 		
 		try {
-			method = cls.getDeclaredMethod("instantiateExternal", Framework.class, List.class, List.class);
+			method = cls.getDeclaredMethod("instantiateExternal", KeywordProvider.class, List.class, List.class);
 		} catch(NoSuchMethodException m) {
-			org.testng.Assert.fail("Custom Keyword class does no properly implement the instantiateExternal method with params Framework, List<ObjectDef>, List<String>'"+keywordName+"'", m);
+			org.testng.Assert.fail("Custom Keyword class does no properly implement the instantiateExternal method with params KeywordProvider, List<ObjectDef>, List<String>'"+keywordName+"'", m);
 		}
 		
 		try {
@@ -160,7 +160,7 @@ public interface ITestRunner
 	}
 	
 	/**
-	 * Runs a Framework provided Keyword
+	 * Runs a KeywordProvider provided Keyword
 	 * @param keywordName Name of the Keyword to run
 	 * @param defs List of ObjectDef objects- ObjectDefs are created by supplying a String name of the object in format of Class.Field and the Field should be either a By locator or a WebElement
 	 * @param params List of Params to supply to the keyword

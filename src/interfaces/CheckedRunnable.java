@@ -1,7 +1,7 @@
 package interfaces;
 
 /**
- * Inteface for being able to check if a Runnable object throws an exception
+ * Interface for being able to check if a Runnable object throws an exception
  * @author Mathew Carrigan
  *
  */

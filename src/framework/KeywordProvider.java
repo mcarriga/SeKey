@@ -1,6 +1,5 @@
 package framework;
 
-import java.io.IOException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -9,12 +8,12 @@ import org.openqa.selenium.WebDriver;
 import interfaces.*;
 
 /**
- * Core Framework for running Keywords and PageObject repeatable methods
+ * Core KeywordProvider for running Keywords and PageObject repeatable methods
  * Allows for Method Chaining Keyword and PageObject methods for simplified clean code
  * @author Mathew Carrigan
  *
  */
-public class Framework {
+public class KeywordProvider {
 	/**
 	 * Active WebDriver
 	 */
@@ -23,35 +22,35 @@ public class Framework {
 	/**
 	 * Active ILogging
 	 */
-	public final ILogging logger;
+	public final ILogging loggers;
 	
 	/**
 	 * Active IAction
 	 */
-	public final IAction action;
+	public final IAction actions;
 	
 	/**
 	 * Active IAssert
 	 */
-	public final IAssert asserter;
+	public final IAssert asserts;
 	
 	/**
 	 * Active IWait
 	 */
-	public final IWait wait;
+	public final IWait waits;
 	
 	/**
 	 * Active IGet
 	 */
-	public final IGet get;
+	public final IGet gets;
 	
-	public Framework(WebDriver driver, ILogging logger) {
+	public KeywordProvider(WebDriver driver, ILogging logger) {
 		this.driver = driver;
-		this.logger = logger;
-		wait = new Waits(driver, logger);
-		action = new Actions(driver, logger, wait);
-		get = new Gets(driver, logger);
-		asserter = new Asserts(driver, logger, wait);
+		this.loggers = logger;
+		waits = new Waits(driver, logger);
+		actions = new Actions(driver, logger, waits);
+		gets = new Gets(driver, logger);
+		asserts = new Asserts(driver, logger, waits);
 	}
 	
 	/**
@@ -59,7 +58,7 @@ public class Framework {
 	 * @param func ActionKeyword to run
 	 * @return an instance of 'this' class for method chaining purposes
 	 */
-	public Framework withAction(ActionKeyword func) {
+	public KeywordProvider withAction(ActionKeyword func) {
 		func.build();
 		return this;
 	}
@@ -69,7 +68,7 @@ public class Framework {
 	 * @param action IAfterAction to run and evaluate
 	 * @return an instance of 'this' class for method chaining purposes
 	 */
-	public Framework withAction(IAfterAction action) {
+	public KeywordProvider withAction(IAfterAction action) {
 		action.getAction().build();
 		return this;
 	}
@@ -79,7 +78,7 @@ public class Framework {
 	 * @param func Assert Keyword to run
 	 * @return an instance of 'this' class for method chaining purposes
 	 */
-	public Framework withAssert(AssertKeyword func) {
+	public KeywordProvider withAssert(AssertKeyword func) {
 		func.build();
 		return this;
 	}
@@ -89,7 +88,7 @@ public class Framework {
 	 * @param func WaitKeyword to run
 	 * @return an instance of 'this' class for method chaining purposes
 	 */
-	public Framework withWait(WaitKeyword func) {
+	public KeywordProvider withWait(WaitKeyword func) {
 		func.build();
 		return this;
 	}
@@ -133,7 +132,7 @@ public class Framework {
 	 * @param aaa Log Event to perform
 	 * @return an instance of 'this' class for method chaining purposes
 	 */
-	public Framework withLogEvent(IAAALogEvent aaa) {
+	public KeywordProvider withLogEvent(IAAALogEvent aaa) {
 		aaa.doLog();
 		return this;
 	}
@@ -143,7 +142,7 @@ public class Framework {
 	 * @param seconds Number of seconds to pause execution for
 	 * @return an instance of 'this' class for method chaining purposes
 	 */
-	public Framework withDelay(int seconds) {
+	public KeywordProvider withDelay(int seconds) {
 		ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(seconds);
 
 		exec.schedule(new Runnable() {
@@ -161,7 +160,7 @@ public class Framework {
 	 * @return an instance of 'this' class for method chaining purposes
 	 * @throws Exception Can throw any type of exception as this is just executing a generic Runnable statement
 	 */
-	public Framework withPageObject(CheckedRunnable func) throws Exception {
+	public KeywordProvider withPageObject(CheckedRunnable func) throws Exception {
 		func.run();
 		return this;
 	}

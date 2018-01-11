@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import framework.WaitKeyword;
 
 /**
- * Framework provided Wait Keywords
+ * KeywordProvider provided Wait Keywords
  * Wait Keywords are any keyword intended delay the execution of Selenium until some specific condition is met.
  * Generally, these Keywords look at various properties of WebElements or page/browser properties like URL and page title.
  * Wait Keywords return a true or false depending on if the condition was met within the given time

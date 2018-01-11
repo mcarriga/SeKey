@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.GetKeyword;
 import interfaces.ILogging;
 
@@ -40,12 +40,12 @@ public class IsSelected extends GetKeyword<Boolean> {
 		_logger.endKeyword(this);
 	}
 
-	public static GetKeyword<?> instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static GetKeyword<?> instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new IsSelected(framework.driver, castToBy(defs.get(0)), framework.logger);
+			return new IsSelected(keywordProvider.driver, castToBy(defs.get(0)), keywordProvider.loggers);
 		} else {
-			return new IsSelected(castToElem(defs.get(0)), framework.logger);
+			return new IsSelected(castToElem(defs.get(0)), keywordProvider.loggers);
 		}
 	}
 }

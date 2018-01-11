@@ -1,4 +1,4 @@
 /**
- * This package contains all base Framework classes
+ * This package contains all base KeywordProvider classes
  */
 package framework;

@@ -10,7 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 import interfaces.IWait;
@@ -70,19 +70,19 @@ public class ClickAndDrag extends ActionKeyword {
 		return new AfterAction((ActionKeyword)build(), 2);
 	}
 
-	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static ActionKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if (isBy(defs.get(0)) && isBy(defs.get(1))) { // By, By
-			return new ClickAndDrag(framework.driver, castToBy(defs.get(0)), castToBy(defs.get(1)), framework.logger, framework.wait);
+			return new ClickAndDrag(keywordProvider.driver, castToBy(defs.get(0)), castToBy(defs.get(1)), keywordProvider.loggers, keywordProvider.waits);
 			
 		} else if (isBy(defs.get(0)) && isElem(defs.get(1))) { // By, WebElement
-			return new ClickAndDrag(framework.driver, castToBy(defs.get(0)), castToElem(defs.get(1)), framework.logger, framework.wait);
+			return new ClickAndDrag(keywordProvider.driver, castToBy(defs.get(0)), castToElem(defs.get(1)), keywordProvider.loggers, keywordProvider.waits);
 			
 		} else if (isElem(defs.get(0)) && isBy(defs.get(1))) { // WebElement, By
-			return new ClickAndDrag(framework.driver, castToElem(defs.get(0)), castToBy(defs.get(1)), framework.logger, framework.wait);
+			return new ClickAndDrag(keywordProvider.driver, castToElem(defs.get(0)), castToBy(defs.get(1)), keywordProvider.loggers, keywordProvider.waits);
 			
 		} else { // WebElement, WebElement
-			return new ClickAndDrag(framework.driver, castToElem(defs.get(0)), castToElem(defs.get(1)), framework.logger, framework.wait);
+			return new ClickAndDrag(keywordProvider.driver, castToElem(defs.get(0)), castToElem(defs.get(1)), keywordProvider.loggers, keywordProvider.waits);
 			
 		}
 	}

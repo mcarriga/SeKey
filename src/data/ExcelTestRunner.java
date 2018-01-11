@@ -2,22 +2,22 @@ package data;
 
 import java.util.List;
 
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.ITestCase;
 import interfaces.ITestRunner;
 import interfaces.ITestStep;
 
 public class ExcelTestRunner implements ITestRunner
 {
-	private final Framework framework;
+	private final KeywordProvider keywordProvider;
 	private final Class<?> pageObjectPackage;
 	private final KeywordRunner keywordRunner;
 	
-	public ExcelTestRunner(Framework framework, Class<?> pageObjectPackage) 
+	public ExcelTestRunner(KeywordProvider keywordProvider, Class<?> pageObjectPackage) 
 	{
-		this.framework = framework;
+		this.keywordProvider = keywordProvider;
 		this.pageObjectPackage = pageObjectPackage;
-		this.keywordRunner= new KeywordRunner(framework);
+		this.keywordRunner= new KeywordRunner(keywordProvider);
 	}
 	
 	@Override
@@ -43,9 +43,9 @@ public class ExcelTestRunner implements ITestRunner
 	}
 
 	@Override
-	public Framework getFramework()
+	public KeywordProvider getFramework()
 	{
-		return this.framework;
+		return this.keywordProvider;
 	}
 
 	@Override

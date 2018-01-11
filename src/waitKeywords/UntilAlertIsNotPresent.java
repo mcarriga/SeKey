@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -47,9 +47,9 @@ public class UntilAlertIsNotPresent extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
-		return new UntilAlertIsNotPresent(framework.driver, framework.logger,  (long)Double.parseDouble(params.get(0)));
+		return new UntilAlertIsNotPresent(keywordProvider.driver, keywordProvider.loggers,  (long)Double.parseDouble(params.get(0)));
 	}
 
 }

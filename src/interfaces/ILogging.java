@@ -6,9 +6,9 @@ import org.openqa.selenium.By;
 import com.aventstack.extentreports.ExtentReports;
 
 /**
- * Primary interface used for Logging within the framework
+ * Primary interface used for Logging within the keywordProvider
  * Logging is designed to use an interface so that any type of logging library can be used without issues of refactoring.
- * Currently log4j is the provided logging library for the framework
+ * Currently log4j is the provided logging library for the keywordProvider
  * @author Mathew Carrigan
  *
  */
@@ -105,11 +105,11 @@ public interface ILogging {
 	 */
 	void info(String message);
 	void error();
-	void warn();
+	void warn(String message);
 	void debug();
 	
 	/**
-	 * This framework is designed to generate HTML reports designed by the ExtentReports Enterprise edition Java Library
+	 * This keywordProvider is designed to generate HTML reports designed by the ExtentReports Enterprise edition Java Library
 	 * This method should return the current active Extent Reports instance
 	 * @return ExtentReport instance @see ExtentReports
 	 * @see <a href="http://extentreports.com/">http://extentreports.com/</a>

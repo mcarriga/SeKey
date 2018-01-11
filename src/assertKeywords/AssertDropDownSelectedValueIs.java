@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import data.ObjectDef;
 import framework.AssertKeyword;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.ILogging;
 import interfaces.IWait;
 import junit.framework.Assert;
@@ -56,19 +56,19 @@ public class AssertDropDownSelectedValueIs extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static AssertKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			if(params.size() > 1) {
-				return new AssertDropDownSelectedValueIs(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, framework.wait,  (long)Double.parseDouble(params.get(1)));
+				return new AssertDropDownSelectedValueIs(keywordProvider.driver, castToBy(defs.get(0)), params.get(0), keywordProvider.loggers, keywordProvider.waits,  (long)Double.parseDouble(params.get(1)));
 			} else {
-				return new AssertDropDownSelectedValueIs(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, framework.wait, framework.asserter.getDefaultWait());
+				return new AssertDropDownSelectedValueIs(keywordProvider.driver, castToBy(defs.get(0)), params.get(0), keywordProvider.loggers, keywordProvider.waits, keywordProvider.asserts.getDefaultWait());
 			}
 		} else {
 			if(params.size() > 1) {
-				return new AssertDropDownSelectedValueIs(castToElem(defs.get(0)), params.get(0), framework.logger, framework.wait,  (long)Double.parseDouble(params.get(1)));
+				return new AssertDropDownSelectedValueIs(castToElem(defs.get(0)), params.get(0), keywordProvider.loggers, keywordProvider.waits,  (long)Double.parseDouble(params.get(1)));
 			} else {
-				return new AssertDropDownSelectedValueIs(castToElem(defs.get(0)), params.get(0), framework.logger, framework.wait, framework.asserter.getDefaultWait());
+				return new AssertDropDownSelectedValueIs(castToElem(defs.get(0)), params.get(0), keywordProvider.loggers, keywordProvider.waits, keywordProvider.asserts.getDefaultWait());
 			}
 		}
 	}

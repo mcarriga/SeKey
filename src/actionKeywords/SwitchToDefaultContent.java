@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import data.ObjectDef;
 import framework.ActionKeyword;
 import framework.AfterAction;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 
@@ -43,9 +43,9 @@ public class SwitchToDefaultContent extends ActionKeyword
 		logger.endKeyword(this);
 	}
 
-	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static ActionKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
-		return new SwitchToFrame(framework.driver, framework.logger, params.get(0));
+		return new SwitchToFrame(keywordProvider.driver, keywordProvider.loggers, params.get(0));
 	}
 
 }

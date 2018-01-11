@@ -126,8 +126,8 @@ public class KeywordLogger implements ILogging {
 	}
 
 	@Override
-	public void warn() {
-		// TODO Auto-generated method stub
+	public void warn(String message) {
+		logger.warn(message);
 
 	}
 

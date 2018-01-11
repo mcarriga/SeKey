@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -73,16 +73,16 @@ public class UntilDropDownOptionsInOrderOf extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		long time = (long)Double.parseDouble(params.get(params.size()-1));
 		List<String> values = params;
 		values.remove(params.size()-1);
 		
 		if(isBy(defs.get(0))) {
-			return new UntilDropDownOptionsInOrderOf(framework.driver, castToBy(defs.get(0)), values, framework.logger, time);
+			return new UntilDropDownOptionsInOrderOf(keywordProvider.driver, castToBy(defs.get(0)), values, keywordProvider.loggers, time);
 		} else {
-			return new UntilDropDownOptionsInOrderOf(framework.driver, castToElem(defs.get(0)), values, framework.logger, time);
+			return new UntilDropDownOptionsInOrderOf(keywordProvider.driver, castToElem(defs.get(0)), values, keywordProvider.loggers, time);
 		}
 	}
 }

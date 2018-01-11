@@ -10,16 +10,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import framework.Framework;
+import framework.KeywordProvider;
 
 public class ObjectFinder 
 {
-	public static ObjectDef x(Framework framework, String ClassName, String fieldName) throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, NoSuchMethodException, InstantiationException, InvocationTargetException 
+	public static ObjectDef x(KeywordProvider keywordProvider, String ClassName, String fieldName) throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, NoSuchMethodException, InstantiationException, InvocationTargetException 
 	{
 		 
 		Class<?> cls = Class.forName(ClassName);
-		Constructor<?> constructor = cls.getConstructor(Framework.class);
-		Object instance = constructor.newInstance(framework);
+		Constructor<?> constructor = cls.getConstructor(KeywordProvider.class);
+		Object instance = constructor.newInstance(keywordProvider);
 		
 		Field field = instance.getClass().getDeclaredField(fieldName);
 		field.setAccessible(true);
@@ -28,9 +28,9 @@ public class ObjectFinder
 		if(field.isAnnotationPresent(FindBy.class)) {
 			FindBy findBy = field.getDeclaredAnnotation(FindBy.class);
 			if(WebElement.class.isAssignableFrom(fieldType)) {
-				return new ObjectDef(fieldType, framework.driver.findElement(getByLocator(findBy)));
+				return new ObjectDef(fieldType, keywordProvider.driver.findElement(getByLocator(findBy)));
 			}else {
-				return new ObjectDef(fieldType, framework.driver.findElements(getByLocator(findBy)));
+				return new ObjectDef(fieldType, keywordProvider.driver.findElements(getByLocator(findBy)));
 			}
 		} else {
 			return new ObjectDef(fieldType, field.get(fieldType.newInstance()));
@@ -40,11 +40,11 @@ public class ObjectFinder
 		//Object value = field.get(fieldType.insta);
 	}
 	
-	public static void getMethod(Framework framework, String ClassName, String methodName, List<String> methodParams) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException 
+	public static void getMethod(KeywordProvider keywordProvider, String ClassName, String methodName, List<String> methodParams) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException 
 	{
 		Class<?> cls = Class.forName(ClassName);
-		Constructor<?> constructor = cls.getConstructor(Framework.class);
-		Object instance = constructor.newInstance(framework);
+		Constructor<?> constructor = cls.getConstructor(KeywordProvider.class);
+		Object instance = constructor.newInstance(keywordProvider);
 		
 		Method method = instance.getClass().getMethod(methodName);
 		//Parameter[] params = method.getParameters();

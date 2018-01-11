@@ -28,31 +28,31 @@ import logging.KeywordLogger;
 @Listeners(listeners.TestListeners.class)
 public class ExcelTestClass implements org.testng.ITest
 {
-	public static Framework framework;
+	public static KeywordProvider keywordProvider;
 	public static WebDriver driver;
 	public ITestRunner runner;
 	public ITestCase testCase;
-	public IWait wait; 
-	public IGet get;
+	public IWait waits; 
+	public IGet gets;
 	public IAssert asserts;
-	public IAction action;
-	public ILogging logger;
+	public IAction actions;
+	public ILogging loggers;
 	public MvnProperties mavenProperties;
 	public drivers.DriverService driverService;
 	
 	/**
 	 * Initialized the fields in this class
-	 * @param framework Framework instance to use
+	 * @param keywordProvider KeywordProvider instance to use
 	 * @throws MalformedURLException if Grid Hub URL is not valid
 	 */
-	public void init(Framework framework) throws MalformedURLException 
+	public void init(KeywordProvider keywordProvider) throws MalformedURLException 
 	{
-		TestClass.framework = framework;
-		this.wait = framework.wait;
-		this.get = framework.get;
-		this.asserts = framework.asserter;
-		this.action = framework.action;
-		this.logger = KeywordLogger.getInstance();
+		TestClass.keywordProvider = keywordProvider;
+		this.waits = keywordProvider.waits;
+		this.gets = keywordProvider.gets;
+		this.asserts = keywordProvider.asserts;
+		this.actions = keywordProvider.actions;
+		this.loggers = KeywordLogger.getInstance();
 	}
 
 	/**
@@ -68,10 +68,10 @@ public class ExcelTestClass implements org.testng.ITest
 		driver = driverService.createChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		framework = new Framework(driver, KeywordLogger.getInstance());
+		keywordProvider = new KeywordProvider(driver, KeywordLogger.getInstance());
 		
-		this.init(framework);
-		runner = new ExcelTestRunner(framework, PageObject.class);
+		this.init(keywordProvider);
+		runner = new ExcelTestRunner(keywordProvider, PageObject.class);
 		context.getCurrentXmlTest().setName(testCase.getTestName());
 		context.getCurrentXmlTest().getSuite().setName(testCase.getSuiteName());
 	}

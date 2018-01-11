@@ -1,8 +1,8 @@
 package interfaces;
 
 /**
- * The IKeyword interface is the base model for all of the Framework Selenium Keywords.
- * This interface contains the basic methods called on by the Framework class to execute a keyword
+ * The IKeyword interface is the base model for all of the KeywordProvider Selenium Keywords.
+ * This interface contains the basic methods called on by the KeywordProvider class to execute a keyword
  * Ideally, various abstract classes would be created from this interface to serve as templates for the different categories of keywords like action, assert, wait...
  * @author Mathew Carrigan
  *

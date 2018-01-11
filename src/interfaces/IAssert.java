@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import framework.AssertKeyword;
 
 /**
- * Framework provided Assert Keywords
+ * KeywordProvider provided Assert Keywords
  * Assert Keywords are any keywords intended to perform a validation that can pass or fail a Test Case. Generally these assert against WebElement or Page properties
  * All Assert Keywords utilize a timeout which allows the assert conditions to be true within the given amount of time or result in a failed assert if not met within the given time
  * The timeout can explicitly set or use the default timeout provided by the getDefaultWait() method which is 15 seconds by default but can changed using setDefaultWait() method

@@ -1,4 +1,4 @@
 /**
- * This package contains all Framework Custom annotation interfaces
+ * This package contains all KeywordProvider Custom annotation interfaces
  */
 package annotations;

@@ -10,31 +10,31 @@ import interfaces.ILogging;
 import interfaces.IWait;
 
 /**
- * Base Class for all Page Object classes to be used for the Framework and Project under test
+ * Base Class for all Page Object classes to be used for the KeywordProvider and Project under test
  * @author Mathew Carrigan
  *
  */
 public abstract class PageObject {
-	public final Framework framework;
-	public final IWait wait; 
-	public final IGet get;
+	public final KeywordProvider keywordProvider;
+	public final IWait waits; 
+	public final IGet gets;
 	public final IAssert asserts;
-	public final IAction action;
-	public final ILogging logger;
+	public final IAction actions;
+	public final ILogging loggers;
 	public final WebDriver driver;
 	
 	/**
-	 * Initialized an instance of this class- Required and only constructor parameter is Framework
-	 * @param framework Framework
+	 * Initialized an instance of this class- Required and only constructor parameter is KeywordProvider
+	 * @param keywordProvider KeywordProvider
 	 */
-	public PageObject(Framework framework) {
-		this.framework = framework;
-		this.wait = framework.wait;
-		this.get= framework.get;
-		this.asserts = framework.asserter;
-		this.action = framework.action;
-		this.logger = framework.logger;
-		this.driver = framework.driver;
+	public PageObject(KeywordProvider keywordProvider) {
+		this.keywordProvider = keywordProvider;
+		this.waits = keywordProvider.waits;
+		this.gets= keywordProvider.gets;
+		this.asserts = keywordProvider.asserts;
+		this.actions = keywordProvider.actions;
+		this.loggers = keywordProvider.loggers;
+		this.driver = keywordProvider.driver;
 		PageFactory.initElements(driver, this);
 	}
 }

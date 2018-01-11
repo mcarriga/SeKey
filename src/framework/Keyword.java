@@ -16,7 +16,7 @@ public abstract class Keyword <T extends Object> implements IKeyword<Object>{
 		endLog();
 		return x;
 	}
-	//public static  Keyword<?> instantiateExternal(Framework framework, List<ObjectDef> defs, List<String> params);
+	//public static  Keyword<?> instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs, List<String> params);
 	
 	public static boolean isInteger(String s) {
 	      boolean isValidInteger = false;

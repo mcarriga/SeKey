@@ -18,7 +18,6 @@ framework/Actions.class
 waitKeywords/UntilElementNotPresentBy.class
 actionKeywords/Click.class
 waitKeywords/UntilPresenceOfNestedElements.class
-framework/Framework$1.class
 getKeywords/GetPageTitle.class
 data/ExcelTestCase$1.class
 interfaces/IAction.class
@@ -123,7 +122,6 @@ waitKeywords/UntilElementAttributeEquals.class
 assertKeywords/AssertDropDownOptionsInOrderOf.class
 actionKeywords/ScrollToElement.class
 waitKeywords/UntilLocatorReturnsNumberOfElements.class
-framework/Framework.class
 framework/ScrollDirection.class
 logging/AssertSection.class
 assertKeywords/AssertValue.class

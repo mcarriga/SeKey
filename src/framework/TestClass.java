@@ -11,31 +11,31 @@ import interfaces.IWait;
 import logging.KeywordLogger;
 
 /**
- * Base Test Class for all Framework tests in the Coded(non-Excel) format
+ * Base Test Class for all KeywordProvider tests in the Coded(non-Excel) format
  * Uses Listener: listeners.TestListeners
  * @author Mathew Carrigan
  *
  */
 @Listeners(listeners.TestListeners.class)
 public abstract class TestClass {
-	public static Framework framework;
-	public IWait wait; 
-	public IGet get;
+	public static KeywordProvider keywordProvider;
+	public IWait waits; 
+	public IGet gets;
 	public IAssert asserts;
-	public IAction action;
-	public ILogging logger;
+	public IAction actions;
+	public ILogging loggers;
 	
 	/**
 	 * Initialized fields for this class
-	 * @param framework Framework implementation to use
+	 * @param keywordProvider KeywordProvider implementation to use
 	 */
-	public void init(Framework framework) {
-		TestClass.framework = framework;
-		this.wait = framework.wait;
-		this.get = framework.get;
-		this.asserts = framework.asserter;
-		this.action = framework.action;
-		this.logger = KeywordLogger.getInstance();
+	public void init(KeywordProvider keywordProvider) {
+		TestClass.keywordProvider = keywordProvider;
+		this.waits = keywordProvider.waits;
+		this.gets = keywordProvider.gets;
+		this.asserts = keywordProvider.asserts;
+		this.actions = keywordProvider.actions;
+		this.loggers = KeywordLogger.getInstance();
 	}
 	
 }

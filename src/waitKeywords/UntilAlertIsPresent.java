@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -48,8 +48,8 @@ public class UntilAlertIsPresent extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
-		return new UntilAlertIsPresent(framework.driver, framework.logger,  (long)Double.parseDouble(params.get(0)));
+		return new UntilAlertIsPresent(keywordProvider.driver, keywordProvider.loggers,  (long)Double.parseDouble(params.get(0)));
 	}
 }

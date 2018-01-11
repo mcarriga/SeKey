@@ -9,6 +9,7 @@
 /Users/p2776689/eclipse-workspace/SeKey/src/assertKeywords/AssertTextContains.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilElementAttributeEquals.java
 /Users/p2776689/eclipse-workspace/SeKey/src/assertKeywords/AssertPageTitleContains.java
+/Users/p2776689/eclipse-workspace/SeKey/src/interfaces/package-info.java
 /Users/p2776689/eclipse-workspace/SeKey/src/data/ObjectFinder.java
 /Users/p2776689/eclipse-workspace/SeKey/src/interfaces/IGet.java
 /Users/p2776689/eclipse-workspace/SeKey/src/framework/Actions.java
@@ -44,6 +45,7 @@
 /Users/p2776689/eclipse-workspace/SeKey/src/interfaces/ITestRunner.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilElementAttributeContains.java
 /Users/p2776689/eclipse-workspace/SeKey/src/drivers/DriverService.java
+/Users/p2776689/eclipse-workspace/SeKey/src/framework/KeywordProvider.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilAlertIsNotPresent.java
 /Users/p2776689/eclipse-workspace/SeKey/src/assertKeywords/package-info.java
 /Users/p2776689/eclipse-workspace/SeKey/src/data/PassthroughInvocationHandler.java
@@ -89,7 +91,6 @@
 /Users/p2776689/eclipse-workspace/SeKey/src/logging/KeywordLogger.java
 /Users/p2776689/eclipse-workspace/SeKey/src/data/ExcelWorksheet.java
 /Users/p2776689/eclipse-workspace/SeKey/src/getKeywords/IsVisible.java
-/Users/p2776689/eclipse-workspace/SeKey/src/framework/Framework.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilElementNotSelected.java
 /Users/p2776689/eclipse-workspace/SeKey/src/data/ExcelTestCreator.java
 /Users/p2776689/eclipse-workspace/SeKey/src/interfaces/IAction.java
@@ -155,6 +156,7 @@
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilElementClickable.java
 /Users/p2776689/eclipse-workspace/SeKey/src/data/ExcelTestRunner.java
 /Users/p2776689/eclipse-workspace/SeKey/src/getKeywords/GetElementAttribute.java
+/Users/p2776689/eclipse-workspace/SeKey/src/logging/AlmAdapter.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilAlertIsPresent.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilDropDownSelectedValueIs.java
 /Users/p2776689/eclipse-workspace/SeKey/src/interfaces/IWait.java

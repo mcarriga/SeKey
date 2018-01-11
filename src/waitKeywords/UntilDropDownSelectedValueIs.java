@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -61,12 +61,12 @@ public class UntilDropDownSelectedValueIs extends WaitKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
-			return new UntilDropDownSelectedValueIs(framework.driver, castToBy(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));
+			return new UntilDropDownSelectedValueIs(keywordProvider.driver, castToBy(defs.get(0)), params.get(0), keywordProvider.loggers, (long)Double.parseDouble(params.get(1)));
 		} else {
-			return new UntilDropDownSelectedValueIs(framework.driver, castToElem(defs.get(0)), params.get(0), framework.logger, (long)Double.parseDouble(params.get(1)));
+			return new UntilDropDownSelectedValueIs(keywordProvider.driver, castToElem(defs.get(0)), params.get(0), keywordProvider.loggers, (long)Double.parseDouble(params.get(1)));
 		}
 	}
 }

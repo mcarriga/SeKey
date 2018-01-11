@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import framework.ActionKeyword;
 
 /**
- * Interface for Framework provided Action Keywords.
+ * Interface for KeywordProvider provided Action Keywords.
  * Action Keywords are any Keyword intended to perform a user simulated action using Keyboard amd Mouse on a web page
  * @author Mathew Carrigan
  *

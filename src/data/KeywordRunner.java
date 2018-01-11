@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import actionKeywords.*;
-import framework.Framework;
+import framework.KeywordProvider;
 import getKeywords.*;
 import interfaces.*;
 import logging.*;
@@ -17,36 +17,36 @@ import assertKeywords.*;
 
 public class KeywordRunner 
 {
-	private final Framework framework;
+	private final KeywordProvider keywordProvider;
 	private final IAction action;
 	//private final IAssert asserts;
 	//private final IWait wait;
 	//private final IGet get;
 	public final HashMap<String, Object> getterObjects = new HashMap<String, Object>();
 	
-	public KeywordRunner(Framework framework) 
+	public KeywordRunner(KeywordProvider keywordProvider) 
 	{
-		this.framework = framework;
-		this.action = framework.action;
-		//this.asserts = framework.asserter;
-		//this.wait = framework.wait;
-		//this.get = framework.get;
+		this.keywordProvider = keywordProvider;
+		this.action = keywordProvider.actions;
+		//this.asserts = keywordProvider.asserts;
+		//this.wait = keywordProvider.waits;
+		//this.get = keywordProvider.get;
 	}
 	
 	public void doAAALog(String methodName, List<ObjectDef> defs, List<String> params) 
 	{
 		switch(methodName.toLowerCase()) {
 		case "arrangesection":
-			ArrangeSection.instantiateExternal(framework, defs, params).doLog();
+			ArrangeSection.instantiateExternal(keywordProvider, defs, params).doLog();
 			break;
 		case "actsection":
-			ActSection.instantiateExternal(framework, defs, params).doLog();
+			ActSection.instantiateExternal(keywordProvider, defs, params).doLog();
 			break;
 		case "assertsection":
-			AssertSection.instantiateExternal(framework, defs, params).doLog();
+			AssertSection.instantiateExternal(keywordProvider, defs, params).doLog();
 			break;
 		case "cleanupsection":
-			CleanupSection.instantiateExternal(framework, defs, params).doLog();
+			CleanupSection.instantiateExternal(keywordProvider, defs, params).doLog();
 			break;
 		}
 	}
@@ -65,7 +65,7 @@ public class KeywordRunner
 		}
 		switch(methodName.toLowerCase()) {
 		case "getelementtext":
-			value = GetText.instantiateExternal(framework, defs, params).build();
+			value = GetText.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "getelementvalue":
 			if(params.size() > 1) { // if a return object is needed it should always be in the 0 index of Params- i.e. myVariableName|nameOfAttributeToGetValueOf
@@ -74,37 +74,37 @@ public class KeywordRunner
 				params.add(0, "value");
 			}
 			
-			value = GetElementAttribute.instantiateExternal(framework, defs, params).build();
+			value = GetElementAttribute.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "getelementattribute":
 			if(params.size() > 1) { // if a return object is needed it should always be in the 0 index of Params- i.e. myVariableName|nameOfAttributeToGetValueOf
 				params.remove(0); // remove the param name like myVariableName so only the name of the Attribute is passed
 			}
-			value = GetElementAttribute.instantiateExternal(framework, defs, params).build();
+			value = GetElementAttribute.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "isvisible":
-			value = IsVisible.instantiateExternal(framework, defs, params).build();
+			value = IsVisible.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "isenabled":
-			value = IsEnabled.instantiateExternal(framework, defs, params).build();
+			value = IsEnabled.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "isselected":
-			value = IsSelected.instantiateExternal(framework, defs, params).build();
+			value = IsSelected.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "getdropdownoptions":
-			value = GetDropDownOptions.instantiateExternal(framework, defs, params).build();
+			value = GetDropDownOptions.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "getdropdownselectedoption":
-			value = GetDropDownSelectedOption.instantiateExternal(framework, defs, params).build();
+			value = GetDropDownSelectedOption.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "getdropdownoptionscount":
-			value = GetDropDownOptionsCount.instantiateExternal(framework, defs, params).build();
+			value = GetDropDownOptionsCount.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "getpagetitle":
-			value = GetPageTitle.instantiateExternal(framework, defs, params).build();
+			value = GetPageTitle.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "getcurrenturl":
-			value = GetCurrentUrl.instantiateExternal(framework, defs, params).build();
+			value = GetCurrentUrl.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		}
 		
@@ -117,108 +117,108 @@ public class KeywordRunner
 	{
 		switch(methodName.toLowerCase()) {
 		case "untilelementexists":
-			UntilElementExists.instantiateExternal(framework, defs, params).build();
+			UntilElementExists.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementnotpresent":
-			UntilElementNotPresent.instantiateExternal(framework, defs, params).build();
+			UntilElementNotPresent.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementvisible":
-			UntilElementVisible.instantiateExternal(framework, defs, params).build();
+			UntilElementVisible.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilpageloadstatuscomplete":
-			UntilPageLoadStatusComplete.instantiateExternal(framework, defs, params).build();
+			UntilPageLoadStatusComplete.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementclickable":
-			UntilElementClickable.instantiateExternal(framework, defs, params).build();
+			UntilElementClickable.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementtextequals":
-			UntilElementTextEquals.instantiateExternal(framework, defs, params).build();
+			UntilElementTextEquals.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementtextcontains":
-			UntilElementTextContains.instantiateExternal(framework, defs, params).build();
+			UntilElementTextContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementvalueequals":
 			params.add(0, "value");
-			UntilElementAttributeEquals.instantiateExternal(framework, defs, params).build();
+			UntilElementAttributeEquals.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementvaluecontains":
 			params.add(0, "value");
-			UntilElementAttributeContains.instantiateExternal(framework, defs, params).build();
+			UntilElementAttributeContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementattributeequals":
-			UntilElementAttributeEquals.instantiateExternal(framework, defs, params).build();
+			UntilElementAttributeEquals.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementattributecontains":
-			UntilElementAttributeContains.instantiateExternal(framework, defs, params).build();
+			UntilElementAttributeContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementselected":
-			UntilElementSelected.instantiateExternal(framework, defs, params).build();
+			UntilElementSelected.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementnotselected":
-			UntilElementNotSelected.instantiateExternal(framework, defs, params).build();
+			UntilElementNotSelected.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilpagetitleequals":
-			UntilPageTitleEquals.instantiateExternal(framework, defs, params).build();
+			UntilPageTitleEquals.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilpagetitlecontains":
-			UntilPageTitleContains.instantiateExternal(framework, defs, params).build();
+			UntilPageTitleContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilcurrenturlequals":
-			UntilCurrentUrlEquals.instantiateExternal(framework, defs, params).build();
+			UntilCurrentUrlEquals.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilcurrenturlcontains":
-			UntilCurrentUrlContains.instantiateExternal(framework, defs, params).build();
+			UntilCurrentUrlContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilalertispresent":
-			UntilAlertIsPresent.instantiateExternal(framework, defs, params).build();
+			UntilAlertIsPresent.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untillocatorreturnsnumberofelements":
-			UntilLocatorReturnsNumberOfElements.instantiateExternal(framework, defs, params).build();
+			UntilLocatorReturnsNumberOfElements.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untillocatorreturnslessthan":
-			UntilLocatorReturnsLessThan.instantiateExternal(framework, defs, params).build();
+			UntilLocatorReturnsLessThan.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untillocatorreturnsgreaterthan":
-			UntilLocatorReturnsGreaterThan.instantiateExternal(framework, defs, params).build();
+			UntilLocatorReturnsGreaterThan.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilpresenceofnestedelement":
-			UntilPresenceOfNestedElement.instantiateExternal(framework, defs, params).build();
+			UntilPresenceOfNestedElement.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilpresenceofnestedelements":
-			UntilPresenceOfNestedElements.instantiateExternal(framework, defs, params).build();
+			UntilPresenceOfNestedElements.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untildropdownselectedtextis":
-			UntilDropDownSelectedTextIs.instantiateExternal(framework, defs, params).build();
+			UntilDropDownSelectedTextIs.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untildropdownselectedvalueis":
-			UntilDropDownSelectedValueIs.instantiateExternal(framework, defs, params).build();
+			UntilDropDownSelectedValueIs.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untildropdownitemcountis":
-			UntilDropDownItemCountIs.instantiateExternal(framework, defs, params).build();
+			UntilDropDownItemCountIs.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untildropdowncontainsoption":
-			UntilDropDownContainsOption.instantiateExternal(framework, defs, params).build();
+			UntilDropDownContainsOption.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untildropdowncontainsoptions":
-			UntilDropDownContainsOptions.instantiateExternal(framework, defs, params).build();
+			UntilDropDownContainsOptions.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untildropdownoptionsinorderof":
-			UntilDropDownOptionsInOrderOf.instantiateExternal(framework, defs, params).build();
+			UntilDropDownOptionsInOrderOf.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilstalenessof":
-			UntilStalenessOf.instantiateExternal(framework, defs, params).build();
+			UntilStalenessOf.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementnotvisible":
-			UntilElementNotVisible.instantiateExternal(framework, defs, params).build();
+			UntilElementNotVisible.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementenabled":
-			UntilElementEnabled.instantiateExternal(framework, defs, params).build();
+			UntilElementEnabled.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilelementnotenabled":
-			UntilElementNotEnabled.instantiateExternal(framework, defs, params).build();
+			UntilElementNotEnabled.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "untilalertisnotpresent":
-			UntilAlertIsNotPresent.instantiateExternal(framework, defs, params).build();
+			UntilAlertIsNotPresent.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		}
 	}
@@ -227,79 +227,79 @@ public class KeywordRunner
 	{
 		switch(methodName.toLowerCase()) {
 		case "selectbytext":
-			SelectByText.instantiateExternal(framework, defs, params).build();
+			SelectByText.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "selectbyindex":
-			SelectByIndex.instantiateExternal(framework, defs, params).build();
+			SelectByIndex.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "click":
-			Click.instantiateExternal(framework, defs, params).build();
+			Click.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "sendkeys":
-			SetText.instantiateExternal(framework, defs, params).build();
+			SetText.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "navigateto":
-			framework.withAction(action.navigateTo(params.get(0)));
+			keywordProvider.withAction(action.navigateTo(params.get(0)));
 			break;
 		case "navigateback":
-			framework.withAction(action.navigateBack());
+			keywordProvider.withAction(action.navigateBack());
 			break;
 		case "navigateforward":
-			framework.withAction(action.navigateForward());
+			keywordProvider.withAction(action.navigateForward());
 			break;
 		case "navigaterefresh":
-			framework.withAction(action.navigateRefresh());
+			keywordProvider.withAction(action.navigateRefresh());
 			break;
 		case "doubleclick":
-			DoubleClick.instantiateExternal(framework, defs, params).build();
+			DoubleClick.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "hover":
-			Hover.instantiateExternal(framework, defs, params).build();
+			Hover.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "mouseto":
 			params.add(0, "0");
-			Hover.instantiateExternal(framework, defs, params).build();
+			Hover.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "clickanddrag":
 			if(defs.size() == 1 && isBy(defs.get(0))) { // By, int, int
-				framework.withAction(action.clickAndDrag(castToBy(defs.get(0)), Integer.parseInt(params.get(0)), Integer.parseInt(params.get(1))));
+				keywordProvider.withAction(action.clickAndDrag(castToBy(defs.get(0)), Integer.parseInt(params.get(0)), Integer.parseInt(params.get(1))));
 			} else if(defs.size() == 1 && isElem(defs.get(0))) { // WebElement int, int
-				framework.withAction(action.clickAndDrag(castToElem(defs.get(0)), Integer.parseInt(params.get(0)), Integer.parseInt(params.get(1))));
+				keywordProvider.withAction(action.clickAndDrag(castToElem(defs.get(0)), Integer.parseInt(params.get(0)), Integer.parseInt(params.get(1))));
 			} else if (isBy(defs.get(0)) && isBy(defs.get(1))) { // By, By
-				framework.withAction(action.clickAndDrag(castToBy(defs.get(0)), castToBy(defs.get(1))));
+				keywordProvider.withAction(action.clickAndDrag(castToBy(defs.get(0)), castToBy(defs.get(1))));
 			} else if (isBy(defs.get(0)) && isElem(defs.get(1))) { // By, WebElement
-				framework.withAction(action.clickAndDrag(castToBy(defs.get(0)), castToElem(defs.get(1))));
+				keywordProvider.withAction(action.clickAndDrag(castToBy(defs.get(0)), castToElem(defs.get(1))));
 			} else if (isElem(defs.get(0)) && isBy(defs.get(1))) { // WebElement, By
-				framework.withAction(action.clickAndDrag(castToElem(defs.get(0)), castToBy(defs.get(1))));
+				keywordProvider.withAction(action.clickAndDrag(castToElem(defs.get(0)), castToBy(defs.get(1))));
 			} else { // WebElement, WebElement
-				framework.withAction(action.clickAndDrag(castToElem(defs.get(0)), castToElem(defs.get(1))));
+				keywordProvider.withAction(action.clickAndDrag(castToElem(defs.get(0)), castToElem(defs.get(1))));
 			}
 			break;
 		case "selectcheckbox":
-			SelectCheckbox.instantiateExternal(framework, defs, params).build();
+			SelectCheckbox.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "unselectcheckbox":
-			UnselectCheckbox.instantiateExternal(framework, defs, params).build();
+			UnselectCheckbox.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "selectradiooptionbyindex":
-			SelectRadioOptionByIndex.instantiateExternal(framework, defs, params).build();
+			SelectRadioOptionByIndex.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "selectradiooptionbyvalue":
-			SelectRadioOptionByValue.instantiateExternal(framework, defs, params).build();
+			SelectRadioOptionByValue.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "scrolltoelement":
-			ScrollToElement.instantiateExternal(framework, defs, params).build();
+			ScrollToElement.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "switchtoframe":
 			if (params.size()>0 && isInteger(params.get(0))) {
-				SwitchToFrameIndex.instantiateExternal(framework, defs, params).build();
+				SwitchToFrameIndex.instantiateExternal(keywordProvider, defs, params).build();
 				break;
 			}
 			if (params.size()>0) {
-				SwitchToFrame.instantiateExternal(framework, defs, params).build();
+				SwitchToFrame.instantiateExternal(keywordProvider, defs, params).build();
 				break;
 			}
-			SwitchToFrameElement.instantiateExternal(framework, defs, params).build();
+			SwitchToFrameElement.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		}
 	}
@@ -308,85 +308,85 @@ public class KeywordRunner
 	{
 		switch(methodName.toLowerCase()) {
 		case "asserttext":
-			AssertText.instantiateExternal(framework, defs, params).build();
+			AssertText.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "asserttextcontains":
-			AssertTextContains.instantiateExternal(framework, defs, params).build();
+			AssertTextContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertvalue":
-			AssertValue.instantiateExternal(framework, defs, params).build();
+			AssertValue.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertvaluecontains":
-			AssertValueContains.instantiateExternal(framework, defs, params).build();
+			AssertValueContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementattributevalue":
-			AssertElementAttributeValue.instantiateExternal(framework, defs, params).build();
+			AssertElementAttributeValue.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementattributevaluecontains":
-			AssertElementAttributeValueContains.instantiateExternal(framework, defs, params).build();
+			AssertElementAttributeValueContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementexists":
-			AssertElementExists.instantiateExternal(framework, defs, params).build();
+			AssertElementExists.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementvisible":
-			AssertElementVisible.instantiateExternal(framework, defs, params).build();
+			AssertElementVisible.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementnotvisible":
-			AssertElementNotVisible.instantiateExternal(framework, defs, params).build();
+			AssertElementNotVisible.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementenabled":
-			AssertElementEnabled.instantiateExternal(framework, defs, params).build();
+			AssertElementEnabled.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementnotenabled":
-			AssertElementNotEnabled.instantiateExternal(framework, defs, params).build();
+			AssertElementNotEnabled.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementselected":
-			AssertElementSelected.instantiateExternal(framework, defs, params).build();
+			AssertElementSelected.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertelementnotselected":
-			AssertElementNotSelected.instantiateExternal(framework, defs, params).build();
+			AssertElementNotSelected.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertpagetitleequals":
-			AssertPageTitleEquals.instantiateExternal(framework, defs, params).build();
+			AssertPageTitleEquals.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertpagetitlecontains":
-			AssertPageTitleContains.instantiateExternal(framework, defs, params).build();
+			AssertPageTitleContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "asserturlequals":
-			AssertCurrentUrlEquals.instantiateExternal(framework, defs, params).build();
+			AssertCurrentUrlEquals.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "asserturlcontains":
-			AssertCurrentUrlContains.instantiateExternal(framework, defs, params).build();
+			AssertCurrentUrlContains.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertalertispresent":
-			AssertAlertIsPresent.instantiateExternal(framework, defs, params).build();
+			AssertAlertIsPresent.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertlocatorreturnsnumberofelements":
-			AssertLocatorReturnsNumberOfElements.instantiateExternal(framework, defs, params).build();
+			AssertLocatorReturnsNumberOfElements.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertlocatorreturnslessthan":
-			AssertLocatorReturnsLessThan.instantiateExternal(framework, defs, params).build();
+			AssertLocatorReturnsLessThan.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertlocatorreturnsgreaterthan":
-			AssertLocatorReturnsGreaterThan.instantiateExternal(framework, defs, params).build();
+			AssertLocatorReturnsGreaterThan.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertdropdownselectedtextis":
-			AssertDropDownSelectedTextIs.instantiateExternal(framework, defs, params).build();
+			AssertDropDownSelectedTextIs.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertdropdownselectedvalueis":
-			AssertDropDownSelectedValueIs.instantiateExternal(framework, defs, params).build();
+			AssertDropDownSelectedValueIs.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertdropdownitemcountis":
-			AssertDropDownItemCountIs.instantiateExternal(framework, defs, params).build();
+			AssertDropDownItemCountIs.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertdropdowncontainsoption":
-			AssertDropDownContainsOption.instantiateExternal(framework, defs, params).build();
+			AssertDropDownContainsOption.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertdropdowncontainsoptions":
-			AssertDropDownContainsOptions.instantiateExternal(framework, defs, params).build();
+			AssertDropDownContainsOptions.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		case "assertdropdownoptionsinorderof":
-			AssertDropDownOptionsInOrderOf.instantiateExternal(framework, defs, params).build();
+			AssertDropDownOptionsInOrderOf.instantiateExternal(keywordProvider, defs, params).build();
 			break;
 		}
 		

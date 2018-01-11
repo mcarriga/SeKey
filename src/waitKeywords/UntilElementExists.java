@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.ObjectDef;
-import framework.Framework;
+import framework.KeywordProvider;
 import framework.WaitKeyword;
 import interfaces.ILogging;
 
@@ -52,9 +52,9 @@ public class UntilElementExists extends WaitKeyword {
 		_logger.endKeyword(this);
 	}
 
-	public static WaitKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static WaitKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
-		return new UntilElementExists(framework.driver, castToBy(defs.get(0)), (long)Double.parseDouble(params.get(0)), framework.logger);
+		return new UntilElementExists(keywordProvider.driver, castToBy(defs.get(0)), (long)Double.parseDouble(params.get(0)), keywordProvider.loggers);
 	}
 
 }

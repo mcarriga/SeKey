@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import data.ObjectDef;
 import framework.ActionKeyword;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.IAfterAction;
 import interfaces.ILogging;
 
@@ -58,7 +58,7 @@ public class ExecuteJavaScript<T extends Object> extends ActionKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static ActionKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static ActionKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		// TODO Auto-generated method stub
 		return null;

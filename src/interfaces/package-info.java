@@ -1,4 +1,4 @@
 /**
- * public interfaces for defining the model of how the framework works with keywords, logging, and Excel workbooks.
+ * public interfaces for defining the model of how the keywordProvider works with keywords, logging, and Excel workbooks.
  */
 package interfaces;

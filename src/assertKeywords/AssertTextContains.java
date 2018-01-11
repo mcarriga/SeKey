@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 import data.ObjectDef;
 import framework.AssertKeyword;
-import framework.Framework;
+import framework.KeywordProvider;
 import interfaces.ILogging;
 import interfaces.IWait;
 
@@ -52,19 +52,19 @@ public class AssertTextContains extends AssertKeyword {
 		logger.endKeyword(this);
 	}
 
-	public static AssertKeyword instantiateExternal(Framework framework, List<ObjectDef> defs,
+	public static AssertKeyword instantiateExternal(KeywordProvider keywordProvider, List<ObjectDef> defs,
 			List<String> params) {
 		if(isBy(defs.get(0))) {
 			if(params.size() > 1) {
-				return new AssertTextContains(framework.driver, framework.logger, framework.wait, castToBy(defs.get(0)), params.get(0),  (long)Double.parseDouble(params.get(1)));
+				return new AssertTextContains(keywordProvider.driver, keywordProvider.loggers, keywordProvider.waits, castToBy(defs.get(0)), params.get(0),  (long)Double.parseDouble(params.get(1)));
 			} else {
-				return new AssertTextContains(framework.driver, framework.logger, framework.wait, castToBy(defs.get(0)), params.get(0), framework.asserter.getDefaultWait());
+				return new AssertTextContains(keywordProvider.driver, keywordProvider.loggers, keywordProvider.waits, castToBy(defs.get(0)), params.get(0), keywordProvider.asserts.getDefaultWait());
 			}
 		} else {
 			if(params.size() > 1) {
-				return new AssertTextContains(castToElem(defs.get(0)), framework.logger, framework.wait, params.get(0),  (long)Double.parseDouble(params.get(1)));
+				return new AssertTextContains(castToElem(defs.get(0)), keywordProvider.loggers, keywordProvider.waits, params.get(0),  (long)Double.parseDouble(params.get(1)));
 			} else {
-				return new AssertTextContains(castToElem(defs.get(0)), framework.logger, framework.wait, params.get(0), framework.asserter.getDefaultWait());
+				return new AssertTextContains(castToElem(defs.get(0)), keywordProvider.loggers, keywordProvider.waits, params.get(0), keywordProvider.asserts.getDefaultWait());
 			}
 		}
 	}

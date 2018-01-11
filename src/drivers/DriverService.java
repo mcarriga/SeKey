@@ -15,7 +15,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import framework.MvnProperties;
 
 /**
- * Framework helper for creating and managing WebDrivers
+ * KeywordProvider helper for creating and managing WebDrivers
  * @author Mathew Carrigan
  *
  */
