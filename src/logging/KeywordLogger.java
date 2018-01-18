@@ -120,9 +120,16 @@ public class KeywordLogger implements ILogging {
 	}
 
 	@Override
-	public void error() {
-		// TODO Auto-generated method stub
+	public void error(String message) {
+		logger.error(message);
 
+	}
+	
+	@Override
+	public void error(String message, Throwable t)
+	{
+		logger.error(message, t);
+		
 	}
 
 	@Override

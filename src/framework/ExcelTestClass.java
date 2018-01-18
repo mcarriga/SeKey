@@ -71,7 +71,7 @@ public class ExcelTestClass implements org.testng.ITest
 		keywordProvider = new KeywordProvider(driver, KeywordLogger.getInstance());
 		
 		this.init(keywordProvider);
-		runner = new ExcelTestRunner(keywordProvider, PageObject.class);
+		runner = new ExcelTestRunner(keywordProvider, PageObject.class, context);
 		context.getCurrentXmlTest().setName(testCase.getTestName());
 		context.getCurrentXmlTest().getSuite().setName(testCase.getSuiteName());
 	}

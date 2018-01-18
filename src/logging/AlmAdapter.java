@@ -2,12 +2,11 @@ package logging;
 
 import java.util.Properties;
 
-import org.alm.Config;
-import org.alm.model.Field;
-import org.alm.model.Run;
-import org.alm.model.Test;
-import org.alm.model.TestInstance;
+import okean.model.*;
+import okean.*;
 import org.testng.ITestResult;
+
+import okean.Client;
 
 public class AlmAdapter
 {
@@ -27,7 +26,7 @@ public class AlmAdapter
 		this.project = project;
 	}
 	
-	private org.alm.Client getClient() throws Exception {
+	private Client getClient() throws Exception {
 		
 		Properties properties = new Properties();
 		properties.setProperty("host", url);
@@ -38,24 +37,31 @@ public class AlmAdapter
 		properties.setProperty("password", pass);
 		
 		Config config = new Config(properties);
-		org.alm.Client client = new org.alm.Client(config);
+		Client client = new Client(config);
 		return client;
 	}
 	
 	public void updateTestInALM(String testId, ITestResult result) throws Exception {
-		org.alm.Client client = getClient();
+		Client client = getClient();
 		client.login();
 		
 		try {
 		TestInstance testInstance = new TestInstance();
-		testInstance.testSetId(testId);
-		org.alm.model.Test test = client.loadTest(testInstance);
+		testInstance.testId(testId);
+		
+		KeywordLogger.getInstance().info(testInstance.testId());
+		
+		Test test = client.loadTest(testInstance);
+		
+		KeywordLogger.getInstance().info(test.toString());
 		updateAutomationStatusIfNeeded(test);
 		
 		Run run = client.createRun(testInstance, test);
 		run.status(parseTestResult(result));
 		run.comments(createRunComments(result));
 		run.duration(String.valueOf((result.getEndMillis() - result.getStartMillis()))+ "ms");
+		}catch(Exception e) {
+			KeywordLogger.getInstance().error("", e);
 		} finally {
 			client.logout();
 		}
@@ -81,7 +87,7 @@ public class AlmAdapter
 	}
 	
 	private void updateAutomationStatusIfNeeded(Test test) {
-		Field autoField = test.field("Automation Status");
+		Field autoField = test.field("user-01");
 		String autoStatus = autoField.value();
 		if(!autoStatus.equalsIgnoreCase("Automated")) {
 			autoField.value("Automated");

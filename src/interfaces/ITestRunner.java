@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.testng.Assert;
+import org.testng.ITestContext;
+
 import data.KeywordRunner;
 import data.ObjectDef;
 import data.ObjectFinder;
@@ -28,6 +31,8 @@ public interface ITestRunner
 	 * @throws Exception If any ITestSteps in the ITestCase throw an error
 	 */
 	void runTest(ITestCase testCase) throws Exception;
+	
+	ITestContext getTestContext();
 	
 	/**
 	 * Gets the Package of the client project that contains all of the Page Objects in it. This is used for reflection purposes to be able to get objects and methods from a Page Object
@@ -255,7 +260,17 @@ public interface ITestRunner
 		for(String obj : objects) {
 			String[] vals = obj.split("\\.");
 			
-			ObjectDef def = ObjectFinder.x(getFramework(), getPageObjectPackage().getSimpleName()+"."+vals[0], vals[1]);
+			ObjectDef def = null;
+			try {
+				def = ObjectFinder.x(getFramework(), getPageObjectPackage().getSimpleName()+"."+vals[0], vals[1]);
+			}catch (org.openqa.selenium.NoSuchElementException no) {
+				// TODO: handle exception
+				getFramework().loggers.error("Unable to locate Element: "+vals[0]+"."+vals[1]);
+				Assert.fail("Unable to locate Element: "+vals[0]+"."+vals[1], no);
+			}catch(Exception e) {
+				getFramework().loggers.error(e.getMessage(), e);
+				Assert.fail(e.getMessage(), e);
+			}
 			defs.add(def);
 		}
 		return defs;

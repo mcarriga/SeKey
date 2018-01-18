@@ -2,6 +2,8 @@ package data;
 
 import java.util.List;
 
+import org.testng.ITestContext;
+
 import framework.KeywordProvider;
 import interfaces.ITestCase;
 import interfaces.ITestRunner;
@@ -9,15 +11,17 @@ import interfaces.ITestStep;
 
 public class ExcelTestRunner implements ITestRunner
 {
+	private final ITestContext context;
 	private final KeywordProvider keywordProvider;
 	private final Class<?> pageObjectPackage;
 	private final KeywordRunner keywordRunner;
 	
-	public ExcelTestRunner(KeywordProvider keywordProvider, Class<?> pageObjectPackage) 
+	public ExcelTestRunner(KeywordProvider keywordProvider, Class<?> pageObjectPackage, ITestContext context) 
 	{
 		this.keywordProvider = keywordProvider;
 		this.pageObjectPackage = pageObjectPackage;
 		this.keywordRunner= new KeywordRunner(keywordProvider);
+		this.context = context;
 	}
 	
 	@Override
@@ -52,6 +56,13 @@ public class ExcelTestRunner implements ITestRunner
 	public KeywordRunner getKeywordRunner()
 	{
 		return this.keywordRunner;
+	}
+
+	
+	@Override
+	public ITestContext getTestContext()
+	{
+		return context;
 	}
 	
 	

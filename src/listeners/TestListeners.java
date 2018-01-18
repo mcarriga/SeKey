@@ -43,7 +43,7 @@ public class TestListeners implements ITestListener {
 		extentTests.get(result.getName()).pass(result.getName()+" passed");
 		logger.info("Ending Test: "+ result.getName());
 		printTestResults(result);
-		updateALM(result);
+		//updateALM(result);
 	}
 
 	@Override
@@ -52,14 +52,14 @@ public class TestListeners implements ITestListener {
 		extentTests.get(result.getName()).fail(result.getThrowable());
 		logger.info("Ending Test: "+ result.getName());
 		printTestResults(result);
-		updateALM(result);
+		//updateALM(result);
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		extentTests.get(result.getName()).skip(result.getName()+" skipped");
 		printTestResults(result);
-		updateALM(result);
+		//updateALM(result);
 	}
 
 	@Override

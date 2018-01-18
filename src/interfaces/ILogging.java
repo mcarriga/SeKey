@@ -104,7 +104,8 @@ public interface ILogging {
 	 * @param message String message to written by the logger
 	 */
 	void info(String message);
-	void error();
+	void error(String message);
+	void error(String message, Throwable t);
 	void warn(String message);
 	void debug();
 	

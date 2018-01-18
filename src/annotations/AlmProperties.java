@@ -13,7 +13,7 @@ public @interface AlmProperties
 	public String Domain();
 	public String Project();
 	public String Url() default "alm.corp.chartercom.com";
-	public int Port () default 8080;
+	public int Port() default 80;
 	public String userName();
 	public String userPass();
 }
