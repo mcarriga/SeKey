@@ -79,6 +79,7 @@
 /Users/p2776689/eclipse-workspace/SeKey/src/touchKeywords/package-info.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilDropDownContainsOptions.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilElementSelected.java
+/Users/p2776689/eclipse-workspace/SeKey/src/okean/model/AuthenticationInfo.java
 /Users/p2776689/eclipse-workspace/SeKey/src/waitKeywords/UntilLocatorReturnsLessThan.java
 /Users/p2776689/eclipse-workspace/SeKey/src/logging/package-info.java
 /Users/p2776689/eclipse-workspace/SeKey/src/actionKeywords/UnselectCheckbox.java

@@ -24,6 +24,7 @@ public abstract class TestClass {
 	public IAssert asserts;
 	public IAction actions;
 	public ILogging loggers;
+	public drivers.DriverService driverService;
 	
 	/**
 	 * Initialized fields for this class
