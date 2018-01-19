@@ -22,7 +22,7 @@
      <repository>
        <id>charter-public</id>
        <name>Charter Advanced Engineering Artifactory</name>
-       <url>http://192.168.220.229:8081/nexus/content/repositories/public</url>
+       <url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/public</url>
      </repository>
   </distributionManagement>
   <repositories>
@@ -30,9 +30,9 @@
      	<id>charter-public</id>
      	<name>Charter Advanced Engineering Artifactory</name>
      	<!--  
-     	<url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/public</url>
-     	-->
      	<url>http://192.168.220.229:8081/nexus/content/repositories/public</url>
+     	-->
+     	<url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/public</url>
      </repository>
   </repositories>
   <build>
