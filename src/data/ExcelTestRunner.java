@@ -13,10 +13,10 @@ public class ExcelTestRunner implements ITestRunner
 {
 	private final ITestContext context;
 	private final KeywordProvider keywordProvider;
-	private final Class<?> pageObjectPackage;
+	private final String pageObjectPackage;
 	private final KeywordRunner keywordRunner;
 	
-	public ExcelTestRunner(KeywordProvider keywordProvider, Class<?> pageObjectPackage, ITestContext context) 
+	public ExcelTestRunner(KeywordProvider keywordProvider, String pageObjectPackage, ITestContext context) 
 	{
 		this.keywordProvider = keywordProvider;
 		this.pageObjectPackage = pageObjectPackage;
@@ -41,7 +41,7 @@ public class ExcelTestRunner implements ITestRunner
 	}
 
 	@Override
-	public Class<?> getPageObjectPackage()
+	public String getPageObjectPackage()
 	{
 		return this.pageObjectPackage;
 	}

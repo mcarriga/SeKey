@@ -1,12 +1,9 @@
 package framework;
 
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 import data.ExcelTestRunner;
@@ -38,40 +35,37 @@ public class ExcelTestClass implements org.testng.ITest
 	public IAction actions;
 	public ILogging loggers;
 	public MvnProperties mavenProperties;
-	public drivers.DriverService driverService;
+	public webDriverHandler.DriverService driverService;
 	
 	/**
 	 * Initialized the fields in this class
 	 * @param keywordProvider KeywordProvider instance to use
 	 * @throws MalformedURLException if Grid Hub URL is not valid
 	 */
-	public void init(KeywordProvider keywordProvider) throws MalformedURLException 
+	private void init(KeywordProvider keywordProvider) throws MalformedURLException 
 	{
-		TestClass.keywordProvider = keywordProvider;
+		ExcelTestClass.keywordProvider = keywordProvider;
 		this.waits = keywordProvider.waits;
 		this.gets = keywordProvider.gets;
 		this.asserts = keywordProvider.asserts;
 		this.actions = keywordProvider.actions;
 		this.loggers = KeywordLogger.getInstance();
 	}
-
+	
 	/**
-	 * Before method to run before all tests
+	 * 
 	 * @param context ITestContext passed in by TestNG
-	 * @param method Method passed in by TestNG
-	 * @throws MalformedURLException if Grid Hub URL is not valid
+	 * @param driversPackageFolder Name of the package/folder that contains WebDrivers for running local. ChromeDriver, GeckoDriver, IEDriver, etc...
+	 * @param pageObjectsPackageFolder Name of the Page objects package/folder that contains all Page Object Classes
+	 * @throws Exception If unable to find drivers or page object folders
 	 */
-	@BeforeMethod
-	public void getAnnotation(ITestContext context, Method method) throws MalformedURLException {
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.home")+"/Downloads/chromedriver");
-		driverService = new drivers.DriverService();
-		driver = driverService.createChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	public void Initialize(ITestContext context, String driversPackageFolder, String pageObjectsPackageFolder) throws Exception{
+		driverService = new webDriverHandler.DriverService(driversPackageFolder);
+		driver = driverService.getBrowser();
 		keywordProvider = new KeywordProvider(driver, KeywordLogger.getInstance());
 		
 		this.init(keywordProvider);
-		runner = new ExcelTestRunner(keywordProvider, PageObject.class, context);
+		runner = new ExcelTestRunner(keywordProvider, pageObjectsPackageFolder, context);
 		context.getCurrentXmlTest().setName(testCase.getTestName());
 		context.getCurrentXmlTest().getSuite().setName(testCase.getSuiteName());
 	}

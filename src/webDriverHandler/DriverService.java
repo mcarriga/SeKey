@@ -1,8 +1,11 @@
-package drivers;
+package webDriverHandler;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import org.apache.tools.ant.DirectoryScanner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,6 +16,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import framework.MvnProperties;
+import logging.KeywordLogger;
 
 /**
  * KeywordProvider helper for creating and managing WebDrivers
@@ -21,8 +25,32 @@ import framework.MvnProperties;
  */
 public class DriverService
 {
-	
-	public DriverService() {
+	private String driversLocation;
+	public DriverService(String driversFolder) 
+	{
+		Path path = Paths.get(System.getProperty("user.dir"));
+		DirectoryScanner scanner = new DirectoryScanner();
+		scanner.setBasedir(path.toFile());
+		scanner.setIncludes(new String[] {"*/"+driversFolder});
+		scanner.setCaseSensitive(false);
+		scanner.scan();
+		String[] results = scanner.getIncludedDirectories();
+		boolean found = false;
+		for(String result : results) {
+			Path foundPath = Paths.get(result);
+			if(foundPath.toFile().isDirectory()) {
+				found = true;
+				driversLocation = foundPath.toString();
+				break;
+			}
+		}
+		if(found == false) {
+			KeywordLogger.getInstance().warn("Unable to find the provided folder name: "+driversFolder+"; attempting to set location to: "+path.toString()+"/src/"+driversFolder);
+			driversLocation = path.toString()+"/src/"+driversFolder;
+		}
+		System.setProperty("webdriver.chrome.driver", driversLocation+"/chromedriver");
+		System.setProperty("webdriver.gecko.driver", driversLocation+"/geckodriver");
+		
 	}
 	
 	private boolean isBrowserArgsNull() {

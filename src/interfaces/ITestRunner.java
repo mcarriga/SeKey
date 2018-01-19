@@ -38,7 +38,7 @@ public interface ITestRunner
 	 * Gets the Package of the client project that contains all of the Page Objects in it. This is used for reflection purposes to be able to get objects and methods from a Page Object
 	 * @return the Package/Class that contains the classes of Page Objects.
 	 */
-	Class<?> getPageObjectPackage();
+	String getPageObjectPackage();
 	
 	/**
 	 * Returns the current active KeywordProvider instance
@@ -122,7 +122,7 @@ public interface ITestRunner
 	default void runCustomMethod(String objects, List<String> params) 
 	{
 		String[] vals = objects.split("\\.");
-		String cls = getPageObjectPackage().getSimpleName()+"."+vals[0];
+		String cls = getPageObjectPackage()+"."+vals[0];
 		String method = vals[1];
 		try {
 			ObjectFinder.getMethod(getFramework(), cls, method, params);
@@ -262,7 +262,7 @@ public interface ITestRunner
 			
 			ObjectDef def = null;
 			try {
-				def = ObjectFinder.x(getFramework(), getPageObjectPackage().getSimpleName()+"."+vals[0], vals[1]);
+				def = ObjectFinder.x(getFramework(), getPageObjectPackage()+"."+vals[0], vals[1]);
 			}catch (org.openqa.selenium.NoSuchElementException no) {
 				// TODO: handle exception
 				getFramework().loggers.error("Unable to locate Element: "+vals[0]+"."+vals[1]);

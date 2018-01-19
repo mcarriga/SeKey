@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.spectrum.sst.automation</groupId>
   <artifactId>portal-framework</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <properties>
   	<browser>chrome</browser>
   	<browserArgs></browserArgs>
@@ -19,7 +19,10 @@
      <repository>
      	<id>charter-se</id>
      	<name>Charter SE Testing Team</name>
-     	<url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/se-testing/</url>
+     	<!--  
+     	<url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/se-testing</url>
+     	-->
+     	<url>http://192.168.220.229:8081/nexus/content/repositories/se-testing</url>
      </repository>
   </repositories>
   <build>
