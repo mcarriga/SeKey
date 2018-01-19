@@ -19,8 +19,8 @@
   </properties>
   <repositories>
      <repository>
-     	<id>charter-se</id>
-     	<name>Charter SE Testing Team</name>
+     	<id>charter-public</id>
+     	<name>Charter Advanced Engineering Artifactory</name>
      	<!--  
      	<url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/public</url>
      	-->
