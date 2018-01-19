@@ -3,6 +3,8 @@
   <groupId>com.spectrum.sst.automation</groupId>
   <artifactId>portal-framework</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
+  <name>portal-framework</name>
   <properties>
   	<browser>chrome</browser>
   	<browserArgs></browserArgs>
