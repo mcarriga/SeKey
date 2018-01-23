@@ -1,8 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.spectrum.sst.automation</groupId>
+
+  <groupId>com.charter.sst.automation</groupId>
   <artifactId>portal-framework</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
+  <name>portal-framework</name>
   <properties>
   	<browser>chrome</browser>
   	<browserArgs></browserArgs>
@@ -15,14 +18,21 @@
   	<almUsername></almUsername>
   	<almPassword></almPassword>
   </properties>
+  <distributionManagement>
+     <repository>
+       <id>charter-public</id>
+       <name>Charter Advanced Engineering Artifactory</name>
+       <url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/public</url>
+     </repository>
+  </distributionManagement>
   <repositories>
      <repository>
-     	<id>charter-se</id>
-     	<name>Charter SE Testing Team</name>
+     	<id>charter-public</id>
+     	<name>Charter Advanced Engineering Artifactory</name>
      	<!--  
-     	<url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/se-testing</url>
+     	<url>http://192.168.220.229:8081/nexus/content/repositories/public</url>
      	-->
-     	<url>http://192.168.220.229:8081/nexus/content/repositories/se-testing</url>
+     	<url>http://nexusnpm.dev-charter.net:8081/nexus/content/repositories/public</url>
      </repository>
   </repositories>
   <build>
