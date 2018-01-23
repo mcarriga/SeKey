@@ -151,8 +151,7 @@ public class TestListeners implements ITestListener {
 		if(hasAlmProps && hasAlmTestId) {
 			try
 			{
-				AlmAdapter adapter = new AlmAdapter(url, port, userName, userPass, domain, project);
-				adapter.updateTestInALM(testId, result);
+				
 			} catch (Exception e)
 			{
 				logger.warn("Unable to create instance of AlmAdapter");
